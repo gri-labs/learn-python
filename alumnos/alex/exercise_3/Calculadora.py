@@ -1,5 +1,6 @@
 class Calculo(object):
-    def __init__(self):
+    def __init__(self, num):
+        self.num = num
 
     def suma_primeros_naturales(self, num):
         i = 0
@@ -9,6 +10,6 @@ class Calculo(object):
             i = i + 1
         return sum
 
-thing = Calculo()
+thing = Calculo(8)
 print(thing.suma_primeros_naturales(8))
 
