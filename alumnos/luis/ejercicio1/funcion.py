@@ -1,5 +1,5 @@
-import cebolla
+import sumadigitos
 
-cebolla.patata()
+sumadigitos.funcion()
 
-print(cebolla.tangerine)
+print(sumadigitos.tangerine)
