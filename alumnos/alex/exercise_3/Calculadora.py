@@ -1,15 +1,15 @@
-class Calculo(object):
+class Calc(object):
     def __init__(self, num):
         self.num = num
 
-    def suma_primeros_naturales(self, num):
+    def suma_first_naturals(self):
         i = 0
-        sum = 0
-        while i <= num:
-            sum = sum + i
+        result = 0
+        while i <= self.num:
+            result = result + i
             i = i + 1
-        return sum
+        return result
 
-thing = Calculo(8)
-print(thing.suma_primeros_naturales(8))
+thing = Calc(8)
+print(thing.suma_first_naturals())
 
