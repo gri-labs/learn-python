@@ -1,45 +1,28 @@
 def break_words(stuff):
     """Esta función dividirá las palabras para nosotros."""
-    words = stuff.split(' ')
-    return words
+    print(stuff.split(' '))
 
 
-#Check sorted function
-def sort_words(words):
-    """Ordena las palabras."""
-    return sorted(words)
-
-#Check pop function
-def print_first_word(words):
-    """Imprime la primera palabra después de sacarla."""
-    word = words.pop(0)
-    return word
+def sort_numbers(numbers):
+    """Ordena las numeros."""
+    print(sorted(numbers))
 
 
-def print_last_word(words):
-    """Imprime la última palabra después de sacarla."""
-    word = words.pop(-1)
-    print(word)
+def print_first_number(numbers):
+    """Imprime el primer número después de sacarlo."""
+    number = numbers.pop(0)
+    print(number)
 
 
-def sort_sentence(sentence):
-    """Toma una frase completa y devuelve las palabras ordenadas."""
-    words = break_words(sentence)
-    return sort_words(words)
+def print_last_number(numbers):
+    """Imprime el primer número después de sacarla."""
+    number = numbers.pop(-1)
+    print(number)
 
 
-def print_first_and_last(sentence):
-    """Imprime la primera y última palabra de la frase."""
-    words = break_words(sentence)
-    print_first_word(words)
-    print_last_word(words)
-
-
-result = break_words("Hola mundo")
-print(result)
-
-result_sort = sort_words("Hola mundo")
-print(result_sort)
-
-first_word = print_first_word("Hola")
-print(first_word)
+numbers = [3, 2, 1, 4, 5, 6, 7, 8, 9, 10]
+words = "This function will break up words for us."
+break_words(words)
+sort_numbers(numbers)
+print_first_number(numbers)
+print_last_number(numbers)
