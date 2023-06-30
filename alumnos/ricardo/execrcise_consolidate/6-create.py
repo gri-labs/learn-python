@@ -22,7 +22,7 @@ create_table_sql = """
 """
 
 # Ejecutar los cambios en la base de datos
-cursor.execute()
+cursor.execute(create_database_sql)
 # Confirmar los cambios en la base de datos
 connection.commit()
 # Ejecutar los cambios en la base de datos
