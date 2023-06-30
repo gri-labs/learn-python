@@ -5,10 +5,15 @@
 
 n = int(input("Ingresa el número de términos: "))
 
-fibonacci = [0, 1]
 
-while len(fibonacci) < n:
-    next_num = fibonacci[-1] + fibonacci[-2]
-    fibonacci.append(next_num)
+def fibonacci_calc(num):
+    fibonacci = [0, 1]
 
-print("Los primeros", n, "términos de la serie de Fibonacci son:", fibonacci)
+    while len(fibonacci) < num:
+        next_num = fibonacci[-1] + fibonacci[-2]
+        fibonacci.append(next_num)
+
+    return fibonacci
+
+
+print("Los primeros", n, "términos de la serie de Fibonacci son:", fibonacci_calc(n))
