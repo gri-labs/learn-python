@@ -1,9 +1,9 @@
 # Contar la cantidad de letras en una palabra utilizando una función:
 
-def (palabra):
+def contar_letras(palabra):
     return len(palabra)
 
 
- = input("Ingresa una palabra: ")
- = contar_letras(palabra)
+palabra = input("Ingresa una palabra: ")
+cantidad_letras = contar_letras(palabra)
 print("La palabra", palabra, "tiene", cantidad_letras, "letras")

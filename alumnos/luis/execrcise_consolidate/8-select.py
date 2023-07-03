@@ -4,7 +4,8 @@ connection = mysql.connector.connect(
     host='localhost',
     user='root',
     password='root',
-    database=mysql
+    database=mysql,
+    port=int(3307),
 )
 
 # Crear un cursor para ejecutar sentencias SQL
@@ -12,7 +13,7 @@ cursor = connection.cursor()
 
 # Consultar todos los registros
 select_sql = """
-SELECT * FROM estudiantes
+SELECT * FROM mysql
 """
 
 cursor.execute(select_sql)
