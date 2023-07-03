@@ -81,25 +81,29 @@ if __name__ == '__main__':
     create_db_sql = create_db("MyNewDb")
     exec_and_commit(cursor_db, connection_db, create_db_sql)
 
+    # Creo Tabla
     create_table_sql = create_table("MyNewDb", "NewEstudiantes")
     exec_and_commit(cursor_db, connection_db, create_table_sql)
     cursor_db.close()
     connection_db.close()
 
+    # Añado un usuario
     connection_db = connection_database('MyNewDb')
     cursor_db = connection_db.cursor()
     insert_data_sql = insert_data("NewEstudiantes", 1, "Ginger", "Gato")
     exec_and_commit(cursor_db, connection_db, insert_data_sql)
 
+    # Enseño todos
     get_all_sql = get_data("NewEstudiantes")
     exec(cursor_db, get_all_sql)
     rows = cursor_db.fetchall()
     for row in rows:
         print(row)
 
+    # Enseño uno
     get_by_id_sql = get_data_by_id("NewEstudiantes", 1)
     exec(cursor_db, get_by_id_sql)
-    rows = cursor_db.fetchall()
+    rows = cursor_db.fetchone()
     for row in rows:
         print(row)
 
