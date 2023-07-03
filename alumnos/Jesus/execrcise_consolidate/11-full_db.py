@@ -4,8 +4,16 @@
 # Consulta todos los registros de la tabla estudiantes y muéstralos en pantalla.
 # Consulta un registro de la tabla estudiantes y muéstralo en pantalla.
 # Cada ejecución del script tiene que estar en funciones separadas
+import mysql.connector
 
-def connection_database():
+def connection_database(host,user,password,port):
+    connection = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='root',
+        port=int(3307),
+    )
+    return connection
 
 def create_table():
 
