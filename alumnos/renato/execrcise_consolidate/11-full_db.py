@@ -102,3 +102,7 @@ if __name__ == '__main__':
     rows = cursor_db.fetchall()
     for row in rows:
         print(row)
+
+    cursor_db.close()
+    connection_db.close()
+
