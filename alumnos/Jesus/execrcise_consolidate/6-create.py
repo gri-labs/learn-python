@@ -4,7 +4,7 @@ connection = mysql.connector.connect(
     host='localhost',
     user='root',
     password='root',
-    port=int(3308),
+    port=int(3307),
     database='mysql'
 )
 

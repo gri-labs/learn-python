@@ -11,11 +11,12 @@ connection = mysql.connector.connect(
 # Crear un cursor para ejecutar sentencias SQL
 cursor = connection.cursor()
 
-# Insertar un registro
-insert_sql = "INSERT INTO estudiantes (nombre, carrera) VALUES ('Jesus', 'Estudiante Programacion');"
+# Consultar todos los registros
+# delete_sql = "SELECT * FROM estudiantes;"
+consulta_sql = "SELECT * FROM estudiantes;"
 
 # Ejecutar los cambios en la base de datos
-cursor.execute(insert_sql)
+cursor.execute(consulta_sql)
 
 # Confirmar los cambios en la base de datos
 connection.commit()

@@ -5,7 +5,7 @@ connection = mysql.connector.connect(
     user='root',
     password='root',
     database='estudiantes',
-    port=int(3308)
+    port=int(3307)
 )
 
 # Crear un cursor para ejecutar sentencias SQL
