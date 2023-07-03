@@ -1,10 +1,11 @@
 import mysql.connector
 
 connection = mysql.connector.connect(
-    host=,
-    user=,
-    password=,
-    database=
+    host='localhost',
+    user='root',
+    password='root',
+    port=int(3307),
+    database='estudiantes',
 )
 
 # Crear un cursor para ejecutar sentencias SQL

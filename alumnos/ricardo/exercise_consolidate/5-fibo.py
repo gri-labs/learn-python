@@ -3,12 +3,12 @@
 # Escriba un programa que genere los primeros n terminos de la serie de Fibonacci.
 # Donde n es un valor que el usuario ingresara por teclado.
 
- = int(("Ingresa el número de términos: "))
+n = int(input("Ingresa el número de términos: "))
 
- = [0, 1]
+fibonacci = [0, 1]
 
-while (fibonacci) < n:
-    next_num = [-1] + fibonacci[-2]
-    fibonacci.(next_num)
+while len(fibonacci) < n:
+    next_num = fibonacci[-1] + fibonacci[-2]
+    fibonacci.append(next_num)
 
-print("Los primeros", n, "términos de la serie de Fibonacci son:", )
+print("Los primeros", n, "términos de la serie de Fibonacci son:", fibonacci)
