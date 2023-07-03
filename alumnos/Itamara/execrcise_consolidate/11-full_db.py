@@ -12,19 +12,38 @@ def connection_database(host, user, password, database):
         user='root',
         password='root',
         port=int(3307),
-        database="mysql"
+        database="alumnos"
     )
     return connection
 
-def create_table(table):
-    table="CREATE DATABASE IF NOT EXISTS coches;"
+def insert_data(row):
+    insert=row.connect("INSERT INTO coches (id, modelo, marca) VALUES (1, 'Yaris', 'Toyota');")
+    execute_query(conn, insert)
 
 
-def insert_data():
-
-def get_data():
-
-def get_data_by_id():
+def get_data(show_table):
+    get_all=show_table.connect("SELECT * FROM coches;")
+    execute_query(conn, get_all)
 
 
-if __name__ == '__main__':
+def get_data_by_id(show_id_row):
+    get_id=show_id_row.connector("SELECT id FROM coches;")
+    execute_query(conn, get_id)
+
+def execute_query(connection, query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    connection.commit()
+    cursor.close()
+
+
+ if __name__ == '__main__':
+     host = 'localhost',
+     user = 'root',
+     password = 'root',
+     port = int(3307),
+     database = "mysql"
+
+     connection_database(host, user, password, database)
+     conn = connection_database()
+
