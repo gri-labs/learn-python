@@ -12,14 +12,10 @@ connection = mysql.connector.connect(
 cursor = connection.cursor()
 
 # Insertar un registro
-insert_sql = "INSERT INTO estudiantes (id, nombre) VALUES (1, 'ricardo');"
+insert_sql = ""
 
 # Ejecutar los cambios en la base de datos
-cursor.execute(insert_sql)
 
 # Confirmar los cambios en la base de datos
-connection.commit()
 
 # Cerrar el cursor y la conexión
-cursor.close()
-connection.close()

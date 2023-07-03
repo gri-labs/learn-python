@@ -12,6 +12,5 @@ delete_sql = ""
 # Ejecutar los cambios en la base de datos
 
 # Confirmar los cambios en la base de datos
-connection.commit()
 
 # Cerrar el cursor y la conexión
