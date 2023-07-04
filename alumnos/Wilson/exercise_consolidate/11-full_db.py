@@ -19,9 +19,10 @@ def connection_database(host, user, password, database):
 
 
 def create_table(connection):
+    # creo el cursor
     cursor = connection.cursor()
+    # crear la base de datos
     create_database_sql = "CREATE DATABASE IF NOT EXISTS estudiantes;"
-
     # Crear una tabla
     create_table_sql = "CREATE TABLE IF NOT EXISTS `estudiantes`.`estudiantes` (id INT, nombre VARCHAR(255));"
 
@@ -33,15 +34,10 @@ def create_table(connection):
     cursor.execute(create_table_sql)
     # Confirmar los cambios en la base de datos
     connection.commit()
-    # Cerrar el cursor y la conexión
-    cursor.close()
-    connection.close()
+    return cursor
 
 
-def insert_data(connection):
-    # Crear el objeto cursor para ejecutar sentencias SQL
-    cursor = connection.cursor()
-
+def insert_data(connection, cursor):
     # Insertar un registro
     insert_sql = "INSERT INTO estudiantes (id, nombre) VALUES (1, 'Wilson');"
 
@@ -51,15 +47,8 @@ def insert_data(connection):
     # Confirmar los cambios en la base de datos
     connection.commit()
 
-    # Cerrar el cursor y la conexión
-    cursor.close()
-    connection.close()
 
-
-def get_data(connection):
-    # Crear un cursor para ejecutar sentencias SQL
-    cursor = connection.cursor()
-
+def get_data(connection, cursor):
     # Consultar todos los registros
     select_sql = "SELECT nombre FROM estudiantes"
 
@@ -68,17 +57,13 @@ def get_data(connection):
 
     # Obtener los resultados
     rows = cursor.fetchall()
+    for row in rows:
+        print(row)
 
-    # Cerrar el cursor y la conexión
-    cursor.close()
-    connection.close()
     return rows
 
 
-def get_data_by_id(connection, id_number):
-    # Crear un cursor para ejecutar sentencias SQL
-    cursor = connection.cursor()
-
+def get_data_by_id(connection, cursor, id_number):
     # Consultar todos los registros
     select_sql = f"SELECT id FROM estudiantes WHERE id ={id_number}"
 
@@ -88,15 +73,33 @@ def get_data_by_id(connection, id_number):
     # Obtener los resultados
     rows = cursor.fetchall()
 
-    # Cerrar el cursor y la conexión
-    cursor.close()
-    connection.close()
     return rows
+
+
+def delete_data_by_id(connection, cursor, id_number):
+    # Consultar todos los registros
+    select_sql = f"DELETE FROM estudiantes.estudiantes WHERE id ={id_number}"
+
+    # Ejecutar los cambios en la base de datos
+    cursor.execute(select_sql)
+
+    # Obtener los resultados
+    rows = cursor.fetchall()
+
+    return rows
+
+
+def close_all_connections(connection, cursor):
+    connection.close()
+    cursor.close()
 
 
 if __name__ == '__main__':
     conn = connection_database('127.0.0.1', 'root', 'root', 'estudiantes')
-    create_table(conn)
-    insert_data(conn)
-    print(get_data(conn))
-    print(get_data_by_id(conn, 1))
+    cursor = create_table(conn)
+    insert_data(conn, cursor)
+    get_data(conn, cursor)
+    print(get_data_by_id(conn, cursor, 1))
+    #delete_data_by_id(conn, cursor, 3)
+    close_all_connections(conn, cursor)
+
