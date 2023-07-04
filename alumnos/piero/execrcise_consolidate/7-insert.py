@@ -3,7 +3,9 @@ import mysql.connector
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='root'
+    password='root',
+    port=int(3307),
+    database='patatas'
 )
 
 # Crear un cursor para ejecutar sentencias SQL
@@ -11,8 +13,8 @@ cursor = connection.cursor()
 
 # Insertar un registro
 insert_sql = """
-INSERT INTO estudiantes (nombre, carrera)
-VALUES ('Ricardo', 'Ingeniería en Sistemas')
+INSERT INTO patatas_tipo (id, Tipo, Precio_kg)
+VALUES (1, 'Rojas', 3.20)
 """
 
 # Ejecutar los cambios en la base de datos
