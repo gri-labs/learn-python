@@ -12,21 +12,49 @@ import logging
 app = Flask(__name__)
 
 
-def connection_database():
+# def connection_database():
 
 
-def execute_query():
+# def execute_query():
 
 
 # Se define una ruta para la aplicación
 # La ruta es la raíz de la aplicación
+
+def connection_database(database_name):
+    connection = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='root',
+        port=int(3307),
+        database=database_name,
+    )
+    connection.connect()
+    return connection
+
+
 @app.route('/', methods=['GET'])
-# Define una función llamada hell_world
-# Nos ayuda a encapsular el código, mantener funcionalidades...
-def get_estudiantes():
+def get_data():
+    connection_db = connection_database('MyNewDb')
+    cursor_db = connection_db.cursor()
+    get_all_sql = f"""
+    SELECT * FROM NewEstudiantes
+    """
+    exec(cursor_db, get_all_sql)
+    rows = cursor_db.fetchall()
+    return rows
+
+
+def exec_and_commit(cursor, connection, query):
+    cursor.execute(query)
+    connection.commit()
+
+
+def exec(cursor, query):
+    cursor.execute(query)
 
 
 if __name__ == '__main__':
     # Se configura el log
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
-    app.run(host='0.0.0.0', port=6000)
+    app.run(host='0.0.0.0', port=8080)
