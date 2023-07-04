@@ -7,7 +7,7 @@
 import mysql.connector
 
 
-def connection_database():
+def connection_database(host, user, password, database, port):
     connection = mysql.connector.connect(
         host=host,
         user=user,
@@ -20,12 +20,12 @@ def connection_database():
 
 
 def create_database(connect):
-    query = ""
+    query = "CREATE DATABASE IF NOT EXISTS gri;"
     commit_query(connect, query)
 
 
 def create_table(connect):
-    query = ""
+    query = "CREATE TABLE IF NOT EXISTS `gri`.`estudiantes` (id INT, nombre VARCHAR(255));"
     commit_query(connect, query)
 
 
@@ -40,6 +40,10 @@ def get_data(connect):
 
 
 def commit_query(connection, query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    connection.commit()
+    cursor.close()
 
 
 def execute_query_select(connection, query):
@@ -53,12 +57,16 @@ def print_data(rows):
 def close_connection(connection):
     connection.close()
 
-
-if __name__ == '__main__':
-    conn = connection_database()
-    create_database()
-    create_table()
+def run(connection):
+    create_database(connection)
+    create_table(connection)
     insert_data()
     data = get_data()
     print_data()
     close_connection()
+
+
+if __name__ == '__main__':
+    conn = connection_database('localhost', 'root', 'root', 'mysql', 3308)
+    run(conn)
+
