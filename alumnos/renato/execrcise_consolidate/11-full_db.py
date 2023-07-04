@@ -53,22 +53,24 @@ def get_data(connection, db_name, table_name):
     sql_code = f"""
     SELECT * FROM {db_name}.{table_name}
     """
-    cursor = connection.cursor()
-    exec_only(cursor, sql_code)
-    results = cursor.fetchall()
-    print_data(results)
-    return
+    results = execute_query_select(connection, sql_code)
+    return results
 
 
 def get_data_by_id(connection, db_name, table_name, id):
     sql_code = f"""
     SELECT * FROM {db_name}.{table_name} WHERE id = {id}
     """
+    results = execute_query_select(connection, sql_code)
+    return results
+
+
+def execute_query_select(connection, query):
     cursor = connection.cursor()
-    exec_only(cursor, sql_code)
-    results = cursor.fetchone()
-    print_data(results)
-    return
+    cursor.execute(query)
+    results = cursor.fetchall()
+    cursor.close()
+    return results
 
 
 def print_data(to_print):
@@ -84,8 +86,8 @@ def exec_and_commit(connection, query):
     cursor.close()
 
 
-def exec_only(cursor, query):
-    cursor.execute(query)
+def close_connection(connection):
+    connection.close()
 
 
 # Arranque del servidor o inicio del programa
@@ -104,9 +106,12 @@ if __name__ == '__main__':
     insert_data(connection_db, "myNewDb", "NewEstudiantes", 1, "Ginger", "Gato")
 
     # Enseño todos
-    get_data(connection_db, "myNewDb", "NewEstudiantes")
+    all_data = get_data(connection_db, "myNewDb", "NewEstudiantes")
 
     # Enseño uno
-    get_data_by_id(connection_db, "myNewDb", "NewEstudiantes", 1)
+    data_by_id = get_data_by_id(connection_db, "myNewDb", "NewEstudiantes", 1)
 
-    connection_db.close()
+    print_data(all_data)
+    print_data(data_by_id)
+
+    close_connection(connection_db)
