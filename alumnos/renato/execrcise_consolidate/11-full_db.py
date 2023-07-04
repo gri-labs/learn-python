@@ -24,7 +24,7 @@ def create_db(connection, db_name):
     sql_code = f"""
     CREATE DATABASE IF NOT EXISTS {db_name};
     """
-    exec_and_commit(connection_db, sql_code)
+    exec_and_commit(connection, sql_code)
     return
 
 
@@ -37,22 +37,21 @@ def create_table(connection, db_name, table_name):
     );
     """
     exec_and_commit(connection, sql_code)
-    close_connection(connection)
     return
 
 
-def insert_data(connection, tabla, row_id, name, career):
+def insert_data(connection, db_name, table_name, row_id, name, career):
     sql_code = f"""
-    INSERT INTO {tabla} (id, nombre, carrera)
+    INSERT INTO {db_name}.{table_name} (id, nombre, carrera)
     VALUES ('{row_id}', '{name}', '{career}')
     """
     exec_and_commit(connection, sql_code)
     return
 
 
-def get_data(connection, name_db):
+def get_data(connection, db_name, table_name):
     sql_code = f"""
-    SELECT * FROM {name_db}
+    SELECT * FROM {db_name}.{table_name}
     """
     cursor = connection.cursor()
     exec_only(cursor, sql_code)
@@ -61,9 +60,9 @@ def get_data(connection, name_db):
     return
 
 
-def get_data_by_id(connection, name_db, id):
+def get_data_by_id(connection, db_name, table_name, id):
     sql_code = f"""
-    SELECT * FROM {name_db} WHERE id = {id}
+    SELECT * FROM {db_name}.{table_name} WHERE id = {id}
     """
     cursor = connection.cursor()
     exec_only(cursor, sql_code)
@@ -89,10 +88,6 @@ def exec_only(cursor, query):
     cursor.execute(query)
 
 
-def close_connection(connection_to_close):
-    connection_to_close.close()
-
-
 # Arranque del servidor o inicio del programa
 if __name__ == '__main__':
     # Se configura el log
@@ -106,13 +101,12 @@ if __name__ == '__main__':
     create_table(connection_db, "myNewDb", "NewEstudiantes")
 
     # Añado un usuario
-    connection_db = connection_database('localhost', 'root', 'root', 3307, 'myNewDb')
-    insert_data(connection_db, "NewEstudiantes", 1, "Ginger", "Gato")
+    insert_data(connection_db, "myNewDb", "NewEstudiantes", 1, "Ginger", "Gato")
 
     # Enseño todos
-    get_data(connection_db, "NewEstudiantes")
+    get_data(connection_db, "myNewDb", "NewEstudiantes")
 
     # Enseño uno
-    get_data_by_id(connection_db, "NewEstudiantes", 1)
+    get_data_by_id(connection_db, "myNewDb", "NewEstudiantes", 1)
 
     connection_db.close()
