@@ -14,7 +14,7 @@ connection.connect()
 cursor = connection.cursor()
 
 # Crear una base de datos
-create_database_sql = create_database_sql = "CREATE DATABASE IF NOT EXISTS estudiantes;"
+create_database_sql = "CREATE DATABASE IF NOT EXISTS estudiantes;"
 
 # Crear una tabla
 create_table_sql = "CREATE TABLE IF NOT EXISTS `estudiantes`.`estudiantes` (id INT, nombre VARCHAR(255));"

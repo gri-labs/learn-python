@@ -5,17 +5,63 @@
 # Consulta un registro de la tabla estudiantes y muéstralo en pantalla.
 # Cada ejecución del script tiene que estar en funciones separadas
 
-def connection_database():
+import mysql.connector
 
 
-def create_table():
+def connection_database(host,user,password,database,port):
+    connection = mysql.connector.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database,
+        port=int(port),
+    )
+
+    return connection
 
 
-def insert_data():
+def create_database(connect):
+    query = "CREATE DATABASE IF NOT EXISTS estudiantes;"
+    commit_query(connect, query)
 
-def get_data():
 
-def get_data_by_id():
+def create_table(connect):
+    query = "CREATE TABLE IF NOT EXISTS `estudiantes`.`estudiantes` (id INT, nombre VARCHAR(255));"
+    commit_query(connect, query)
+
+
+def insert_data(connect):
+    query = ""
+    commit_query(connect, query)
+
+
+def get_data(connect):
+    query = "SELECT * FROM estudiantes"
+    return execute_query_select(connect, query)
+
+
+def commit_query(connection, query):
+
+
+def execute_query_select(connection, query):
+
+
+
+
+def print_data(rows):
+    for row in rows:
+        print(row)
+
+
+def close_connection(connection):
+    connection.close()
 
 
 if __name__ == '__main__':
+    conn = connection_database()
+    create_database()
+    create_table()
+    insert_data()
+    data = get_data()
+    print_data()
+    close_connection()
