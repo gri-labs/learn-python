@@ -16,14 +16,53 @@ def connection_database(host,user,password,database,port):
     )
     return connection
 
-def create_table():
+def create_database(connection):
+    query = "CREATE DATABASE IF NOT EXISTS estudiantes;"
+    commit_query(connection, query)
+
+def create_table(connection):
+    query = "CREATE DATABASE IF NOT EXISTS estudiantes;"
+    commit_query(connection, query)
+
+def insert_data(connection):
+    query = "INSERT INTO estudiantes (nombre, carrera) VALUES ('Jesus', 'Estudiante');"
+    commit_query(connection, query)
+
+def get_data(connection):
+    query = "SELECT * FROM `gri`.`estudiantes`;"
+    return execute_query_select(connection, query)
+
+def commit_query(connection, query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    connection.commit()
+    cursor.close()
+
+# def get_data_by_id():
+
+def execute_query_select(connection, query):
 
 
-def insert_data():
+def print_data(rows):
+    for row in rows:
+        print(row)
 
-def get_data():
 
-def get_data_by_id():
+def close_connection(connection):
+    connection.close()
 
+
+def ejecutar_todo(connection):
+    create_table(connection)
+    create_table(connection)
+    insert_data(connection)
+    get_data(connection)
 
 if __name__ == '__main__':
+    conn = connection_database()
+    create_database()
+    create_table()
+    insert_data()
+    data = get_data()
+    print_data()
+    close_connection()
