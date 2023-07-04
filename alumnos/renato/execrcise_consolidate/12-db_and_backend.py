@@ -29,7 +29,6 @@ def connection_database(database_name):
         port=int(3307),
         database=database_name,
     )
-    connection.connect()
     return connection
 
 

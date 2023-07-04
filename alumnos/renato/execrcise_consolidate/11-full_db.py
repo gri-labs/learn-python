@@ -9,65 +9,88 @@ import logging
 import mysql.connector
 
 
-def connection_database(database_name):
+def connection_database(host, user, password, port, database_name):
     connection = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='root',
-        port=int(3307),
+        host=host,
+        user=user,
+        password=password,
+        port=int(port),
         database=database_name,
     )
-    connection.connect()
     return connection
 
 
-def create_db(db_name):
-    create_database_sql = f"""
+def create_db(connection, db_name):
+    sql_code = f"""
     CREATE DATABASE IF NOT EXISTS {db_name};
     """
-    return create_database_sql
+    exec_and_commit(connection_db, sql_code)
+    return
 
 
-def create_table(db_name, table_name):
-    create_tbl_sql = f"""
+def create_table(connection, db_name, table_name):
+    sql_code = f"""
     CREATE TABLE IF NOT EXISTS {db_name}.{table_name} (
     id INT,
     nombre VARCHAR(25),
     carrera VARCHAR(255)
     );
     """
-    return create_tbl_sql
+    exec_and_commit(connection, sql_code)
+    close_connection(connection)
+    return
 
 
-def insert_data(tabla, id, name, career):
-    insert_sql = f"""
+def insert_data(connection, tabla, row_id, name, career):
+    sql_code = f"""
     INSERT INTO {tabla} (id, nombre, carrera)
-    VALUES ('{id}', '{name}', '{career}')
+    VALUES ('{row_id}', '{name}', '{career}')
     """
-    return insert_sql
+    exec_and_commit(connection, sql_code)
+    return
 
 
-def get_data(name_db):
-    select_sql = f"""
+def get_data(connection, name_db):
+    sql_code = f"""
     SELECT * FROM {name_db}
     """
-    return select_sql
+    cursor = connection.cursor()
+    exec_only(cursor, sql_code)
+    results = cursor.fetchall()
+    print_data(results)
+    return
 
 
-def get_data_by_id(name_db, id):
-    select_sql = f"""
+def get_data_by_id(connection, name_db, id):
+    sql_code = f"""
     SELECT * FROM {name_db} WHERE id = {id}
     """
-    return select_sql
+    cursor = connection.cursor()
+    exec_only(cursor, sql_code)
+    results = cursor.fetchone()
+    print_data(results)
+    return
 
 
-def exec_and_commit(cursor, connection, query):
+def print_data(to_print):
+    for result in to_print:
+        print(result)
+    return
+
+
+def exec_and_commit(connection, query):
+    cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()
+    cursor.close()
 
 
-def exec(cursor, query):
+def exec_only(cursor, query):
     cursor.execute(query)
+
+
+def close_connection(connection_to_close):
+    connection_to_close.close()
 
 
 # Arranque del servidor o inicio del programa
@@ -76,37 +99,20 @@ if __name__ == '__main__':
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
 
     # Creo DB MyNewDb in MySQL
-    connection_db = connection_database('mysql')
-    cursor_db = connection_db.cursor()
-    create_db_sql = create_db("MyNewDb")
-    exec_and_commit(cursor_db, connection_db, create_db_sql)
+    connection_db = connection_database('localhost', 'root', 'root', 3307, 'mysql')
+    create_db(connection_db, "myNewDb")
 
     # Creo Tabla
-    create_table_sql = create_table("MyNewDb", "NewEstudiantes")
-    exec_and_commit(cursor_db, connection_db, create_table_sql)
-    cursor_db.close()
-    connection_db.close()
+    create_table(connection_db, "myNewDb", "NewEstudiantes")
 
     # Añado un usuario
-    connection_db = connection_database('MyNewDb')
-    cursor_db = connection_db.cursor()
-    insert_data_sql = insert_data("NewEstudiantes", 1, "Ginger", "Gato")
-    exec_and_commit(cursor_db, connection_db, insert_data_sql)
+    connection_db = connection_database('localhost', 'root', 'root', 3307, 'myNewDb')
+    insert_data(connection_db, "NewEstudiantes", 1, "Ginger", "Gato")
 
     # Enseño todos
-    get_all_sql = get_data("NewEstudiantes")
-    exec(cursor_db, get_all_sql)
-    rows = cursor_db.fetchall()
-    for row in rows:
-        print(row)
+    get_data(connection_db, "NewEstudiantes")
 
     # Enseño uno
-    get_by_id_sql = get_data_by_id("NewEstudiantes", 1)
-    exec(cursor_db, get_by_id_sql)
-    rows = cursor_db.fetchone()
-    for row in rows:
-        print(row)
+    get_data_by_id(connection_db, "NewEstudiantes", 1)
 
-    cursor_db.close()
     connection_db.close()
-
