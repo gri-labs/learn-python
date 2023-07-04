@@ -9,10 +9,9 @@ connection = mysql.connector.connect(
 )
 
 # Crear un cursor para ejecutar sentencias SQL
-connection.connect()
 cursor = connection.cursor()
 # Borrar un registro
-delete_sql = "USE ´estudiantes´; DELETE FROM estudiantes WHERE nombre=Alex"
+delete_sql = "DELETE FROM `estudiantes`.`estudiantes` WHERE nombre='Alex'"
 
 # Ejecutar los cambios en la base de datos
 cursor.execute(delete_sql)

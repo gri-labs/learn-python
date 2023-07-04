@@ -7,7 +7,6 @@ connection = mysql.connector.connect(
     port=int(3307),
     database="mysql"
 )
-connection.connect()
 # Crear un cursor para ejecutar sentencias SQL
 cursor = connection.cursor()
 
