@@ -6,11 +6,12 @@
 # Cada ejecución del script tiene que estar en funciones separadas
 import mysql.connector
 
-def connection_database(host,user,password,port):
+def connection_database(host,user,password,database,port):
     connection = mysql.connector.connect(
         host='localhost',
         user='root',
         password='root',
+        database='estudiantes',
         port=int(3307),
     )
     return connection
