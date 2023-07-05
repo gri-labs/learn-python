@@ -12,15 +12,16 @@ import logging
 app = Flask(__name__)
 
 
-def connection_database(host, user, password, database):
+def connection_database():
     connection = mysql.connector.connect(
         host='localhost',
         user='root',
         password='root',
         port=int(3307),
         database='estudiantes'
-)
+    )
     return connection
+
 
 def execute_query(query, connection):
     cursor = connection.cursor()
@@ -28,6 +29,7 @@ def execute_query(query, connection):
     rows = cursor.fetchall()
     cursor.close()
     return rows
+
 
 # tenga un endpoint que muestre todos los registros de la tabla estudiantes
 # Se define una ruta para la aplicación
@@ -42,6 +44,7 @@ def get_all_estudiantes():
     connection.close()
     return str(result)
 
+
 # tenga un endpoint que muestre un registro de la tabla estudiantes
 @app.route('/estudiantes/<int:estudiante_id>', methods=['GET'])
 def get_estudiantes(estudiante_id):
@@ -51,28 +54,30 @@ def get_estudiantes(estudiante_id):
     connection.close()
     return str(result)
 
+
 # tenga un endpoint que inserte un registro en la tabla estudiantes
 @app.route('/estudiantes/post', methods=['POST'])
 def post_estudiantes():
-    connection = connection_database
+    connection = connection_database()
     query = "INSERT INTO estudiantes (id, nombre, carrera) VALUES (2, Ricardo, Master)"
     execute_query(query, connection)
     connection.commit()
     connection.close()
-    response = {'message': 'Estudiante insertado correctamente.'} 
+    response = {'message': 'Estudiante insertado correctamente.'}
     return response
+
 
 # tenga un endpoint que elimine un registro de la tabla estudiantes
 @app.route('/estudiantes/<int:delete_estudiante_id>', methods=['DELETE'])
 def delete_estudiantes(delete_estudiante_id):
-    connection = connection_database
+    connection = connection_database()
     query = f"DELETE FROM estudiantes WHERE id = {delete_estudiante_id}"
     execute_query(query, connection)
     connection.commit()
     connection.close()
-    response = {'message': 'Estudiante eliminado correctamente.'} 
+    response = {'message': 'Estudiante eliminado correctamente.'}
     return response
-   
+
 
 if __name__ == '__main__':
     # Se configura el log
