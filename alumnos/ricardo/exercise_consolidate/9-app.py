@@ -7,14 +7,14 @@ from flask import Flask
 import logging
 
 # Se crea una instancia de la clase flask llamada app
-# app es una instancia de la clase Flask y un objeto de la clase Flask
+# app es un objeto instanciado de la clase Flask
 app = Flask(__name__)
 
 # Se define una ruta para la aplicación
 # La ruta es la raíz de la aplicación
 @app.route('/', methods=['GET'])
-# Define una función llamada hell_world
-# Nos ayuda a encapsular el código, mantener funcionalidades...
+# Define una función llamada hello_world
+# Nos ayuda a encapsular que se ejecuta cuando se hace una petición a la ruta /
 def hello_world():
     return 'Hello World!'
 
