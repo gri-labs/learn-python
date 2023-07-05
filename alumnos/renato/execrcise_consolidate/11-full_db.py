@@ -25,7 +25,6 @@ def create_db(connection, db_name):
     CREATE DATABASE IF NOT EXISTS {db_name};
     """
     exec_and_commit(connection, sql_code)
-    return
 
 
 def create_table(connection, db_name, table_name):
@@ -37,7 +36,6 @@ def create_table(connection, db_name, table_name):
     );
     """
     exec_and_commit(connection, sql_code)
-    return
 
 
 def insert_data(connection, db_name, table_name, row_id, name, career):
@@ -76,7 +74,6 @@ def execute_query_select(connection, query):
 def print_data(to_print):
     for result in to_print:
         print(result)
-    return
 
 
 def exec_and_commit(connection, query):
@@ -103,7 +100,7 @@ if __name__ == '__main__':
     create_table(connection_db, "myNewDb", "NewEstudiantes")
 
     # Añado un usuario
-    insert_data(connection_db, "myNewDb", "NewEstudiantes", 1, "Ginger", "Gato")
+    insert_data(connection_db, "myNewDb", "NewEstudiantes", 2, "Merlin", "Gato")
 
     # Enseño todos
     all_data = get_data(connection_db, "myNewDb", "NewEstudiantes")
