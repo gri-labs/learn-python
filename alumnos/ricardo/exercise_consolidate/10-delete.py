@@ -6,8 +6,8 @@ connection = mysql.connector.connect(
 
 # Crear un cursor para ejecutar sentencias SQL
 
-# Consultar todos los registros
-delete_sql = ""
+# Es borrar un registro
+delete_sql = "DELETE FROM estudiantes WHERE nombre = 'ricardo';"
 
 # Ejecutar los cambios en la base de datos
 

@@ -7,23 +7,19 @@ from flask import Flask
 import mysql.connector
 import logging
 
-# Se crea una instancia de la clase flask llamada app
-# app es una instancia de la clase Flask y un objeto de la clase Flask
 app = Flask(__name__)
 
 
 def connection_database():
 
 
-def execute_query():
+def execute_query(connection, query):
 
 
-# Se define una ruta para la aplicación
-# La ruta es la raíz de la aplicación
-@app.route('/', methods=['GET'])
-# Define una función llamada hell_world
-# Nos ayuda a encapsular el código, mantener funcionalidades...
-def get_estudiantes():
+@app.route('/', methods=['GET'], endpoint='get_all_students')
+def get_all_students():
+    query = "SELECT * FROM estudiantes;"
+    connection = connection_database()
 
 
 if __name__ == '__main__':
