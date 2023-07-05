@@ -18,7 +18,7 @@ def connection_database(host, user, password, database):
         user='root',
         password='root',
         port=int(3307),
-        database='students'
+        database='estudiantes'
 )
     return connection
 
@@ -27,25 +27,54 @@ def execute_query(query, connection):
     cursor.execute(query)
     rows = cursor.fetchall()
     cursor.close()
-    connection.close()
     return rows
 
-
-
+# tenga un endpoint que muestre todos los registros de la tabla estudiantes
 # Se define una ruta para la aplicación
 # La ruta es la raíz de la aplicación
-@app.route('/', methods=['GET'])
+@app.route('/estudiantes', methods=['GET'])
 # Define una función llamada hell_world
 # Nos ayuda a encapsular el código, mantener funcionalidades...
-def get_estudiantes(query, connection):
-    return execute_query(query, connection)
+def get_all_estudiantes():
+    connection = connection_database()
+    query = "SELECT * FROM estudiantes"
+    result = execute_query(query, connection)
+    connection.close()
+    return str(result)
 
+# tenga un endpoint que muestre un registro de la tabla estudiantes
+@app.route('/estudiantes/<int:estudiante_id>', methods=['GET'])
+def get_estudiantes(estudiante_id):
+    connection = connection_database()
+    query = f"SELECT * FROM estudiantes WHERE id = {estudiante_id}"
+    result = execute_query(query, connection)
+    connection.close()
+    return str(result)
+
+# tenga un endpoint que inserte un registro en la tabla estudiantes
+@app.route('/estudiantes/post', methods=['POST'])
+def post_estudiantes():
+    connection = connection_database
+    query = "INSERT INTO estudiantes (id, nombre, carrera) VALUES (2, Ricardo, Master)"
+    execute_query(query, connection)
+    connection.commit()
+    connection.close()
+    response = {'message': 'Estudiante insertado correctamente.'} 
+    return response
+
+# tenga un endpoint que elimine un registro de la tabla estudiantes
+@app.route('/estudiantes/<int:delete_estudiante_id>', methods=['DELETE'])
+def delete_estudiantes(delete_estudiante_id):
+    connection = connection_database
+    query = f"DELETE FROM estudiantes WHERE id = {delete_estudiante_id}"
+    execute_query(query, connection)
+    connection.commit()
+    connection.close()
+    response = {'message': 'Estudiante eliminado correctamente.'} 
+    return response
+   
 
 if __name__ == '__main__':
     # Se configura el log
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
-    app.run(host='0.0.0.0', port=6000)
-    conn = connection_database("localhost", "root", "root", "gri")
-    query = "SELECT * FROM users"
-    results = get_estudiantes(query, conn)
-    print(results)
+    app.run(host='localhost', port=8080)

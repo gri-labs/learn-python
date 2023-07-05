@@ -13,7 +13,7 @@ def connection_database(host, user, password, database):
         user='root',
         password='root',
         port=int(3307),
-        database='mysql'
+        database='estudiantes'
 )
     return connection
 
@@ -25,14 +25,14 @@ def create_database(connection):
 
 def create_table(connection):
     cursor = connection.cursor()
-    create_table_sql = "CREATE TABLE IF NOT EXISTS estudiantes (id INT NOT NULL,nombre VARCHAR(100),carrera VARCHAR(100))"
+    create_table_sql = "CREATE TABLE IF NOT EXISTS estudiante (id INT NOT NULL,nombre VARCHAR(100),carrera VARCHAR(100))"
     cursor.execute(create_table_sql)
     cursor.close
 
 
 def insert_data(connection):
     cursor = connection.cursor()
-    insert_sql = "INSERT INTO estudiantes (id, nombre, carrera) VALUES (1, 'Piero', 'Profe')"
+    insert_sql = "INSERT INTO estudiante (id, nombre, carrera) VALUES (1, 'Piero', 'Profe')"
     cursor.execute(insert_sql)
     connection.commit()
     cursor.close
@@ -40,7 +40,7 @@ def insert_data(connection):
 
 def get_data(connection):
     cursor = connection.cursor()
-    select_sql = "SELECT * FROM estudiantes"
+    select_sql = "SELECT * FROM estudiante"
     cursor.execute(select_sql)
     rows = cursor.fetchall()
     for row in rows:
@@ -49,7 +49,7 @@ def get_data(connection):
 
 def get_data_by_id(connection):
     cursor = connection.cursor()
-    select_sql = "SELECT * FROM estudiantes WHERE id = 1"
+    select_sql = "SELECT * FROM estudiante WHERE id = 1"
     cursor.execute(select_sql)
     result = cursor.fetchone()
     print(result)
@@ -57,7 +57,7 @@ def get_data_by_id(connection):
 
 
 if __name__ == '__main__':
-    conn = connection_database("localhost", "root", "root", "mysql")
+    conn = connection_database("localhost", "root", "root", "estudiantes")
     create_database(conn)
     create_table(conn)
     insert_data(conn)
