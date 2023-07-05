@@ -19,12 +19,11 @@ cursor.execute(create_database_sql)
 # Confirmar los cambios en la base de datos
 connection.commit()
 
-# Usar la base de datos creada
-connection.database = "gri"
+
 
 # Crear una tabla
 create_table_sql = """
-CREATE TABLE estudiantes (
+CREATE TABLE estudiantes (gri.estudiantes
     id INT,
     nombre VARCHAR(255)
 )
