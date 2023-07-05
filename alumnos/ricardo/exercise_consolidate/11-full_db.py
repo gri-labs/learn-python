@@ -30,7 +30,7 @@ def create_table(connect):
 
 
 def insert_data(connect):
-    query = "INSERT INTO `gri`.`estudiantes` (`id`, `nombre`) VALUES (1, 'Ricardo');"
+    query = "INSERT INTO `gri`.`estudiantes` (id, nombre) VALUES (1, 'Ricardo');"
     execute_query_and_commit(connect, query)
 
 
@@ -38,6 +38,10 @@ def get_data(connect):
     query = "SELECT * FROM `gri`.`estudiantes`;"
     return execute_query(connect, query)
 
+
+def delete_data(connect):
+    query = "DELETE FROM `gri`.`estudiantes` WHERE nombre = 'Ricardo';"
+    execute_query_and_commit(connect, query)
 
 def execute_query_and_commit(connection, query):
     cursor = connection.cursor()
@@ -67,6 +71,9 @@ def run(connection):
     create_database(connection)
     create_table(connection)
     insert_data(connection)
+    data = get_data(connection)
+    show_data(data)
+    delete_data(connection)
     data = get_data(connection)
     show_data(data)
     close_connection(connection)
