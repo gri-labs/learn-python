@@ -32,7 +32,10 @@ def connection_close(connection):
 # Es útil para obtener información
 @app.route('/students', methods=['GET'], endpoint='get_all_students')
 def get_all_students():
-    return jsonify('TODO implementar')
+    connection = connection_database()
+    query = "SELECT * FROM estudiantes;"
+    result = execute_query(connection, query)
+    return jsonify(result)
 
 
 # curl http://localhost:6000/student/1
@@ -44,8 +47,7 @@ def get_all_students():
 # En este caso se llama student_id y es un entero
 @app.route('/student/<int:student_id>', methods=['GET'], endpoint='get_student')
 def get_student(student_id):
-    query = "SELECT * FROM estudiantes WHERE id=%s;" % student_id
-    return jsonify('TODO implementar')
+    return jsonify("TODO implementar")
 
 
 # curl -X POST http://localhost:6000/student/1/Ricardo
@@ -53,7 +55,7 @@ def get_student(student_id):
 # Es útil para insertar poca información
 @app.route('/student/<int:student_id>/<string:student_name>', methods=['POST'], endpoint='insert_student')
 def insert_student(student_id, student_name):
-    return jsonify('TODO implementar')
+    return jsonify('OK')
 
 
 # curl -X POST "http://localhost:6000/student/headers?student_id=1&student_name=ricardo"
@@ -80,6 +82,7 @@ def delete_student(student_id):
 @app.route('/student/<int:student_id>/<string:student_name>', methods=['PUT'], endpoint='update_student')
 def update_student(student_id, student_name):
     query = "UPDATE estudiantes SET nombre = '%s' WHERE id=%s;" % (student_name, student_id)
+    return jsonify('TODO implementar')
 
 
 if __name__ == '__main__':
