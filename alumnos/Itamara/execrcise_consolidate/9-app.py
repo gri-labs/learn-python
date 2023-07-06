@@ -3,7 +3,6 @@
 # Flask es un framework
 # Un framework es un conjunto de herramientas que nos permite desarrollar aplicaciones
 from flask import Flask
-# Importa el modulo logging
 import logging
 
 # Se crea una instancia de la clase flask llamada app
