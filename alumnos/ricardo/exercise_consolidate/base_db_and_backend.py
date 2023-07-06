@@ -41,6 +41,7 @@ def get_all_students():
 # Es útil para obtener información de un registro en concreto
 @app.route('/student/<int:student_id>', methods=['GET'], endpoint='get_student')
 def get_student(student_id):
+    query = "SELECT * FROM estudiantes WHERE id=%s;" % student_id
     return jsonify('TODO implementar')
 
 
