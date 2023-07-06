@@ -14,7 +14,7 @@ connection.connect()
 cursor = connection.cursor()
 
 # Borrar un registro
-delete_sql = "DELETE FROM estudiantes; WHERE id = 1"
+delete_sql = "DELETE FROM estudiantes WHERE id = 1;"
 
 # Ejecutar los cambios en la base de datos
 cursor.execute(delete_sql)
