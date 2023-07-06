@@ -6,31 +6,42 @@
 # Cada ejecución del script tiene que estar en funciones separadas
 import mysql.connector
 
+
 def connection_database(host,user,password,database,port):
     connection = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='root',
-        database='estudiantes',
-        port=int(3307),
+        host=host,
+        user=user,
+        password=password,
+        database=database,
+        port=int(port),
     )
     return connection
+
 
 def create_database(connection):
     query = "CREATE DATABASE IF NOT EXISTS estudiantes;"
     commit_query(connection, query)
 
+
 def create_table(connection):
-    query = "CREATE DATABASE IF NOT EXISTS estudiantes;"
+    query = "CREATE DATABASE IF NOT EXISTS `estudiantes`.`estudiantes` (id INT, nombre VARCHAR(255));"
     commit_query(connection, query)
+
 
 def insert_data(connection):
-    query = "INSERT INTO estudiantes (nombre, carrera) VALUES ('Jesus', 'Estudiante');"
+    query = "INSERT INTO estudiantes (id, nombre) VALUES (1, 'Jesus');"
     commit_query(connection, query)
 
+
 def get_data(connection):
-    query = "SELECT * FROM `gri`.`estudiantes`;"
+    query = "SELECT * FROM `estudiantes`.`estudiantes`;"
     return execute_query_select(connection, query)
+
+
+def delete_data(connection):
+    query = "DELETE FROM `estudiantes`.`estudiantes` WHERE nombre = 'Jesus';"
+    execute_query_select(connection, query)
+
 
 def commit_query(connection, query):
     cursor = connection.cursor()
@@ -38,10 +49,17 @@ def commit_query(connection, query):
     connection.commit()
     cursor.close()
 
+
 # def get_data_by_id():
 
-def execute_query_select(connection, query):
 
+def execute_query_select(connection, query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    result = cursor.fetchall()
+    cursor.close()
+    return result
+    
 
 def print_data(rows):
     for row in rows:
@@ -53,16 +71,16 @@ def close_connection(connection):
 
 
 def ejecutar_todo(connection):
-    create_table(connection)
+    create_database(connection)
     create_table(connection)
     insert_data(connection)
-    get_data(connection)
+    res = get_data(connection)
+    print_data(res)
+    delete_data(connection)
+    res = get_data(connection)
+    print_data(res)
+    close_connection(connection)
 
 if __name__ == '__main__':
-    conn = connection_database()
-    create_database()
-    create_table()
-    insert_data()
-    data = get_data()
-    print_data()
-    close_connection()
+    conn = connection_database('localhost', 'root', 'root', 'estudiantes', 3307)
+    ejecutar_todo(connection)
