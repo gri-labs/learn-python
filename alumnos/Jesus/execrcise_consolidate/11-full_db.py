@@ -81,6 +81,7 @@ def ejecutar_todo(connection):
     print_data(res)
     close_connection(connection)
 
+
 if __name__ == '__main__':
     conn = connection_database('localhost', 'root', 'root', 'estudiantes', 3307)
-    ejecutar_todo(connection)
+    ejecutar_todo(conn)
