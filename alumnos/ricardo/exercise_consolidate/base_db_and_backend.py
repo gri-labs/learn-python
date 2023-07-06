@@ -39,6 +39,9 @@ def get_all_students():
 # Usar el --head para ver la respuesta del servidor
 # Método GET con parámetros en la URL
 # Es útil para obtener información de un registro en concreto
+# Que significa el <int:student_id>?
+# Es un parámetro que se pasa en la URL y que se puede usar en el método
+# En este caso se llama student_id y es un entero
 @app.route('/student/<int:student_id>', methods=['GET'], endpoint='get_student')
 def get_student(student_id):
     query = "SELECT * FROM estudiantes WHERE id=%s;" % student_id
