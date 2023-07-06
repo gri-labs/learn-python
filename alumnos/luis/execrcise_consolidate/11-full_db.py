@@ -22,46 +22,61 @@ def connection_database(host, user, password, database, port):
 
 
 def create_database(connection):
-    cursor = connection.cursor()
-    create_database_sql = "CREATE DATABASE IF NOT EXISTS estudiantes;"
-    cursor.execute(create_database_sql)
-    connection.commit()
+    sql = "CREATE DATABASE IF NOT EXISTS estudiantes;"
+    exec_sql(connection, sql)
+    exec_commit(connection)
+
+
+def use_database(connection):
+    sql = "USE `estudiantes`;"
+    exec_sql(connection, sql)
 
 
 def create_table(connection):
-    cursor = connection.cursor()
-    create_table_sql = "CREATE TABLE IF NOT EXISTS `estudiantes`.`estudiantes`( id INT, nombre VARCHAR(255));"
-    cursor.execute(create_table_sql)
-    connection.commit()
+    sql = "CREATE TABLE IF NOT EXISTS `estudiantes`.`estudiantes`(id INT, nombre VARCHAR(255));"
+    exec_sql(connection, sql)
+    exec_commit(connection)
 
 
 def insert_data(connection):
-    cursor = connection.cursor()
-    insert_sql = "INSERT INTO estudiantes (nombre, carrera) VALUES ('luis', 'estudiante')"
-    cursor.execute(insert_sql)
-    connection.commit()
+    sql = "INSERT INTO `estudiantes`.`estudiantes` (id, nombre) VALUES (1, 'luis');"
+    exec_sql(connection, sql)
+    exec_commit(connection)
 
 
 def get_data(connection):
-    cursor = connection.cursor()
-    select_sql = "SELECT * FROM mysql"
-    cursor.execute(select_sql)
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
-    connection.commit()
-    return rows
+    sql = "SELECT * FROM `estudiantes`.`estudiantes`;"
+    exec_sql(connection, sql)
+    exec_commit(connection)
+    return exec_sql(connection, sql)
 
 
 def get_data_byid(connection):
-    cursor = connection.cursor()
-    select_sql = "SELECT carrera FROM mysql WHERE nombre=luis"
-    cursor.execute(select_sql)
-    rows = cursor.fetchall()
-    for row in rows:
+    sql = "SELECT id FROM estudiantes WHERE nombre ='luis';"
+    exec_sql(connection, sql)
+    exec_commit(connection)
+
+
+def delete_data(connection):
+    sql = "DELETE FROM `estudiantes`.`estudiantes` WHERE nombre = 'luis';"
+    exec_sql(connection, sql)
+    exec_commit(connection)
+
+
+def mostrardatos(data):
+    for row in data:
         print(row)
+
+
+def exec_sql(connection, sql):
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    data = cursor.fetchall()
+    return data
+
+
+def exec_commit(connection):
     connection.commit()
-    return rows
 
 
 def close_connection(connection):
@@ -70,12 +85,17 @@ def close_connection(connection):
 
 def run(connection):
     create_database(connection)
+    use_database(connection)
     create_table(connection)
     insert_data(connection)
     get_data(connection)
+    get_data_byid(connection)
+    data = get_data(connection)
+    mostrardatos(data)
+    delete_data(connection)
     close_connection(connection)
 
 
 if __name__ == '__main__':
-    conn = connection_database('localhost', 'root', 'root', 'mysql', 3308)
+    conn = connection_database('localhost', 'root', 'root', 'mysql', 3307)
     run(conn)
