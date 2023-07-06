@@ -74,8 +74,6 @@ def run(connection):
     data = get_data(connection)
     show_data(data)
     delete_data(connection)
-    data = get_data(connection)
-    show_data(data)
     close_connection(connection)
 
 
