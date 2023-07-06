@@ -13,7 +13,7 @@ connection.connect()
 # Crear un cursor para ejecutar sentencias SQL
 cursor = connection.cursor()
 
-# Consultar todos los registros
+# Borrar un registro
 delete_sql = "DELETE FROM estudiantes; WHERE id = 1"
 
 # Ejecutar los cambios en la base de datos

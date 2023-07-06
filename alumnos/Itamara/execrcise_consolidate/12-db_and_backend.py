@@ -1,11 +1,7 @@
-# Siguiendo el ejemplo del script app y el script full_db, crea un script que:
-# tenga un endpoint que muestre todos los registros de la tabla estudiantes
-# tenga un endpoint que muestre un registro de la tabla estudiantes
-# tenga un endpoint que inserte un registro en la tabla estudiantes
-# tenga un endpoint que elimine un registro de la tabla estudiantes
-from flask import Flask
+import flask from Flask
 import mysql.connector
 import logging
+
 
 # Se crea una instancia de la clase flask llamada app
 # app es una instancia de la clase Flask y un objeto de la clase Flask

@@ -16,17 +16,14 @@ cursor = connection.cursor()
 # Crear una base de datos
 create_database_sql = "CREATE DATABASE IF NOT EXISTS alumnos;"
 
-use_database_sql = "USE alumnos;"
-
 # Crear una tabla
-create_table_sql = "CREATE TABLE estudiantes (id INT, nombre VARCHAR(50), telefono INT);"
+create_table_sql = "CREATE TABLE 'alumnos'.'estudiantes' (id INT, nombre VARCHAR(50), telefono INT);"
 
 # Ejecutar los cambios en la base de datos
 cursor.execute(create_database_sql)
 # Confirmar los cambios en la base de datos
 connection.commit()
 # Ejecutar los cambios en la base de datos
-cursor.execute((use_database_sql))
 cursor.execute(create_table_sql)
 # Confirmar los cambios en la base de datos
 connection.commit()
