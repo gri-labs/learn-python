@@ -21,11 +21,19 @@ def connection_database(host, user, password, database, port):
 
 
 def execute_query(connection, query):
-    return jsonify('TODO implementar')
+    cursor = connection.cursor()
+    cursor.execute(query)
+    result = cursor.fetchall()
+    cursor.close()
+    return jsonify(result)
 
 
 def execute_query_with_commit(connection, query):
-    return jsonify('TODO implementar')
+    cursor = connection.cursor()
+    cursor.execute(query)
+    connection.commit()
+    cursor.close()
+    return jsonify(execute_query_with_commit)
 
 
 def connection_close(connection):
