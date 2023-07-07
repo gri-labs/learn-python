@@ -3,28 +3,24 @@ import mysql.connector
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='root',
-    port=int(3308),
-    database='gri',
+    password='root'
 )
 
 # Crear un cursor para ejecutar sentencias SQL
 cursor = connection.cursor()
 
-# Consultar todos los registros
-select_sql = "SELECT * FROM estudiantes;"
+# Insertar un registro
+insert_sql = """
+INSERT INTO estudiantes (nombre, carrera)
+VALUES ('luis', 'estudiante')
+"""
 
 # Ejecutar los cambios en la base de datos
-cursor.execute(select_sql)
+cursor.execute(insert_sql)
 
-# Obtener los resultados
-rows = cursor.fetchall()
-
-# Mostrar los resultados
-for row in rows:
-    print(row)
+# Confirmar los cambios en la base de datos
+connection.commit()
 
 # Cerrar el cursor y la conexión
 cursor.close()
 connection.close()
-
