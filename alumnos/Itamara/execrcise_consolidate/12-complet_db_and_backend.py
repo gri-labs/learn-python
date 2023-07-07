@@ -3,8 +3,9 @@
 # tenga un endpoint que muestre un registro de la tabla estudiantes
 # tenga un endpoint que inserte un registro en la tabla estudiantes
 # tenga un endpoint que elimine un registro de la tabla estudiantes
-import Flask from flask
-import logging
+import Flask from flask, request, jasonfy
+import mysql.connector
+
 
 
 app = Flask(__name__)
@@ -44,7 +45,7 @@ def get_all_students():
         # devolver un 404
         return jsonify('No se ha encontrado el estudiante'), 404
 
-    return str(result)
+    return jsonfy(result)
 
 
 # curl http://localhost:6000/student/1
@@ -116,6 +117,4 @@ def update_student(student_id, student_name):
 
 
 if __name__ == '__main__':
-    # Se configura el log
-    logging.basicConfig(filename='request.log', level=logging.DEBUG)
-    app.run(host='0.0.0.0', port=6000)
+    app.run(host='0.0.0.0', port=6000, debug=True)

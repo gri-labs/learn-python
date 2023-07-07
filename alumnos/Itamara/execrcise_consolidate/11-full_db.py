@@ -19,26 +19,6 @@ def create_table(connect):
     execute_query_and_commit(connect, query)
 
 
-def insert_data(row):
-    insert=row.connect("INSERT INTO coches (id, modelo, marca) VALUES (1, 'Yaris', 'Toyota');")
-    return insert
-
-def get_data(show_table):
-    get_all=show_table.connect("SELECT * FROM coches;")
-    return get_all
-
-def get_data_by_id(show_id_row):
-    get_id=show_id_row.connector("SELECT id FROM coches;")
-    return get_id
-
-def execute_query(connection, query):
-    cursor = connection.cursor()
-    cursor.execute(query)
-    connection.commit()
-    cursor.close()
-
-
-
 def insert_data(connect):
     query = "INSERT INTO `gri`.`estudiantes` (id, nombre) VALUES (1, 'Maria');"
     execute_query_and_commit(connect, query)
