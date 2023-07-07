@@ -21,47 +21,39 @@ def connection_database(host, user, password, database, port):
     return connection
 
 
-def create_database(connection):
+def create_database(connect):
     sql = "CREATE DATABASE IF NOT EXISTS estudiantes;"
-    exec_sql(connection, sql)
-    exec_commit(connection)
+    exec_sql_commit(connect, sql)
 
 
-def use_database(connection):
+def use_database(connect):
     sql = "USE `estudiantes`;"
-    exec_sql(connection, sql)
+    exec_sql_commit(connect, sql)
 
 
-def create_table(connection):
+def create_table(connect):
     sql = "CREATE TABLE IF NOT EXISTS `estudiantes`.`estudiantes`(id INT, nombre VARCHAR(255));"
-    exec_sql(connection, sql)
-    exec_commit(connection)
+    exec_sql_commit(connect, sql)
 
 
-def insert_data(connection):
+def insert_data(connect):
     sql = "INSERT INTO `estudiantes`.`estudiantes` (id, nombre) VALUES (1, 'luis');"
-    exec_sql(connection, sql)
-    exec_commit(connection)
+    exec_sql_commit(connect, sql)
 
 
-def get_data(connection):
+def get_data(connect):
     sql = "SELECT * FROM `estudiantes`.`estudiantes`;"
-    exec_sql(connection, sql)
-    exec_commit(connection)
-    return exec_sql(connection, sql)
+    return exec_sql(connect, sql)
 
 
-def get_data_byid(connection):
+def get_data_byid(connect):
     sql = "SELECT id FROM estudiantes WHERE nombre ='luis';"
-    exec_sql(connection, sql)
-    exec_commit(connection)
-    return exec_sql(connection, sql)
+    return exec_sql(connect, sql)
 
 
-def delete_data(connection):
+def delete_data(connect):
     sql = "DELETE FROM `estudiantes`.`estudiantes` WHERE nombre = 'luis';"
-    exec_sql(connection, sql)
-    exec_commit(connection)
+    exec_sql_commit(connect, sql)
 
 
 def mostrardatos(data):
@@ -73,11 +65,15 @@ def exec_sql(connection, sql):
     cursor = connection.cursor()
     cursor.execute(sql)
     data = cursor.fetchall()
+    cursor.close()
     return data
 
 
-def exec_commit(connection):
+def exec_sql_commit(connection, sql):
+    cursor = connection.cursor()
+    cursor.execute(sql)
     connection.commit()
+    cursor.close()
 
 
 def close_connection(connection):
