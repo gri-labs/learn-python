@@ -1,4 +1,5 @@
-import Flask from flask, request, jsonify
+from flask import Flask, request, jsonify
+import mysql.connector
 
 app = Flask(__name__)
 
@@ -40,10 +41,10 @@ def connection_close(connection):
 # Es útil para obtener información
 @app.route('/students', methods=['GET'], endpoint='get_all_students')
 def get_all_students():
-    connection = connection_database()
+    connection = connection_database('localhost','root','root','gri',3307)
     query = "SELECT * FROM estudiantes;"
     result = execute_query(connection, query)
-    return str(result)
+    return jsonify(result)
 
 
 # curl http://localhost:6000/student/1
