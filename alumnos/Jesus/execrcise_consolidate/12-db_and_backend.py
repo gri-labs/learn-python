@@ -3,7 +3,7 @@
 # tenga un endpoint que muestre un registro de la tabla estudiantes
 # tenga un endpoint que inserte un registro en la tabla estudiantes
 # tenga un endpoint que elimine un registro de la tabla estudiantes
-from flask import Flask
+from flask import Flask, request, jsonify
 import mysql.connector
 import logging
 
@@ -13,9 +13,22 @@ app = Flask(__name__)
 
 
 def connection_database():
+    connection = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='root',
+        database='gri',
+        port=int(3307),
+    )
+    return connection
 
 
-def execute_query():
+def execute_query(connection, query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    result = cursor.fetchall()
+    cursor.close()
+    return result
 
 
 # Se define una ruta para la aplicación
