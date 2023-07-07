@@ -4,15 +4,15 @@ connection = mysql.connector.connect(
     host='localhost',
     user='root',
     password='root',
-    database='estudiantes',
-    port=int(3308),
+    database='alumnos',
+    port=3307
 )
 
-# Crear el objeto cursor para ejecutar sentencias SQL
+# Crear un cursor para ejecutar sentencias SQL
 cursor = connection.cursor()
 
 # Insertar un registro
-insert_sql = "INSERT INTO estudiantes (`id`, `nombre`) VALUES (1, 'Ricardo');"
+insert_sql = "INSERT INTO estudiantes (id, nombre, telefono) VALUES (1, 'nara', 664893188);"
 
 # Ejecutar los cambios en la base de datos
 cursor.execute(insert_sql)

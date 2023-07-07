@@ -1,12 +1,4 @@
-# Genera un script que pueda crear una base de datos de estudiantes
-# con una tabla llamada estudiantes que tenga dos campos.
-# Inserta un registro en la tabla estudiantes con dos campos.
-# Consulta todos los registros de la tabla estudiantes y muéstralos en pantalla.
-# Consulta un registro de la tabla estudiantes y muéstralo en pantalla.
-# Cada ejecución del script tiene que estar en funciones separadas
 import mysql.connector
-
-
 def connection_database(host, user, password, database, port):
     connection = mysql.connector.connect(
         host=host,
@@ -15,9 +7,7 @@ def connection_database(host, user, password, database, port):
         database=database,
         port=int(port),
     )
-
     return connection
-
 
 def create_database(connect):
     query = "CREATE DATABASE IF NOT EXISTS gri;"
@@ -25,12 +15,12 @@ def create_database(connect):
 
 
 def create_table(connect):
-    query = "CREATE TABLE IF NOT EXISTS `gri`.`estudiantes` (id INT, nombre VARCHAR(255));"
+    query = "CREATE TABLE IF NOT EXISTS `gri`.`estudiantes` (id INT, nombre VARCHAR(50));"
     execute_query_and_commit(connect, query)
 
 
 def insert_data(connect):
-    query = "INSERT INTO `gri`.`estudiantes` (id, nombre) VALUES (1, 'Ricardo');"
+    query = "INSERT INTO `gri`.`estudiantes` (id, nombre) VALUES (1, 'Maria');"
     execute_query_and_commit(connect, query)
 
 
@@ -40,9 +30,8 @@ def get_data(connect):
 
 
 def delete_data(connect):
-    query = "DELETE FROM `gri`.`estudiantes` WHERE nombre = 'Ricardo';"
+    query = "DELETE FROM `gri`.`estudiantes` WHERE nombre = 'Maria';"
     execute_query_and_commit(connect, query)
-
 
 def execute_query_and_commit(connection, query):
     cursor = connection.cursor()
@@ -75,10 +64,11 @@ def run(connection):
     data = get_data(connection)
     show_data(data)
     delete_data(connection)
+    data = get_data(connection)
+    show_data(data)
     close_connection(connection)
 
 
 if __name__ == '__main__':
-    conn = connection_database('localhost', 'root', 'root', 'mysql', 3308)
+    conn = connection_database('localhost', 'root', 'root', 'gri', 3307)
     run(conn)
-

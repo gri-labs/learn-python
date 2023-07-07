@@ -10,7 +10,6 @@ import logging
 # app es una instancia de la clase Flask y un objeto de la clase Flask
 app = Flask(__name__)
 
-
 # Se define una ruta para la aplicación
 # La ruta es la raíz de la aplicación
 @app.route('/', methods=['GET'])
