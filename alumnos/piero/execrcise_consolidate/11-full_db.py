@@ -7,7 +7,7 @@
 
 import mysql.connector
 
-def connection_database(host, user, password, database):
+def connection_database():
     connection = mysql.connector.connect(
         host='localhost',
         user='root',
