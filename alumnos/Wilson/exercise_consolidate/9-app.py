@@ -4,7 +4,7 @@
 # Un framework es un conjunto de herramientas que nos permite desarrollar aplicaciones
 from flask import Flask
 # Importa el modulo logging
-from flask import Flask
+import logging
 
 # Se crea una instancia de la clase flask llamada app
 # app es una instancia de la clase Flask y un objeto de la clase Flask
@@ -24,4 +24,4 @@ if __name__ == '__main__':
     # Se configura el log
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
     # Se ejecuta el servidor
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8081)
