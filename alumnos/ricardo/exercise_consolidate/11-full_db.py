@@ -43,6 +43,7 @@ def delete_data(connect):
     query = "DELETE FROM `gri`.`estudiantes` WHERE nombre = 'Ricardo';"
     execute_query_and_commit(connect, query)
 
+
 def execute_query_and_commit(connection, query):
     cursor = connection.cursor()
     cursor.execute(query)

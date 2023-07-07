@@ -88,4 +88,4 @@ def update_student(student_id, student_name):
 if __name__ == '__main__':
     # Se configura el log
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
-    app.run(host='0.0.0.0', port=6000)
+    app.run(host='0.0.0.0', port=6000, debug=True)
