@@ -55,6 +55,7 @@ def get_data_byid(connection):
     sql = "SELECT id FROM estudiantes WHERE nombre ='luis';"
     exec_sql(connection, sql)
     exec_commit(connection)
+    return exec_sql(connection, sql)
 
 
 def delete_data(connection):
@@ -97,5 +98,5 @@ def run(connection):
 
 
 if __name__ == '__main__':
-    conn = connection_database('localhost', 'root', 'root', 'mysql', 3307)
+    conn = connection_database('localhost', 'root', 'root', 'estudiantes', 3307)
     run(conn)
