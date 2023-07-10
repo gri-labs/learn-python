@@ -58,8 +58,8 @@ def get_all_students():
 @app.route('/student/<int:student_id>', methods=['GET'], endpoint='get_student')
 def get_student(student_id):
     connection = connection_database('localhost', 'root', 'root', 'gri', 3307)
-    query = "SELECT * FROM 'gri'.'estudiantes' WHERE id=1;"
-    result = execute_query(connection, query)
+    student_id = "SELECT * FROM 'gri'.'estudiantes' WHERE id=1;"
+    result = execute_query(connection, student_id)
     return jsonify(result)
 
 
@@ -68,7 +68,11 @@ def get_student(student_id):
 # Es útil para insertar poca información
 @app.route('/student/<int:student_id>/<string:student_name>', methods=['POST'], endpoint='insert_student')
 def insert_student(student_id, student_name):
-    return jsonify('OK')
+    connection = connection_database('localhost', 'root', 'root', 'gri', 3307)
+    insert_data = "INSERT INTO 'gri'.'estudiantes' (id, nombre) VALUES (2, 'Clara');"
+    result = execute_query_with_commit(connection, insert_data)
+    return jsonify(result)
+
 
 
 # curl -X POST "http://localhost:6000/student/headers?student_id=1&student_name=ricardo"
