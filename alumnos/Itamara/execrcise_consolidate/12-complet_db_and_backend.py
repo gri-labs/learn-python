@@ -79,7 +79,7 @@ def get_student(student_id):
 @app.route('/student/<int:student_id>/<string:student_name>', methods=['POST'], endpoint='insert_student')
 def insert_student(student_id, student_name):
     connection = connection_database('localhost', 'root', 'root', 'gri', 3307)
-    insert_data = "INSERT INTO 'gri'.'estudiantes' (id, nombre) VALUES (%s, '%s")" % (student_id, student_name)
+    insert_data = "INSERT INTO 'gri'.'estudiantes' (id, nombre) VALUES (%s, '%s');" % (student_id, student_name)
     result = execute_query_with_commit(connection, insert_data)
     connection.close()
     return jsonify("OK")
