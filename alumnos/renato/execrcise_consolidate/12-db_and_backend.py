@@ -66,7 +66,7 @@ def insert_data():
     VALUES ('{row_id}', '{name}', '{career}')
     """
     exec_and_commit(sql_code)
-    return
+    return jsonify("OK"), 201
 
 
 @app.route('/delete', methods=['DELETE'])
@@ -76,25 +76,29 @@ def remove_data():
     DELETE FROM estudiantes.estudiantes WHERE nombre='{name}';
     """
     exec_and_commit(sql_code)
+    return jsonify("OK"), 202
 
 
 def exec_and_commit(query):
+    connection_db = connection_database('estudiantes')
     cursor = connection_db.cursor()
     cursor.execute(query)
     connection_db.commit()
     cursor.close()
+    connection_db.close()
+
 
 def execute_query_select(query):
+    connection_db = connection_database('estudiantes')
     cursor = connection_db.cursor()
     cursor.execute(query)
     results = cursor.fetchall()
     cursor.close()
+    connection_db.close()
     return results
 
 
 if __name__ == '__main__':
     # Se configura el log
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
-    connection_db = connection_database('estudiantes')
-    cursor_db = connection_db.cursor()
     app.run(host='0.0.0.0', port=8080)
