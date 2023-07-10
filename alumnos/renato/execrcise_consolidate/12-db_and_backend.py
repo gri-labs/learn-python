@@ -3,7 +3,7 @@
 # tenga un endpoint que muestre un registro de la tabla estudiantes
 # tenga un endpoint que inserte un registro en la tabla estudiantes
 # tenga un endpoint que elimine un registro de la tabla estudiantes
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import mysql.connector
 import logging
 
@@ -35,19 +35,25 @@ def connection_database(database_name):
 @app.route('/', methods=['GET'])
 def get_data():
     get_all_sql = f"""
-    SELECT * FROM NewEstudiantes
+    SELECT * FROM estudiantes
     """
     rows = execute_query_select(get_all_sql)
-    return rows
+    if len(rows) > 0:
+        return jsonify(rows), 200
+    else:
+        return jsonify("NO HAY ESTUDIANTES"), 204
 
 
 @app.route('/<int:row_id>', methods=['GET'])
 def get_data_by_id(row_id=0):
     sql_code = f"""
-    SELECT * FROM myNewDb.NewEstudiantes WHERE id = {row_id}
+    SELECT * FROM estudiantes.estudiantes WHERE id = {row_id}
     """
-    results = execute_query_select(sql_code)
-    return results
+    rows = execute_query_select(sql_code)
+    if len(rows) > 0:
+        return jsonify(rows), 200
+    else:
+        return jsonify("NO ENCUENTRO EL ESTUDIANTE"), 404
 
 
 @app.route('/insert', methods=['POST'])
@@ -56,39 +62,43 @@ def insert_data():
     name = request.json.get('nombre')
     career = request.json.get('carrera')
     sql_code = f"""
-    INSERT INTO myNewDb.NewEstudiantes (id, nombre, carrera)
+    INSERT INTO estudiantes.estudiantes (id, nombre, carrera)
     VALUES ('{row_id}', '{name}', '{career}')
     """
-    results = execute_query_select(sql_code)
-    return results
+    exec_and_commit(sql_code)
+    return jsonify("OK"), 201
 
 
 @app.route('/delete', methods=['DELETE'])
 def remove_data():
     name = request.json.get('nombre')
     sql_code = f"""
-    DELETE FROM myNewDb.NewEstudiantes WHERE nombre='{name}';
+    DELETE FROM estudiantes.estudiantes WHERE nombre='{name}';
     """
-    results = execute_query_select(sql_code)
-    return results
+    exec_and_commit(sql_code)
+    return jsonify("OK"), 202
 
 
-def exec_and_commit(cursor, connection, query):
+def exec_and_commit(query):
+    connection_db = connection_database('estudiantes')
+    cursor = connection_db.cursor()
     cursor.execute(query)
-    connection.commit()
+    connection_db.commit()
+    cursor.close()
+    connection_db.close()
 
 
 def execute_query_select(query):
+    connection_db = connection_database('estudiantes')
     cursor = connection_db.cursor()
     cursor.execute(query)
     results = cursor.fetchall()
     cursor.close()
+    connection_db.close()
     return results
 
 
 if __name__ == '__main__':
     # Se configura el log
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
-    connection_db = connection_database('myNewDb')
-    cursor_db = connection_db.cursor()
     app.run(host='0.0.0.0', port=8080)
