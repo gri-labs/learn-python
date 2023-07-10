@@ -3,7 +3,7 @@
 # tenga un endpoint que muestre un registro de la tabla estudiantes
 # tenga un endpoint que inserte un registro en la tabla estudiantes
 # tenga un endpoint que elimine un registro de la tabla estudiantes
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import mysql.connector
 import logging
 
@@ -39,9 +39,9 @@ def get_data():
     """
     rows = execute_query_select(get_all_sql)
     if len(rows) > 0:
-        return rows
+        return jsonify(rows), 200
     else:
-        return "NO DATA"
+        return jsonify("NO HAY ESTUDIANTES"), 204
 
 
 @app.route('/<int:row_id>', methods=['GET'])
@@ -49,7 +49,11 @@ def get_data_by_id(row_id=0):
     sql_code = f"""
     SELECT * FROM estudiantes.estudiantes WHERE id = {row_id}
     """
-    execute_query_select(sql_code)
+    rows = execute_query_select(sql_code)
+    if len(rows) > 0:
+        return jsonify(rows), 200
+    else:
+        return jsonify("NO ENCUENTRO EL ESTUDIANTE"), 404
 
 
 @app.route('/insert', methods=['POST'])
@@ -61,8 +65,8 @@ def insert_data():
     INSERT INTO estudiantes.estudiantes (id, nombre, carrera)
     VALUES ('{row_id}', '{name}', '{career}')
     """
-    results = execute_query_select(sql_code)
-    return results
+    exec_and_commit(sql_code)
+    return
 
 
 @app.route('/delete', methods=['DELETE'])
@@ -71,13 +75,14 @@ def remove_data():
     sql_code = f"""
     DELETE FROM estudiantes.estudiantes WHERE nombre='{name}';
     """
-    execute_query_select(sql_code)
+    exec_and_commit(sql_code)
 
 
-def exec_and_commit(cursor, connection, query):
+def exec_and_commit(query):
+    cursor = connection_db.cursor()
     cursor.execute(query)
-    connection.commit()
-
+    connection_db.commit()
+    cursor.close()
 
 def execute_query_select(query):
     cursor = connection_db.cursor()
