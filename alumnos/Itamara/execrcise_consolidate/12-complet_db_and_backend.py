@@ -45,7 +45,11 @@ def get_all_students():
     connection = connection_database('localhost', 'root', 'root', 'gri', 3307)
     query = "SELECT * FROM 'gri'.'estudiantes';"
     result = execute_query(connection, query)
-    return jsonify(result)
+
+    if len(result) == 0:
+        return jsonify("Empty"), 404
+    else:
+        return jsonify(result), 200
 
 
 # curl http://localhost:6000/student/1
@@ -58,9 +62,15 @@ def get_all_students():
 @app.route('/student/<int:student_id>', methods=['GET'], endpoint='get_student')
 def get_student(student_id):
     connection = connection_database('localhost', 'root', 'root', 'gri', 3307)
-    student_id = "SELECT * FROM 'gri'.'estudiantes' WHERE id=1;"
-    result = execute_query(connection, student_id)
-    return jsonify(result)
+    query = "SELECT * FROM 'gri'.'estudiantes' WHERE id=%s;" % student_id
+    result = execute_query(connection, query)
+
+    if len(result) == 0:
+        return jsonify("Empty"), 404
+    else:
+        return jsonify(result), 200
+
+
 
 
 # curl -X POST http://localhost:6000/student/1/Ricardo
