@@ -13,7 +13,7 @@ cursor = connection.cursor()
 # Insertar un registro
 insert_sql = """
 INSERT INTO `estudiantes`.`estudiantes` (id, nombre, carrera)
-VALUES (1, 'Alex', 'Matemáticas')
+VALUES (1, 'Jesús', 'Diseño')
 """
 
 # Ejecutar los cambios en la base de datos
