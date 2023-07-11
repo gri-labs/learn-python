@@ -38,15 +38,17 @@ def show_data(data):
 
 # Se define una ruta para la aplicación
 # La ruta es la raíz de la aplicación
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'], endpoint='get_estudiantes')
 # Define una función llamada hell_world
 # Nos ayuda a encapsular el código, mantener funcionalidades...
-def get_estudiantes(connection):
-    query = "SELECT * FROM `estudiantes`.`estudiantes`;"
-    execute_query(connection, query)
-    return execute_query(connection, query)
+def get_estudiantes():
+    connection = connection_database()
+    query = "SELECT * FROM estudiantes;"
+    result = execute_query(connection, query)
+    return str(result)
 
 
+@app.route('/', methods=['GET'], endpoint='get_estudiantes_byid')
 def get_estudiantes_byid(connection):
     query = "SELECT id FROM estudiantes WHERE nombre ='luis';"
     execute_query(connection, query)
@@ -81,4 +83,4 @@ if __name__ == '__main__':
     # Se configura el log
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
     # Se ejecuta el servidor
-    app.run(host='0.0.0.0', port=6000)
+    app.run(host='0.0.0.0', port=6000, debug=True)
