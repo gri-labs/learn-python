@@ -45,7 +45,7 @@ def get_all_students():
     query = "SELECT * FROM estudiantes;"
     result = execute_query(connect, query)
     connect.close()
-    return str(result)
+    return jsonify(result)
 
 
 # curl http://localhost:6000/student/1
@@ -60,7 +60,7 @@ def get_student(student_id):
     connect = connection_database()
     query = "SELECT * FROM estudiantes WHERE id = %s;" % student_id
     result = execute_query(connect, query)
-    return str(result)
+    return jsonify(result)
 
 
 # curl -X POST http://localhost:6000/student/1/Ricardo
@@ -103,7 +103,7 @@ def delete_student(student_id):
     query = "DELETE FROM `estudiantes`.`estudiantes` WHERE id=%s;" % (student_id)
     try:
         execute_query_and_commit(connect, query)
-        return jsonify('TODO implementar')
+        return jsonify('OK')
     except Exception as e:
         return jsonify("Error")
 
@@ -111,13 +111,13 @@ def delete_student(student_id):
 # curl -X PUT http://localhost:6000/student/1/pepe
 # Metodo PUT
 # Es útil para actualizar información
-@app.route('/student/<int:student_id>/<string:student_name>git pu', methods=['PUT'], endpoint='update_student')
+@app.route('/student/<int:student_id>/<string:student_name>', methods=['PUT'], endpoint='update_student')
 def update_student(student_id, student_name):
     connect = connection_database()
     query = "UPDATE estudiantes SET nombre = '%s' WHERE id=%s;" % (student_name, student_id)
     try:
         execute_query_and_commit(connect, query)
-        return jsonify('TODO implementar')
+        return jsonify('OK')
     except Exception as e:
         return jsonify("Error")
 
