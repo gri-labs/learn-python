@@ -9,15 +9,14 @@ import mysql.connector
 app = Flask(__name__)
 
 
-def connection_database(host, user, password, database, port):
+def connection_database():
     connection = mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database,
-        port=int(port),
+        host='localhost',
+        user='root',
+        password='root',
+        database='estudiantes',
+        port=int(3307),
     )
-    # return jsonify('TODO implementar')
     return connection
 
 
@@ -27,7 +26,6 @@ def execute_query(connection, query):
     result = cursor.fetchall()
     cursor.close()
     return result
-    # return jsonify('TODO implementar')
 
 
 def execute_query_with_commit(connection, query):
@@ -35,7 +33,6 @@ def execute_query_with_commit(connection, query):
     cursor.execute(query)
     connection.commit()
     cursor.close()
-    # return jsonify('TODO implementar')
 
 
 def connection_close(connection):
@@ -51,7 +48,11 @@ def get_all_students():
     connection = connection_database()
     query = "SELECT * FROM estudiantes;"
     result = execute_query(connection, query)
-    return str(result)
+    if len(result) == 0:
+        return jsonify('No se ha encontrado'), 404
+    else:
+        # return str(result), 200
+        return jsonify(result), 200
 
 
 # curl http://localhost:6000/student/1
@@ -63,7 +64,15 @@ def get_all_students():
 # En este caso se llama student_id y es un entero
 @app.route('/student/<int:student_id>', methods=['GET'], endpoint='get_student')
 def get_student(student_id):
-    return jsonify("TODO implementar")
+    connection = connection_database()
+    query = "SELECT * FROM estudiantes WHERE id=%s;" % student_id
+    result = execute_query(connection, query)
+    connection_close(connection)
+    if len(result) == 0:
+        return jsonify('No se ha encontrado'), 404
+    else:
+        # return str(result), 200
+        return jsonify(result), 200
 
 
 # curl -X POST http://localhost:6000/student/1/Ricardo
@@ -71,9 +80,15 @@ def get_student(student_id):
 # Es útil para insertar poca información
 @app.route('/student/<int:student_id>/<string:student_name>', methods=['POST'], endpoint='insert_student')
 def insert_student(student_id, student_name):
-    insert_sql = "INSERT INTO estudiantes (id, name) VALUES (3, 'JesusRV');"
-    return insert_sql
-    # return jsonify('OK')
+    connection = connection_database()
+    query = "INSERT INTO estudiantes (id, name) VALUES (%s, %s);" % (student_id, student_name)
+    execute_query_with_commit(connection, query)
+    connection_close(connection)
+    try:
+        execute_query_with_commit(connection, query)
+        return jsonify('OK')
+    except Exception as e:
+        return jsonify('ERROR'), 500
 
 
 # curl -X POST "http://localhost:6000/student/headers?student_id=1&student_name=ricardo"
@@ -91,6 +106,9 @@ def insert_student_headers():
 # Es útil para eliminar información
 @app.route('/student/<int:student_id>', methods=['DELETE'], endpoint='delete_student')
 def delete_student(student_id):
+    connection = connection_database()
+    query = "DELETE FROM estudiantes WHERE id = %s;" % (student_id)
+    execute_query_with_commit(connection, query)
     return jsonify('TODO implementar')
 
 
@@ -104,5 +122,5 @@ def update_student(student_id, student_name):
 
 
 if __name__ == '__main__':
-    conn = connection_database('localhost', 'root', 'root', 'estudiantes', 3307)
+    # conn = connection_database('localhost', 'root', 'root', 'estudiantes', 3307)
     app.run(host='0.0.0.0', port=6000, debug=True)
