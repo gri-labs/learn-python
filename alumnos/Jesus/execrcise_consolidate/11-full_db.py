@@ -15,52 +15,54 @@ def connection_database(host, user, password, database, port):
         database=database,
         port=int(port),
     )
-
     return connection
 
 
-def create_database(connect):
-    query = "CREATE DATABASE IF NOT EXISTS gri;"
-    execute_query_and_commit(connect, query)
+def create_database(connection):
+    query = "CREATE DATABASE IF NOT EXISTS estudiantes;"
+    commit_query(connection, query)
 
 
-def create_table(connect):
-    query = "CREATE TABLE IF NOT EXISTS `gri`.`estudiantes` (id INT, nombre VARCHAR(255));"
-    execute_query_and_commit(connect, query)
+def create_table(connection):
+    query = "CREATE DATABASE IF NOT EXISTS `estudiantes`.`estudiantes` (id INT, nombre VARCHAR(255));"
+    commit_query(connection, query)
 
 
-def insert_data(connect):
-    query = "INSERT INTO `gri`.`estudiantes` (id, nombre) VALUES (1, 'Ricardo');"
-    execute_query_and_commit(connect, query)
+def insert_data(connection):
+    query = "INSERT INTO estudiantes (id, nombre) VALUES (1, 'Jesus');"
+    commit_query(connection, query)
 
 
-def get_data(connect):
-    query = "SELECT * FROM `gri`.`estudiantes`;"
-    return execute_query(connect, query)
+def get_data(connection):
+    query = "SELECT * FROM `estudiantes`.`estudiantes`;"
+    return execute_query_select(connection, query)
 
 
-def delete_data(connect):
-    query = "DELETE FROM `gri`.`estudiantes` WHERE nombre = 'Ricardo';"
-    execute_query_and_commit(connect, query)
+def delete_data(connection):
+    query = "DELETE FROM `estudiantes`.`estudiantes` WHERE nombre = 'Jesus';"
+    execute_query_select(connection, query)
 
 
-def execute_query_and_commit(connection, query):
+def commit_query(connection, query):
     cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()
     cursor.close()
 
 
-def execute_query(connection, query):
+# def get_data_by_id():
+
+
+def execute_query_select(connection, query):
     cursor = connection.cursor()
     cursor.execute(query)
     result = cursor.fetchall()
     cursor.close()
     return result
+    
 
-
-def show_data(data):
-    for row in data:
+def print_data(rows):
+    for row in rows:
         print(row)
 
 
@@ -68,17 +70,18 @@ def close_connection(connection):
     connection.close()
 
 
-def run(connection):
+def ejecutar_todo(connection):
     create_database(connection)
     create_table(connection)
     insert_data(connection)
-    data = get_data(connection)
-    show_data(data)
+    res = get_data(connection)
+    print_data(res)
     delete_data(connection)
+    res = get_data(connection)
+    print_data(res)
     close_connection(connection)
 
 
 if __name__ == '__main__':
-    conn = connection_database('localhost', 'root', 'root', 'mysql', 3308)
-    run(conn)
-
+    conn = connection_database('localhost', 'root', 'root', 'estudiantes', 3307)
+    ejecutar_todo(conn)

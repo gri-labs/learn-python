@@ -4,17 +4,16 @@ connection = mysql.connector.connect(
     host='localhost',
     user='root',
     password='root',
-    port=int(3308),
-    database='gri',
+    database='alumnos',
+    port=3307
 )
 
 # Crear un cursor para ejecutar sentencias SQL
 cursor = connection.cursor()
 
 # Consultar todos los registros
-select_sql = "SELECT * FROM estudiantes;"
+select_sql = "SELECT * FROM estudiantes"
 
-# Ejecutar los cambios en la base de datos
 cursor.execute(select_sql)
 
 # Obtener los resultados
@@ -27,4 +26,3 @@ for row in rows:
 # Cerrar el cursor y la conexión
 cursor.close()
 connection.close()
-

@@ -4,18 +4,20 @@ connection = mysql.connector.connect(
     host='localhost',
     user='root',
     password='root',
-    port=int(3308),
-    database='mysql',
+    port=3307,
+    database="alumnos"
 )
+
+connection.connect()
 
 # Crear un cursor para ejecutar sentencias SQL
 cursor = connection.cursor()
 
 # Crear una base de datos
-create_database_sql = "CREATE DATABASE IF NOT EXISTS gri;"
+create_database_sql = "CREATE DATABASE IF NOT EXISTS alumnos;"
 
 # Crear una tabla
-create_table_sql = "CREATE TABLE IF NOT EXISTS `gri`.`estudiantes` (id INT, nombre VARCHAR(255));"
+create_table_sql = "CREATE TABLE 'alumnos'.'estudiantes' (id INT, nombre VARCHAR(50), telefono INT);"
 
 # Ejecutar los cambios en la base de datos
 cursor.execute(create_database_sql)

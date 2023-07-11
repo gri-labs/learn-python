@@ -1,10 +1,27 @@
-# Genera un script que pueda crear una base de datos de estudiantes
-# con una tabla llamada estudiantes que tenga dos campos.
-# Inserta un registro en la tabla estudiantes con dos campos.
-# Consulta todos los registros de la tabla estudiantes y muéstralos en pantalla.
-# Consulta un registro de la tabla estudiantes y muéstralo en pantalla.
-# Cada ejecución del script tiene que estar en funciones separadas
-import mysql.connector
+# Determinar si un número entero proporcionado por el usuario es primo.
+# Un número primo es un entero que no tiene más divisores que él mismo y la unidad.
+
+num = int(input("Ingresa un número entero: "))
+
+num = True
+
+if num <= 1:
+    es_primo = False
+else:
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            es_primo = False
+            break
+
+if es_primo:
+    print(num, "es un número primo")
+else:
+    print(num, "no es un número primo")
+
+
+
+
+
 
 
 def connection_database(host, user, password, database, port):
@@ -43,7 +60,6 @@ def delete_data(connect):
     query = "DELETE FROM `gri`.`estudiantes` WHERE nombre = 'Ricardo';"
     execute_query_and_commit(connect, query)
 
-
 def execute_query_and_commit(connection, query):
     cursor = connection.cursor()
     cursor.execute(query)
@@ -75,10 +91,11 @@ def run(connection):
     data = get_data(connection)
     show_data(data)
     delete_data(connection)
+    data = get_data(connection)
+    show_data(data)
     close_connection(connection)
 
 
 if __name__ == '__main__':
     conn = connection_database('localhost', 'root', 'root', 'mysql', 3308)
     run(conn)
-
