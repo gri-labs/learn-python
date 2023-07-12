@@ -1,4 +1,4 @@
-gEjercicio 1:
+Ejercicio 1:
 # Crea un modulo como el de module
 # Genera una PR con el nombre de tu modulo
 
