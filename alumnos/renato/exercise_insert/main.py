@@ -29,21 +29,21 @@ def insert_data():
     appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
 
     for i in range(10000):
-        user_name = random.choice(nombres)+str(random.randint(0, 1000))
-        email = str(random.randint(0, 1000))+random.choice(emails)
-        appellido = random.choice(appellidos)+" "+str(random.randint(0, 1000))
+        user_name = random.choice(nombres) + str(random.randint(0, 1000))
+        email = str(random.randint(0, 1000)) + random.choice(emails)
+        appellido = random.choice(appellidos) + " " + str(random.randint(0, 1000))
         edad = random.randint(18, 60)
 
         sql_code = f"""
-        INSERT INTO usuarios.users (nombre, email, appellido, edad)
+        INSERT INTO users (nombre, email, appellido, edad)
         VALUES ('{user_name}', '{email}',  '{appellido}', '{edad}')
         """
         exec_and_commit(sql_code)
-        return jsonify("OK"), 201
 
 
 def delete_data():
-    pass
+    sql_code = "DELETE FROM users;"
+    exec_and_commit(sql_code)
 
 
 if __name__ == '__main__':
