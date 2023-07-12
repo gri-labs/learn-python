@@ -15,12 +15,10 @@ def connection_database(database_name):
 
 
 def exec_and_commit(query):
-    connection_db = connection_database('usuarios')
     cursor = connection_db.cursor()
     cursor.execute(query)
     connection_db.commit()
     cursor.close()
-    connection_db.close()
 
 
 def insert_data():
@@ -47,8 +45,10 @@ def delete_data():
 
 
 if __name__ == '__main__':
+    connection_db = connection_database('usuarios')
     name = input("Which action? ")
     if name.upper() == "INSERT":
         insert_data()
     elif name.upper() == "DELETE":
         delete_data()
+    connection_db.close()
