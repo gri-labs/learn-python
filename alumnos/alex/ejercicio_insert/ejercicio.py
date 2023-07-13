@@ -8,13 +8,13 @@ def connection_database():
         database='estudiantes',
         port=int(3307),
     )
-
     return connection
 
 def execute_query_and_commit(connection, query):
     cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()
+    cursor.close()
 
 def execute_query(connection, query):
     cursor = connection.cursor()
@@ -22,6 +22,7 @@ def execute_query(connection, query):
     result = cursor.fetchall()
     cursor.close()
     return result
+
 def insert_datos(connection):
     i = 0
     while i < 10000:
@@ -30,15 +31,19 @@ def insert_datos(connection):
         i = i + 1
     connection.cursor.close()
 def quering_id(connection, num):
-    query = "SELECT * FROM estudiantes WHERE id=%s;" % (num)
+    query = "SELECT * FROM estudiantes WHERE id = %s;" % num
     execute_query(connection, query)
+
 if __name__ == '__main__':
     x = input()
     if x == "INSERT":
         insert_datos(connection_database())
     if x == "SELECT":
-        y = input()
-        result = quering_id(connection_database(), y)
-        print(str(result))
+        num = input()
+        print(num)
+        print(quering_id(connection_database(), num))
+
+
+
 
 
