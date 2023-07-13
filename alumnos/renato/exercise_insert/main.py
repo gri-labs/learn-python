@@ -1,14 +1,13 @@
 import mysql.connector
-from flask import jsonify
 import random
 
 
-def connection_database(database_name):
+def connection_database(host, user, password, port, database_name):
     connection = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='root',
-        port=int(3307),
+        host=host,
+        user=user,
+        password=password,
+        port=int(port),
         database=database_name,
     )
     return connection
@@ -30,14 +29,11 @@ def execute_query_select(query):
 
 
 def insert_data():
-    nombres = ['Renato', 'Loida', 'Merlin', 'Ginger', 'Nata']
-    emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
-    appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
 
-    for i in range(10000):
-        user_name = random.choice(nombres) + str(random.randint(0, 1000))
-        email = str(random.randint(0, 1000)) + random.choice(emails)
-        appellido = random.choice(appellidos) + " " + str(random.randint(0, 1000))
+    for i in range(100000):
+        user_name = random_name()
+        email = random_email()
+        appellido = random_surname()
         edad = random.randint(18, 60)
 
         sql_code = f"""
@@ -47,13 +43,28 @@ def insert_data():
         exec_and_commit(sql_code)
 
 
+def random_surname():
+    appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
+    return random.choice(appellidos) + " " + str(random.randint(0, 1000))
+
+
+def random_email():
+    emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
+    return str(random.randint(0, 1000)) + random.choice(emails)
+
+
+def random_name():
+    nombres = ['Renato', 'Loida', 'Merlin', 'Ginger', 'Nata']
+    return random.choice(nombres) + str(random.randint(0, 1000))
+
+
 def delete_data():
     sql_code = "DELETE FROM users;"
     exec_and_commit(sql_code)
 
 
 if __name__ == '__main__':
-    connection_db = connection_database('usuarios')
+    connection_db = connection_database('localhost','root','root',3307,'usuarios')
     name = input("Which action? ")
     if name.upper() == "INSERT":
         insert_data()
