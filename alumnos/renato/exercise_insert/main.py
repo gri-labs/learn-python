@@ -67,17 +67,14 @@ def delete_data():
     exec_and_commit(sql_code)
 
 
-if __name__ == '__main__':
-    connection_db = connection_database('localhost', 'root', 'root', 3307, 'usuarios')
-    name = input("Which action? ")
-
-    if name.upper() == "INSERT":
+def check_action(action):
+    if action.upper() == "INSERT":
         insert_data()
 
-    elif name.upper() == "DELETE":
+    elif action.upper() == "DELETE":
         delete_data()
 
-    elif name.upper() == "SEARCHID":
+    elif action.upper() == "SEARCHID":
         search_id = input("Which id? ")
         sql_code = f"""
         SELECT * FROM users WHERE id='{search_id}'"""
@@ -85,11 +82,11 @@ if __name__ == '__main__':
 
         if len(rows) > 0:
             print(rows)
-        else:
 
+        else:
             print("NO STUDENT IS PRESENT WITH THAT ID")
 
-    elif name.upper() == "SEARCHFIELD":
+    elif action.upper() == "SEARCHFIELD":
         search_field = input("Which field? ")
         search_valor = input("What are you searching for? ")
         sql_code = f"""
@@ -105,4 +102,9 @@ if __name__ == '__main__':
     else:
         print("Action not valid")
 
+
+if __name__ == '__main__':
+    connection_db = connection_database('localhost', 'root', 'root', 3307, 'usuarios')
+    action = input("Which action? ")
+    check_action(action)
     connection_db.close()
