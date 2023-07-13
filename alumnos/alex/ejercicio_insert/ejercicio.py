@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 def connection_database():
     connection = mysql.connector.connect(
         host='localhost',
@@ -7,7 +8,7 @@ def connection_database():
         password='root',
         database='estudiantes',
         port=int(3307),
-    )
+        )
     return connection
 
 def execute_query_and_commit(connection, query):
@@ -29,19 +30,22 @@ def insert_datos(connection):
         query = "INSERT INTO estudiantes (`nombre`) VALUES ('Pepe%s');" % (i)
         execute_query_and_commit(connection, query)
         i = i + 1
-    connection.cursor.close()
+
 def quering_id(connection, num):
     query = "SELECT * FROM estudiantes WHERE id = %s;" % num
-    execute_query(connection, query)
+    result = execute_query(connection, query)
+    return result
+
+def switch_inicial():
+    modalidad = input("Qué quieres hacer: SELECT/INSERT? ")
+    if modalidad == "INSERT":
+        insert_datos(connection_database())
+    if modalidad == "SELECT":
+        estudiante_id = input("id: ")
+        print(quering_id(connection_database(), estudiante_id))
 
 if __name__ == '__main__':
-    x = input()
-    if x == "INSERT":
-        insert_datos(connection_database())
-    if x == "SELECT":
-        num = input()
-        print(num)
-        print(quering_id(connection_database(), num))
+    switch_inicial()
 
 
 
