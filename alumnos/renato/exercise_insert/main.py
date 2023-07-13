@@ -21,6 +21,14 @@ def exec_and_commit(query):
     cursor.close()
 
 
+def execute_query_select(query):
+    cursor = connection_db.cursor()
+    cursor.execute(query)
+    results = cursor.fetchall()
+    cursor.close()
+    return results
+
+
 def insert_data():
     nombres = ['Renato', 'Loida', 'Merlin', 'Ginger', 'Nata']
     emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
@@ -51,4 +59,16 @@ if __name__ == '__main__':
         insert_data()
     elif name.upper() == "DELETE":
         delete_data()
+    elif name.upper() == "SEARCHID":
+        search_id = input("Which id? ")
+        sql_code = f"""
+        SELECT * FROM users WHERE id='{search_id}'"""
+        rows = execute_query_select(sql_code)
+        if len(rows) > 0:
+            print(rows)
+        else:
+            print("ESTUDIANTE NO ENCONTRADO")
+
+# elif name.upper() == "SEARCHFIELD":
+
     connection_db.close()
