@@ -31,34 +31,34 @@ def execute_query(query, connection):
     return rows
 
 
-def GenCorreoElectronico(Nombre, Apellido):
+def gen_correo_electronico(nombre, apellido):
     proveedor = fake.free_email_domain()
-    CorreoElectronico = f"{Nombre}.{Apellido}@{proveedor}"
-    return CorreoElectronico
+    correo_electronico = f"{nombre}.{apellido}@{proveedor}"
+    return correo_electronico
 
 
-def GenNombre():
-    Nombre = fake.first_name()
-    return Nombre
+def gen_nombre():
+    nombre = fake.first_name()
+    return nombre
 
 
-def GenApellido():
-    Apellido = fake.last_name()
-    return Apellido
+def gen_apellido():
+    apellido = fake.last_name()
+    return apellido
 
 
-def GenEdad():
-    Edad = random.randint(18, 65)
-    return Edad
+def gen_edad():
+    edad = random.randint(18, 65)
+    return edad
 
 
 def insert_data(connection):
-    for i in range(1, 10):
-        CorreoElectronico = GenCorreoElectronico(GenNombre(), GenApellido())
-        Nombre = GenNombre()
-        Apellido = GenApellido()
-        Edad = GenEdad()
-        cursor_commit_query(connection, f"INSERT INTO usuarios (email, nombre, apellido, edad) VALUES ('{CorreoElectronico}', '{Nombre}', '{Apellido}', {Edad})")
+    for i in range(1, 100000):
+        correo_electronico = gen_correo_electronico(gen_nombre(), gen_apellido())
+        nombre = gen_nombre()
+        apellido = gen_apellido()
+        edad = gen_edad()
+        cursor_commit_query(connection, f"INSERT INTO usuarios (email, nombre, apellido, edad) VALUES ('{correo_electronico}', '{nombre}', '{apellido}', {edad})")
 
 
 def delete_data(connection):
@@ -67,26 +67,35 @@ def delete_data(connection):
 
 def get_data(connection):
     rows = execute_query("SELECT * FROM usuarios", connection)
-    for row in rows:
-        print(row)
+    if len(rows) == 0:
+        print("No hay registros")
+    else:
+        for row in rows:
+            print(row)
 
 
 def get_data_by_id(connection):
-    row = execute_query("SELECT * FROM usuarios ORDER BY id DESC LIMIT 1", connection)
-    print(row)
+    id= int(input(" indica que id quieres buscar:"))
+    row = execute_query(f"SELECT * FROM usuarios WHERE id = {id}", connection)
+    if len(row) == 0:
+        print("ID no encontrado")
+    else:
+        print(row)
 
 
 def run_everything(connection):
-    answer = input("Indicar si quieres hacer INSERT o DELETE: ").lower()
-    while answer != "insert" and answer != "delete":
-        print("Debes especificar una de las dos opciones (insert o delete)")
-        answer = input("Indicar qué quieres hacer: ").lower()
+    answer = input("Indicar si quieres hacer INSERT, DELETE, SELECT o SELECTID: ").lower()
+    while answer != "insert" and answer != "delete" and answer != "select" and answer != "selectid":
+        print("Debes especificar una de las cuatro opciones")
+        answer = input("Indicar si quieres hacer INSERT, DELETE, SELECT o SELECTID: ").lower()
 
     if answer == "insert":
         insert_data(connection)
+    elif answer == "select":
         get_data(connection)
+    elif answer == "selectid":
         get_data_by_id(connection)
-    elif answer == "delete":
+    else:
         delete_data(connection)
         get_data(connection)
 
