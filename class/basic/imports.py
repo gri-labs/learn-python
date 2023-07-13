@@ -9,7 +9,6 @@ from mystuff import MyStuff
 # En la función init de la clase MyStuff, obtengo esta variable adicional llamada "self",
 # que es el objeto vacío que Python ha creado para mí, y puedo establecer variables en él.
 # En este caso, establezco self.tangerine en una cadena, que también podría haber pasado directamente.
-# Ahora Python puede tomar este objeto recién creado y asignarlo a la variable "thing" para que yo pueda trabajar con él
 thing = MyStuff()
 thing.apple()
 print(thing.tangerine)

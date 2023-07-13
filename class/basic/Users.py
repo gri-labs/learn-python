@@ -2,7 +2,6 @@ class Users:
     def __init__(self, name, age, last_name):
         self.name = name
         self.age = age
-        self.last_name = last_name
 
     def get_name(self):
         return self.name
@@ -10,9 +9,11 @@ class Users:
     def get_age(self):
         return self.age
 
+    def get_last_name(self):
+        return self.last_name
 
-# Instancia la clase Users
-# Usa el metodo get_name
-# Usa el metodo get_age
-# Imprime el resultado de los metodos
-# Implementa el metodo get_last_name
+
+student = Users('Ricardo', 25)
+print(student.get_name())
+print(student.get_age())
+print(student.get_last_name('García'))
