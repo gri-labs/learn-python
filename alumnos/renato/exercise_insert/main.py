@@ -1,28 +1,9 @@
 import mysql.connector
-import random
 import time
 
+from random_data import RandomData
 
-class RandomData:
-
-    def __init__(self ):
-        self.appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
-        self.emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
-        self.nombres = ['Renato', 'Loida', 'Merlin', 'Ginger', 'Nata']
-
-        self.nombre = self.random_name()
-        self.appellido = self.random_surname()
-        self.email = self.random_email()
-
-    def random_name(self):
-        return random.choice(self.nombres) + str(random.randint(0, 1000))
-
-    def random_surname(self):
-        return random.choice(self.appellidos) + " " + str(random.randint(0, 1000))
-
-    def random_email(self):
-        return str(random.randint(0, 1000)) + random.choice(self.emails)
-
+data = RandomData()
 
 def connection_database(host, user, password, port, database_name):
     connection = mysql.connector.connect(
@@ -55,11 +36,11 @@ def execute_query_select(query):
 
 def insert_data():
     for i in range(10):
-        estudiante = RandomData()
-        user_name = estudiante.nombre
-        email = estudiante.email
-        appellido = estudiante.appellido
-        edad = random.randint(18, 60)
+        estudiante = data
+        user_name = estudiante.random_name()
+        email = estudiante.random_email()
+        appellido = estudiante.random_surname()
+        edad = estudiante.random_edad()
 
         sql_code = f"""
         INSERT INTO users (nombre, email, appellido, edad)
