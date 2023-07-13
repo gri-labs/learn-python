@@ -36,11 +36,10 @@ def execute_query_select(query):
 
 def insert_data():
     for i in range(10):
-        estudiante = data
-        user_name = estudiante.random_name()
-        email = estudiante.random_email()
-        appellido = estudiante.random_surname()
-        edad = estudiante.random_edad()
+        user_name = data.random_name()
+        email = data.random_email()
+        appellido = data.random_surname()
+        edad = data.random_edad()
 
         sql_code = f"""
         INSERT INTO users (nombre, email, appellido, edad)
