@@ -1,4 +1,4 @@
-class Song(object):
+class Song:
     def __init__(self, lyrics):
         self.lyrics = lyrics
 

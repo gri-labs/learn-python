@@ -10,6 +10,6 @@ class Calc(object):
             i = i + 1
         return result
 
-thing = Calc(8)
-print(thing.suma_first_naturals())
 
+thing = Calc(22)
+print(thing.suma_first_naturals())

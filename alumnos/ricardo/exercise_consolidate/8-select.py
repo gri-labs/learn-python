@@ -27,3 +27,4 @@ for row in rows:
 # Cerrar el cursor y la conexión
 cursor.close()
 connection.close()
+
