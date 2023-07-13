@@ -1,6 +1,10 @@
 import mysql.connector
 import random
 
+appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
+emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
+nombres = ['Renato', 'Loida', 'Merlin', 'Ginger', 'Nata']
+
 
 def connection_database(host, user, password, port, database_name):
     connection = mysql.connector.connect(
@@ -29,7 +33,6 @@ def execute_query_select(query):
 
 
 def insert_data():
-
     for i in range(100000):
         user_name = random_name()
         email = random_email()
@@ -44,17 +47,14 @@ def insert_data():
 
 
 def random_surname():
-    appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
     return random.choice(appellidos) + " " + str(random.randint(0, 1000))
 
 
 def random_email():
-    emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
     return str(random.randint(0, 1000)) + random.choice(emails)
 
 
 def random_name():
-    nombres = ['Renato', 'Loida', 'Merlin', 'Ginger', 'Nata']
     return random.choice(nombres) + str(random.randint(0, 1000))
 
 
@@ -64,22 +64,41 @@ def delete_data():
 
 
 if __name__ == '__main__':
-    connection_db = connection_database('localhost','root','root',3307,'usuarios')
+    connection_db = connection_database('localhost', 'root', 'root', 3307, 'usuarios')
     name = input("Which action? ")
+
     if name.upper() == "INSERT":
         insert_data()
+
     elif name.upper() == "DELETE":
         delete_data()
+
     elif name.upper() == "SEARCHID":
         search_id = input("Which id? ")
         sql_code = f"""
         SELECT * FROM users WHERE id='{search_id}'"""
         rows = execute_query_select(sql_code)
+
         if len(rows) > 0:
             print(rows)
         else:
-            print("ESTUDIANTE NO ENCONTRADO")
 
-# elif name.upper() == "SEARCHFIELD":
+            print("NO STUDENT IS PRESENT WITH THAT ID")
+
+    elif name.upper() == "SEARCHFIELD":
+        search_field = input("Which field? ")
+        search_valor = input("What are you searching for? ")
+        sql_code = f"""
+        SELECT * FROM users WHERE {search_field}='{search_valor}'"""
+        rows = execute_query_select(sql_code)
+
+        if len(rows) > 0:
+            print(rows)
+
+        else:
+            print("NO RESULT FOR YOUR SEARCH")
+
+    else:
+        print("Action not valid")
 
     connection_db.close()
