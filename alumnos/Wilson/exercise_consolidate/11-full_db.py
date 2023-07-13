@@ -18,88 +18,63 @@ def connection_database(host, user, password, database):
     return connection
 
 
-def create_table(connection):
-    # creo el cursor
+# crea la base de datos
+def create_database(connection, name_database):
+    create_database_sql = f"CREATE DATABASE IF NOT EXISTS {name_database};"
+    return create_database_sql
+
+
+# crea la tabla
+def create_table(connection, name_table, name_database, columns_table):
+    create_table_sql = f"CREATE TABLE IF NOT EXISTS `{name_table}`.`{name_database}` ({columns_table});"
+    commit_query(connection, create_table_sql)
+    return f"The table {name_table} was create in the data base {name_database}"
+
+
+def commit_query(connection, query):
     cursor = connection.cursor()
-    # crear la base de datos
-    create_database_sql = "CREATE DATABASE IF NOT EXISTS estudiantes;"
-    # Crear una tabla
-    create_table_sql = "CREATE TABLE IF NOT EXISTS `estudiantes`.`estudiantes` (id INT, nombre VARCHAR(255));"
-
-    # Ejecutar los cambios en la base de datos
-    cursor.execute(create_database_sql)
-    # Confirmar los cambios en la base de datos
+    cursor.execute(query)
     connection.commit()
-    # Ejecutar los cambios en la base de datos
-    cursor.execute(create_table_sql)
-    # Confirmar los cambios en la base de datos
-    connection.commit()
-    return cursor
-
-
-def insert_data(connection, cursor):
-    # Insertar un registro
-    insert_sql = "INSERT INTO estudiantes (id, nombre) VALUES (1, 'Wilson');"
-
-    # Ejecutar los cambios en la base de datos
-    cursor.execute(insert_sql)
-
-    # Confirmar los cambios en la base de datos
-    connection.commit()
-
-
-def get_data(connection, cursor):
-    # Consultar todos los registros
-    select_sql = "SELECT nombre FROM estudiantes"
-
-    # Ejecutar los cambios en la base de datos
-    cursor.execute(select_sql)
-
-    # Obtener los resultados
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
-
-    return rows
-
-
-def get_data_by_id(connection, cursor, id_number):
-    # Consultar todos los registros
-    select_sql = f"SELECT id FROM estudiantes WHERE id ={id_number}"
-
-    # Ejecutar los cambios en la base de datos
-    cursor.execute(select_sql)
-
-    # Obtener los resultados
-    rows = cursor.fetchall()
-
-    return rows
-
-
-def delete_data_by_id(connection, cursor, id_number):
-    # Consultar todos los registros
-    select_sql = f"DELETE FROM estudiantes.estudiantes WHERE id ={id_number}"
-
-    # Ejecutar los cambios en la base de datos
-    cursor.execute(select_sql)
-
-    # Obtener los resultados
-    rows = cursor.fetchall()
-
-    return rows
-
-
-def close_all_connections(connection, cursor):
-    connection.close()
     cursor.close()
+
+
+def insert_data(connection, name_database, name_table, columns, valor_to_add):
+    # Insertar un registro
+    insert_sql = f"INSERT INTO {name_database}.{name_table} {columns} VALUES {valor_to_add};"
+    commit_query(connection, insert_sql)
+    return insert_sql
+
+
+def get_data(connection, name_database, name_table, column_to_select):
+    # Consultar todos los registros
+    select_sql = f"SELECT {column_to_select} FROM {name_table}.{name_database};"
+    commit_query(connection, select_sql)
+    # Obtener los resultados
+    # rows = cursor.fetchall()
+    # for row in rows:
+    #    print(row)
+    # return rows
+
+
+def get_data_by_id(name_database, column_name, value_to_found):
+    # Consultar todos los registros
+    select_sql = f"SELECT {column_name} FROM {name_database} WHERE {column_name}={value_to_found};"
+
+
+def delete_data_by_id(name_table, column, value_to_delete):
+    # Consultar todos los registros
+    delete_sql = f"DELETE FROM {name_table} WHERE {column} ={value_to_delete};"
+    return delete_sql
+
+
+def close_all_connections(connection):
+    connection.close()
 
 
 if __name__ == '__main__':
     conn = connection_database('127.0.0.1', 'root', 'root', 'estudiantes')
-    cursor = create_table(conn)
     insert_data(conn, cursor)
     get_data(conn, cursor)
     print(get_data_by_id(conn, cursor, 1))
-    #delete_data_by_id(conn, cursor, 3)
+    # delete_data_by_id(conn, cursor, 3)
     close_all_connections(conn, cursor)
-
