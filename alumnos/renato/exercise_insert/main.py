@@ -1,5 +1,6 @@
 import mysql.connector
 import random
+import time
 
 appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
 emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
@@ -25,10 +26,13 @@ def exec_and_commit(query):
 
 
 def execute_query_select(query):
+    t0 = time.time()
     cursor = connection_db.cursor()
     cursor.execute(query)
     results = cursor.fetchall()
     cursor.close()
+    t1 = time.time()
+    print(t1-t0)
     return results
 
 
