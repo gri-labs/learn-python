@@ -2,9 +2,26 @@ import mysql.connector
 import random
 import time
 
-appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
-emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
-nombres = ['Renato', 'Loida', 'Merlin', 'Ginger', 'Nata']
+
+class RandomData:
+
+    def __init__(self ):
+        self.appellidos = ['Pepe', 'Pedro', 'Juanjo', 'Gimmy', 'Sanchez']
+        self.emails = ['renato@gmail.com', 'loida@hotmail.com', 'Merlin@cat.com', 'Ginger@cat1.com', 'Nata@cat2.com']
+        self.nombres = ['Renato', 'Loida', 'Merlin', 'Ginger', 'Nata']
+
+        self.nombre = self.random_name()
+        self.appellido = self.random_surname()
+        self.email = self.random_email()
+
+    def random_name(self):
+        return random.choice(self.nombres) + str(random.randint(0, 1000))
+
+    def random_surname(self):
+        return random.choice(self.appellidos) + " " + str(random.randint(0, 1000))
+
+    def random_email(self):
+        return str(random.randint(0, 1000)) + random.choice(self.emails)
 
 
 def connection_database(host, user, password, port, database_name):
@@ -32,15 +49,16 @@ def execute_query_select(query):
     results = cursor.fetchall()
     cursor.close()
     t1 = time.time()
-    print(t1-t0)
+    print(t1 - t0)
     return results
 
 
 def insert_data():
-    for i in range(100000):
-        user_name = random_name()
-        email = random_email()
-        appellido = random_surname()
+    for i in range(10):
+        estudiante = RandomData()
+        user_name = estudiante.nombre
+        email = estudiante.email
+        appellido = estudiante.appellido
         edad = random.randint(18, 60)
 
         sql_code = f"""
@@ -48,18 +66,6 @@ def insert_data():
         VALUES ('{user_name}', '{email}',  '{appellido}', '{edad}')
         """
         exec_and_commit(sql_code)
-
-
-def random_surname():
-    return random.choice(appellidos) + " " + str(random.randint(0, 1000))
-
-
-def random_email():
-    return str(random.randint(0, 1000)) + random.choice(emails)
-
-
-def random_name():
-    return random.choice(nombres) + str(random.randint(0, 1000))
 
 
 def delete_data():
