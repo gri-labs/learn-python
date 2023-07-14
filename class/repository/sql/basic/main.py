@@ -1,34 +1,33 @@
 import mysql.connector
+from connector_database import ConnectorDatabase
 
 
-class SQLRepository:
-    def __init__(self, db):
-        self.db = db
+class Repository:
+    def __init__(self, connector):
+        self.connector = connector
 
-    def get_all(self):
-        cursor = self.db.cursor()
-        query = "SELECT * FROM movies"
-        cursor.execute(query)
-        row = cursor.fetchall()
-        return row
+    def get_users(self):
+        return self.connector.execute_query("SELECT * FROM alumnos")
 
-    def get_by_id(self, id):
-        # TODO implementar
-        pass
+    def get_user(self, id):
+        return self.connector.execute_query("SELECT * FROM alumnos WHERE id = %s" % id)
+
+    # TODO: Implement create user
+
+    # TODO: Implement update user
+
+    # TODO: Implement delete user
 
 
 if __name__ == '__main__':
-    db = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='root',
-        database='gri',
-        port=int(3307)
-    )
+    # TODO: Create a connector object
 
-    repository = SQLRepository(db)
+    # TODO: Create a repository object
 
-    movies_data = repository.get_all()
+    # TODO: Get all users
 
-    for movie in movies_data:
-        print(movie)
+    # TODO: Get user by id
+
+    # TODO: Create a new user
+
+

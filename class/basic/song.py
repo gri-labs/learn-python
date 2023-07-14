@@ -1,4 +1,4 @@
-class Song(object):
+class Song:
     def __init__(self, lyrics):
         self.lyrics = lyrics
 
@@ -6,5 +6,8 @@ class Song(object):
         for line in self.lyrics:
             print(line)
 
-# Instancia la clase Song
-# Usa el metodo sing_me_a_song
+
+song = Song(["Happy birthday to you",
+                "I don't want to get sued",
+                "So I'll stop right there"])
+song.sing_me_a_song()
