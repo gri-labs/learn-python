@@ -13,5 +13,8 @@ class Car:
 
 if __name__ == '__main__':
     # TODO: Crear un objeto de tipo Car
+    car = Car("Ford", "Fiesta", 2019)
     # TODO: Asignar valores a las variables
+    car.set_mileage(23000)
     # TODO: Imprimir los valores de las variables
+    car.get_mileage()
