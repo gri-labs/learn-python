@@ -24,4 +24,4 @@ if __name__ == '__main__':
     # Se configura el log
     logging.basicConfig(filename='request.log', level=logging.DEBUG)
     # Se ejecuta el servidor
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8081)
