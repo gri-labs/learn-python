@@ -12,10 +12,10 @@ connection = mysql.connector.connect(
 cursor = connection.cursor()
 
 # Crear una base de datos
-create_database_sql = "CREATE DATABASE IF NOT EXISTS gri;"
+create_database_sql = "CREATE DATABASE IF NOT EXISTS gri_two;"
 
 # Crear una tabla
-create_table_sql = "CREATE TABLE IF NOT EXISTS `gri`.`estudiantes` (id INT, nombre VARCHAR(255));"
+create_table_sql = "CREATE TABLE `gri_two`.`alumnos` (`id` int(11) auto_increment,`nombre` varchar(255),`edad`int,`email`varchar(100),PRIMARY KEY (`id`)) ENGINE=InnoDB;"
 
 # Ejecutar los cambios en la base de datos
 cursor.execute(create_database_sql)
