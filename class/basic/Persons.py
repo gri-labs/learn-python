@@ -20,13 +20,8 @@ class Person:
         print("Gender:", self.gender)
 
 
-# Crear una instancia de la clase Person
-person = Person()
+if __name__ == '__main__':
+    # TODO: Crear un objeto de tipo Person
+    # TODO: Asignar valores a las variables
+    # TODO: Imprimir los valores de las variables
 
-# Establecer los atributos de la persona
-person.set_name("John Doe")
-person.set_age(25)
-person.set_gender("Male")
-
-# Mostrar la información de la persona
-person.display_info()
