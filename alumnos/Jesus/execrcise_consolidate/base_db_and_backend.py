@@ -46,7 +46,7 @@ def connection_close(connection):
 @app.route('/students', methods=['GET'], endpoint='get_all_students')
 def get_all_students():
     connection = connection_database()
-    query = "SELECT * FROM estudiantes;"
+    query = "SELECT * FROM `estudiantes`.`estudiantes`;"
     result = execute_query(connection, query)
     if len(result) == 0:
         return jsonify('No se ha encontrado'), 404
@@ -65,7 +65,7 @@ def get_all_students():
 @app.route('/student/<int:student_id>', methods=['GET'], endpoint='get_student')
 def get_student(student_id):
     connection = connection_database()
-    query = "SELECT * FROM estudiantes WHERE id=%s;" % student_id
+    query = "SELECT * FROM `estudiantes`.`estudiantes` WHERE id=%s;" % student_id
     result = execute_query(connection, query)
     connection_close(connection)
     if len(result) == 0:
@@ -81,7 +81,7 @@ def get_student(student_id):
 @app.route('/student/<int:student_id>/<string:student_name>', methods=['POST'], endpoint='insert_student')
 def insert_student(student_id, student_name):
     connection = connection_database()
-    query = "INSERT INTO estudiantes (id, name) VALUES (%s, %s);" % (student_id, student_name)
+    query = "INSERT INTO `estudiantes`.`estudiantes` (id, name) VALUES (%s, %s);" % (student_id, student_name)
     execute_query_with_commit(connection, query)
     connection_close(connection)
     try:
@@ -98,7 +98,14 @@ def insert_student(student_id, student_name):
 def insert_student_headers():
     student_id = request.args.get('student_id')
     student_name = request.args.get('student_name')
-    return jsonify('TODO implementar')
+    try:
+        connection = connection_database()
+        query = "INSERT INTO `estudiantes`.`estudiantes` (id, nombre) VALUES (%s, %s);" % (student_id, student_name)
+        execute_query_with_commit(connection, query)
+        connection_close(connection)
+        return jsonify('Datos insertados'), 500
+    except Exception as e:
+        return jsonify('ERROR'), 200
 
 
 # curl -X DELETE http://localhost:6000/student/1
@@ -107,9 +114,10 @@ def insert_student_headers():
 @app.route('/student/<int:student_id>', methods=['DELETE'], endpoint='delete_student')
 def delete_student(student_id):
     connection = connection_database()
-    query = "DELETE FROM estudiantes WHERE id = %s;" % (student_id)
+    query = "DELETE FROM `estudiantes`.`estudiantes` WHERE id = %s;" % student_id
     execute_query_with_commit(connection, query)
-    return jsonify('TODO implementar')
+    connection_close(connection)
+    return jsonify('Registro borrado')
 
 
 # curl -X PUT http://localhost:6000/student/1/pepe
@@ -117,10 +125,11 @@ def delete_student(student_id):
 # Es útil para actualizar información
 @app.route('/student/<int:student_id>/<string:student_name>', methods=['PUT'], endpoint='update_student')
 def update_student(student_id, student_name):
-    query = "UPDATE estudiantes SET nombre = '%s' WHERE id=%s;" % (student_name, student_id)
+    connection = connection_database()
+    query = "UPDATE `estudiantes`.`estudiantes` SET nombre = '%s' WHERE id=%s;" % (student_name, student_id)
+    execute_query_with_commit(connection, query)
     return jsonify('TODO implementar')
 
 
 if __name__ == '__main__':
-    # conn = connection_database('localhost', 'root', 'root', 'estudiantes', 3307)
     app.run(host='0.0.0.0', port=6000, debug=True)
