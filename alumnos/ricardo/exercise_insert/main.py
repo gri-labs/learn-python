@@ -26,9 +26,9 @@ def execute_query_with_commit(connection, query):
 def populate_database(connection):
     for i in range(1000000):
         query = "INSERT INTO estudiantes (nombre) VALUES ('%s');" % data.get_name()
-        print(query)
         try:
             execute_query_with_commit(connection, query)
+            print(query)
         except Exception as e:
             print("Error: %s" % e)
         print("Se inserto el registro %s" % i)

@@ -21,7 +21,10 @@ class Person:
 
 
 if __name__ == '__main__':
-    # TODO: Crear un objeto de tipo Person
-    # TODO: Asignar valores a las variables
-    # TODO: Imprimir los valores de las variables
+    people = Person()
+    people.set_name("Renato")
+    people.set_age(32)
+    people.set_gender("Male")
+
+    print(people.display_info())
 

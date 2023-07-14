@@ -24,4 +24,10 @@ if __name__ == '__main__':
     # TODO: Crear un objeto de tipo Person
     # TODO: Asignar valores a las variables
     # TODO: Imprimir los valores de las variables
+    Alex = Person()
+    Alex.set_name("Alex")
+    Alex.set_age("33")
+    Alex.set_gender("hombre")
+    Alex.display_info()
+
 
