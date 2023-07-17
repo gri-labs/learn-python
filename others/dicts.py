@@ -82,7 +82,5 @@ for key, value in dict_object_class.items():
 
 # Ejercicio
 # TODO: Crea un diccionario que asocie el nombre de cada país con su capital.
-# TODO: Itera en el diccionario e imprime el nombre del país y su capital.
 
-# Ejercicio
-# TODO: Crea un diccionario que asocie el nombre de cada país con su capital y su población.
+# TODO: Itera en el diccionario e imprime el nombre del país y su capital.
