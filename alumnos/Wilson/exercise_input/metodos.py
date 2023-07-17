@@ -77,6 +77,7 @@ def delete_information_table(connection, cardinality_delete):
 
 if __name__ == '__main__':
     connexion = connection_database('localhost', 'root', 'root', 'gri', 3308)
+    # Si ejecuta el codigo por primera vez, use las siguientes dos lineas, para crear la base de datos y la tabla:
     # create_database(connexion)
     # create_table(connexion)
     print("Por favor indique si desea INSERTAR, ELIMINAR, SELECCIONAR, valores aleatorios en la tabla edades_tabla:")
