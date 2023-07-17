@@ -1,3 +1,5 @@
+# Que son los diccionarios?
+# Los diccionarios son una estructura de datos que permite almacenar datos.
 # Tres tipos de diccionarios:
 # Diccionarios ordenados: estos diccionarios mantienen el orden en el que se agregan las claves.
 # Ejemplo:
