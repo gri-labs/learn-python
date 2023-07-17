@@ -35,20 +35,16 @@ if __name__ == '__main__':
     # TODO: Add 1 movie to the repository with the following data:
 
 
-def print_position(in_memory_repository):
-    movies_position = input("Insert a position: ")
-    get_position = in_memory_repository.get(movies_position)
-
-    if get_position:
-        for key, value in movies_position.items():
-            print(value, key, get_position)
-
     movies = {
         'id': 1,
         'name': 'Star Wars'
     }
     in_memory_repository.add(movies)
-    print_position(in_memory_repository)
+
+    movies_position_0 = in_memory_repository.get(0)
+
+    for key, value in movies_position_0.items():
+        print(value, key)
 
     # TODO: Add 3 movies to the repository with the following data:
 
@@ -64,10 +60,13 @@ def print_position(in_memory_repository):
     ]
 
     in_memory_repository.add(movies)
-    print_position()
 
+    movies_position_1 = in_memory_repository.get(1)
 
-    # TODO: Implementa una clase para printar los datos de un item
+    for key, value in movies_position_1.items():
+        print(value, key)
+
+# TODO: Implementa una clase para printar los datos de un item
     # TODO: Print the movie with id 1
     # TODO: Print the movie with id 2
     # TODO: Print the movie with id 3
