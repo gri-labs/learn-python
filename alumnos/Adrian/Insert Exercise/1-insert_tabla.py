@@ -68,5 +68,4 @@ SELECT * FROM estudiantes;
 
 show create table estudiantes; #para ver la forma de crear la tabla
 
-#Ricardo he intentado hacer esto pero la tabla no me salen los registros o no se verlos...
-#Dice que hay 6 registros pero cuando lo exporto la tabla a excel me sale solo el nombre de las columnas.
+
