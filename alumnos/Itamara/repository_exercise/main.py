@@ -37,16 +37,18 @@ if __name__ == '__main__':
 
 def print_position(in_memory_repository):
     movies_position = input("Insert a position: ")
-    in_memory_repository.get(movies_position)
-    for key, value in movies_position.items():
-        print(value, key, movies_position)
+    get_position = in_memory_repository.get(movies_position)
+
+    if get_position:
+        for key, value in movies_position.items():
+            print(value, key, get_position)
 
     movies = {
         'id': 1,
         'name': 'Star Wars'
     }
     in_memory_repository.add(movies)
-    print_position()
+    print_position(in_memory_repository)
 
     # TODO: Add 3 movies to the repository with the following data:
 
