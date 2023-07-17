@@ -9,8 +9,7 @@ class Repository:
     def get_users(self):
         return self.connector.execute_query("SELECT * FROM alumnos")
 
-    def get_user(self, id):
-        return self.connector.execute_query("SELECT * FROM alumnos WHERE id = %s" % id)
+    # TODO: Implement get user by id
 
     # TODO: Implement create user
 
@@ -20,11 +19,12 @@ class Repository:
 
 
 if __name__ == '__main__':
-    # TODO: Create a connector object
-
-    # TODO: Create a repository object
+    # TODO: Instancia el repositorio con el conector
 
     # TODO: Get all users
+
+    # TODO: Implementa una clase para printar datos
+    # TODO: Print users
 
     # TODO: Get user by id
 

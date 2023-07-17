@@ -1,5 +1,5 @@
 import mysql.connector
-
+from gener_names import Gener_names
 
 def connection_database():
     connection = mysql.connector.connect(
@@ -26,8 +26,9 @@ def execute_query(connection, query):
 
 def insert_datos(connection):
     i = 0
+    name = Gener_names()
     while i < 10000:
-        query = "INSERT INTO estudiantes (`nombre`) VALUES ('Pepe%s');" % (i)
+        query = "INSERT INTO estudiantes (`nombre`) VALUES ('%s');" % (name.get_name(i))
         execute_query_and_commit(connection, query)
         i = i + 1
 

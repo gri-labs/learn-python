@@ -22,9 +22,11 @@ class Person:
 
 if __name__ == '__main__':
     # TODO: Crear un objeto de tipo Person
-    person = Person()
+    persona = Person()
     # TODO: Asignar valores a las variables
-    person.set_name("Ricardo")
-    person.set_gender("Male")
-    person.set_age(25)
-    person.display_info()
+    persona.set_name('Jesus')
+    persona.set_age(45)
+    persona.set_gender('M')
+    # TODO: Imprimir los valores de las variables
+    persona.display_info()
+
