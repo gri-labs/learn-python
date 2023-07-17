@@ -26,6 +26,7 @@ class InMemoryRepository:
     def delete(self, id):
         del self.data[id]
 
+
 if __name__ == '__main__':
     print("Enjoy!")
     # TODO: Create a new instance of InMemoryRepository
@@ -42,6 +43,7 @@ if __name__ == '__main__':
     # TODO: Print the movie with id 1
     # TODO: Print the movie with id 2
     # TODO: Print the movie with id 3
+
     # TODO: Update the movie with id 2 with the following data:
     # example
     # id: 2, name: Star Trek: The Next Generation
