@@ -30,16 +30,23 @@ class InMemoryRepository:
 if __name__ == '__main__':
     print("Enjoy!")
     # TODO: Create a new instance of InMemoryRepository
+
     in_memory_repository = InMemoryRepository()
     # TODO: Add 1 movie to the repository with the following data:
-    # example
-    # id: 1, name: Star Wars
+
     movies = {
         'id': 1,
         'name': 'Star Wars'
     }
+    in_memory_repository.add(movies)
+
+    movies_position_0 = in_memory_repository.get(0)
+
+    for key, value in movies_position_0.items():
+        print(value, key)
+
     # TODO: Add 3 movies to the repository with the following data:
-    # example
+
     movies = [
         {
             'id': 2,
@@ -50,9 +57,7 @@ if __name__ == '__main__':
             'name': 'The Lord of the Rings'
         }
     ]
-    # id: 1, name: Star Wars
-    # id: 2, name: Star Trek
-    # id: 3, name: The Lord of the Rings
+
     # TODO: Implementa una clase para printar los datos de un item
     # TODO: Print the movie with id 1
     # TODO: Print the movie with id 2
