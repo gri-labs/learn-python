@@ -55,7 +55,7 @@ if __name__ == '__main__':
     connection = connection_database("localhost", "root", "root", "estudiantes", "3307")
 
     while True:
-        respuesta = input("¿Qué quieres realizar? (insertar, eliminar, datos_id, datos_edad, salir): ")
+        respuesta = input("¿Qué quieres hacer? (insertar, eliminar, datos_id, datos_edad, salir): ")
 
         if respuesta == "insertar":
             insertar_datos(connection)

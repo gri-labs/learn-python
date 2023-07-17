@@ -12,8 +12,7 @@ connection = mysql.connector.connect(
 cursor = connection.cursor()
 
 # Insertar un registro
-insert_sql = "INSERT INTO estudiantes (id, nombre, gmail)
-VALUES ( 1, 'alhida', 'alhidallanos@gmail.com')"
+insert_sql = "INSERT INTO estudiantes (id, nombre, gmail) VALUES ( 1, 'alhida', 'alhidallanos@gmail.com');"
 
 # Ejecutar los cambios en la base de datos
 cursor.execute(insert_sql)
