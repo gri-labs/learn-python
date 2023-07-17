@@ -28,14 +28,13 @@ class Repository:
 
     # TODO: Implement delete user
 
-    # TODO: Implement print users
-
 
 if __name__ == '__main__':
     # TODO: Instance the repository with the connector
 
     # TODO: Get all users
 
+    # TODO: Implement a class to print data
     # TODO: Print users
 
     # TODO: Get user by id

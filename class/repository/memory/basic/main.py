@@ -18,10 +18,6 @@ class InMemoryRepository:
     def get(self, id):
         return self.data[id]
 
-    # Obtiene todos los items de la lista data
-    def list(self):
-        return self.data
-
     # Actualiza un item de la lista data
     def update(self, id, item):
         self.data[id] = item
@@ -30,10 +26,10 @@ class InMemoryRepository:
     def delete(self, id):
         del self.data[id]
 
-
 if __name__ == '__main__':
     print("Enjoy!")
     # TODO: Create a new instance of InMemoryRepository
+    in_memory_repository = InMemoryRepository()
     # TODO: Add 1 movie to the repository with the following data:
     # example
     # id: 1, name: Star Wars
@@ -42,6 +38,7 @@ if __name__ == '__main__':
     # id: 1, name: Star Wars
     # id: 2, name: Star Trek
     # id: 3, name: The Lord of the Rings
+    # TODO: Implementa una clase para printar los datos de un item
     # TODO: Print the movie with id 1
     # TODO: Print the movie with id 2
     # TODO: Print the movie with id 3
@@ -51,4 +48,3 @@ if __name__ == '__main__':
     # TODO: Print the movie with id 2
     # TODO: Delete the movie with id 1
     # TODO: Print all the movies
-    print(in_memory_repository.list())

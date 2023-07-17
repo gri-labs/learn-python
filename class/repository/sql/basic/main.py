@@ -17,15 +17,13 @@ class Repository:
 
     # TODO: Implement delete user
 
-    # TODO: Implement print users
-
 
 if __name__ == '__main__':
     # TODO: Instancia el repositorio con el conector
-    repo = Repository(ConnectorDatabase("localhost", "root", "", "test", "3306"))
 
     # TODO: Get all users
 
+    # TODO: Implementa una clase para printar datos
     # TODO: Print users
 
     # TODO: Get user by id

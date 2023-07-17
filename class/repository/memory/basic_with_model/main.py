@@ -17,9 +17,6 @@ class InMemoryRepository:
     def add(self, item):
         self._data.append(User(item[0], item[1], item[2]))
 
-    def list(self):
-        return self._data
-
     # TODO: Implementa los metodos get, update, delete item, delete all
 
 
