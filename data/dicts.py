@@ -82,5 +82,9 @@ for key, value in dict_object_class.items():
 
 # Ejercicio
 # TODO: Crea un diccionario que asocie el nombre de cada país con su capital.
-
 # TODO: Itera en el diccionario e imprime el nombre del país y su capital.
+
+dictionary = {"Colombia": "Bogota", "Peru": "Lima", "Argentina": "Buenos Aires"}
+
+for key, value in dictionary.items():
+    print(key, value)
