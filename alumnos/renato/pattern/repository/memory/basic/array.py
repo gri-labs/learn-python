@@ -9,9 +9,7 @@ if __name__ == '__main__':
     print_data = PrintData()
     # TODO: Add id, strings... with array format to the repository
     in_memory_repository.add_all([
-        {"id": 1, "name": "Star Wars"},
-        {"id": 2, "name": "Star Trek"},
-        {"id": 3, "name": "The Lord of the Rings"},
+        [1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]
     ])
     # TODO: Delete the movie with id 2
     in_memory_repository.delete(2)
