@@ -1,20 +1,5 @@
-# La clase User ( modelo ) es un item que guardamos en memoria
-# a partir del repositorio InMemoryRepository
-class User:
-    def __init__(self, id, name, email):
-        self.id = id
-        self.name = name
-        self.email = email
-
-
-class PrintUsers:
-    def __str__(self):
-        pass
-
-    def print_data(self, data):
-        for i in data:
-            print(i)
-
+from user import User
+from print_data import PrintData
 
 # El repositorio InMemoryRepository
 # Es una clase que se encarga de obtener datos y guardarlos en un array en memoria
@@ -31,7 +16,7 @@ class InMemoryRepository:
 
 if __name__ == '__main__':
     repository = InMemoryRepository()
-    print_users = PrintUsers()
+    print_users = PrintData()
 
     users = [
         ('1', 'ricardo', 'ricar@gmail.com')

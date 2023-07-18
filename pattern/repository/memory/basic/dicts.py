@@ -1,5 +1,5 @@
 from repository import InMemoryRepository
-from print_movies import PrintData
+from print_data import PrintData
 
 if __name__ == '__main__':
     print("Enjoy!")

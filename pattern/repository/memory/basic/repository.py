@@ -1,7 +1,7 @@
 # Que es la clase InMemoryRepository?
 # Es una clase que se encarga de obtener, guardar... datos en memoria
 
-from print_movies import PrintData
+from print_data import PrintData
 
 
 class InMemoryRepository:
