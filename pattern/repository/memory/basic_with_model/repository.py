@@ -7,35 +7,55 @@ class User:
         self.email = email
 
 
+class PrintUsers:
+    def __str__(self):
+        pass
+
+    def print_data(self, data):
+        for i in data:
+            print(i)
+
+
 # El repositorio InMemoryRepository
 # Es una clase que se encarga de obtener datos y guardarlos en un array en memoria
 # modelados por el item User
 class InMemoryRepository:
     def __init__(self):
-        self._data = []
+        self.data = []
 
     def add(self, item):
-        self._data.append(User(item[0], item[1], item[2]))
+        self.data.append(User(item[0], item[1], item[2]))
 
     # TODO: Implementa los metodos get, update, delete item, delete all
 
 
 if __name__ == '__main__':
     repository = InMemoryRepository()
+    print_users = PrintUsers()
 
-    # Tenemos un array de datos
     users = [
         ('1', 'ricardo', 'ricar@gmail.com')
     ]
 
-    # Recorremos el array de datos y por cada dato añadimos un item
-    # al array _data
     for i in users:
         repository.add(i)
 
-    # Recorremos el array _data y por cada item imprimimos sus datos
-    for i in repository.list():
-        print(i.id, i.name, i.email)
+    data = repository.data
+
+    print("llamando a print_data")
+
+    print_users.print_data(data)
+
+    users_2 = [
+        {
+            '1',
+            'ricardo',
+            '',
+        }
+    ]
+
+    for x in users_2:
+        repository.add(x)
 
     # TODO: añade más datos al array items
 
