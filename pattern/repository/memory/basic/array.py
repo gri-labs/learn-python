@@ -1,5 +1,4 @@
 
-
 if __name__ == '__main__':
     # TODO: Create a new instance of InMemoryRepository
     # TODO: Create a new instance of PrintData
