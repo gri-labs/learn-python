@@ -20,7 +20,6 @@ if __name__ == '__main__':
     for key, value in movie_position_0.items():
         print("Printing keys and values from movie with id 1:")
         print("Key: ", key, "Value: ", value)
-        print("Only value: ", value)
 
     # TODO: Add 2 movies to the repository with the following data:
     movies = [
