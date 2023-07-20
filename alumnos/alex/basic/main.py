@@ -26,7 +26,6 @@ class InMemoryRepository:
     def delete(self, id):
         del self.data[id]
 
-
 if __name__ == '__main__':
     print("Enjoy!")
     # TODO: Create a new instance of InMemoryRepository
@@ -43,18 +42,37 @@ if __name__ == '__main__':
     # id: 2, name: Star Trek
     # id: 3, name: The Lord of the Rings
 
-    star_trek = {'id': 2, 'name': 'Star Trek'}
-    lord_rings = {'id': 3, 'name': 'The Lord of the rings'}
-    items = star_trek, lord_rings}
-    in_memory_repository.add_all(items)
+    item = [{'id': 2, 'name': 'Star Trek'},{'id': 3, 'name': 'The Lord of the rings'}]
+    in_memory_repository.add_all(item)
     # TODO: Implementa una clase para printar los datos de un item
     # TODO: Print the movie with id 1
+    print(in_memory_repository.get(0)['name'])
+
 
     # TODO: Print the movie with id 2
+    print(in_memory_repository.get(1)['name'])
+
     # TODO: Print the movie with id 3
+    print(in_memory_repository.get(2)['name'])
+
     # TODO: Update the movie with id 2 with the following data:
     # example
     # id: 2, name: Star Trek: The Next Generation
+    in_memory_repository.update(2, {'id':3, 'name':'The Next Generation'})
     # TODO: Print the movie with id 2
+    print(in_memory_repository.get(2))
     # TODO: Delete the movie with id 1
+    in_memory_repository.delete(1)
     # TODO: Print all the movies
+
+    for i in in_memory_repository.data:
+        for key, value in i.items():
+            print(value)
+
+    dic = {'name':'Alex', 'age':33, 'gender':'man'}
+
+    print(type(in_memory_repository.data))
+    print(type(dic))
+
+    lista = (1,2,3)
+    print(type(lista))

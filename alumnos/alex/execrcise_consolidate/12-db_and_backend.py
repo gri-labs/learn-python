@@ -92,6 +92,7 @@ def insert_student_headers():
     connection.close()
     return str(result)
 
+
 # curl -X DELETE http://localhost:6000/student/1
 # Metodo DELETE
 # Es útil para eliminar información
@@ -102,6 +103,7 @@ def delete_student(student_id):
     result = execute_query(connection, query)
     connection.close()
     return str(result)
+
 
 # curl -X PUT http://localhost:6000/student/1/Ricardo
 # Metodo PUT
