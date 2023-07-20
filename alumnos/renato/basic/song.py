@@ -8,6 +8,6 @@ class Song:
 
 
 song = Song(["Happy birthday to you",
-                "I don't want to get sued",
-                "So I'll stop right there"])
+             "I don't want to get sued",
+             "So I'll stop right there"])
 song.sing_me_a_song()
