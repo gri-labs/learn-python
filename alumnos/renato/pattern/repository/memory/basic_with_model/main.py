@@ -1,7 +1,7 @@
-if __name__ == '__main__':
-    from print_data import PrintData
-    from repository import InMemoryRepository
+from print_data import PrintData
+from repository import InMemoryRepository
 
+if __name__ == '__main__':
     repository = InMemoryRepository()
     print_users = PrintData()
 
