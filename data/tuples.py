@@ -3,6 +3,7 @@
 
 # Ejemplo de tupla simple
 tuple_one = (1, 2, 3, 4, 5)
+print(type(tuple_one))
 
 # Iterar en tupla simple
 for i in tuple_one:
