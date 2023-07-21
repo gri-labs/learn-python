@@ -12,7 +12,7 @@ repo = Repository()
 @app.route('/create/user/<int:user_id>/<string:name>/<int:age>', methods=['POST'])
 def create_user(user_id, name, age):
     repo.add_user(user_id, name, age)
-    return 'Usuario creado'
+    return 'Usuario creado', 201
 
 
 @app.route('/user/<int:user_id>', methods=['GET'])
