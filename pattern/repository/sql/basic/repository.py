@@ -2,13 +2,17 @@ class Repository:
     def __init__(self, connector):
         self.connector = connector
 
-    def get_users(self):
-        return self.connector.execute_query("SELECT * FROM alumnos")
+    def get_students(self):
+        return self..("SELECT * FROM estudiantes")
 
-    # TODO: Implement get user by id
+    def get_student_by_id(self, ):
+        return self..("")
 
-    # TODO: Implement create user
+    def get_students_by_name(self, ):
+        return self..execute_and_fetchall()
 
-    # TODO: Implement update user
+    def insert_student(self, ):
 
-    # TODO: Implement delete user
+    def update_student(self, id, nombre):
+
+    def delete_student(self, id):
