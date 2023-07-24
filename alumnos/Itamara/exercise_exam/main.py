@@ -10,7 +10,7 @@ connector = ConnectorDatabase()
 @app.route('/create/user/<int:user_id>/<string:user_name>', methods=['POST'], endpoint='insert_user')
 def insert_user(user_id, user_name):
     repository.insert_user(user_id,user_name)
-if 
+if
     return jsonify('User created'), 201
 
 
