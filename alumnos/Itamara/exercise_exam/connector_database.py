@@ -41,4 +41,3 @@ class ConnectorDatabase:
 
 if __name__ == '__main__':
     connect = ConnectorDatabase('localhost', 'root', 'root', 'gri', 3307)
-   
