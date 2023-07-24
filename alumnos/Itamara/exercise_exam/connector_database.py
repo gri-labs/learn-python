@@ -40,5 +40,5 @@ class ConnectorDatabase:
         self.connection.close()
 
 if __name__ == '__main__':
-    connect = self.connection('localhost', 'root', 'root', 'gri', 3307)
-    run(connect)
+    connect = ConnectorDatabase('localhost', 'root', 'root', 'gri', 3307)
+   
