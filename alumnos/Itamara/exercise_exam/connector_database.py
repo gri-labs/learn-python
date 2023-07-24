@@ -5,6 +5,11 @@ class ConnectorDatabase:
 
     def __init__(self, host, user, password, database, port):
         self.connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="root",
+            database="gri",
+            port=int(3307)
         )
 
     def execute_and_fetchall(self, query):

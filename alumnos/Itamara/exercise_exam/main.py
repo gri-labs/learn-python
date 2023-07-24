@@ -1,11 +1,15 @@
 from flask import Flask, jsonify
-from repository import InMemoryRepository
+from repository import Repository
+from connector_database import ConnectorDatabase
 
 app = Flask(__name__)
+repository = Repository()
+connector = ConnectorDatabase()
 
 
 @app.route('/create/user/<int:user_id>/<string:user_name>', methods=['POST'], endpoint='insert_user')
 def insert_user(user_id, user_name):
+
     return jsonify('User created'), 201
 
 
