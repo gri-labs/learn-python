@@ -12,5 +12,6 @@ class Repository:
         return self.connector.get(result)
 
     def insert_user(self, user_id, user_name):
-        user = {"id": user_id, "name": user_name}
-        self.connector.append(user)
+        query = "INSERT INTO users (user_id, user_name) VALUES ('{}', '{}');".format(user_id, user_name)
+        result = execute_and_commit(query)
+        return self.connector.append(result)
