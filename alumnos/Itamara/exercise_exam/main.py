@@ -3,14 +3,20 @@ from repository import Repository
 from connector_database import ConnectorDatabase
 
 app = Flask(__name__)
-repository = Repository()
-connector = ConnectorDatabase()
+connector = ConnectorDatabase(
+    host="localhost",
+    user="root",
+    password="root",
+    database="gri",
+    port=int(3307)
+)
+repository = Repository(connector)
+
 
 
 @app.route('/create/user/<int:user_id>/<string:user_name>', methods=['POST'], endpoint='insert_user')
 def insert_user(user_id, user_name):
     repository.insert_user(user_id,user_name)
-if
     return jsonify('User created'), 201
 
 

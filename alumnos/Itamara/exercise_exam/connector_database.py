@@ -39,5 +39,4 @@ class ConnectorDatabase:
     def close_connection(self):
         self.connection.close()
 
-if __name__ == '__main__':
-    connect = ConnectorDatabase('localhost', 'root', 'root', 'gri', 3307)
+
