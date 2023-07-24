@@ -12,21 +12,14 @@ class ConnectorDatabase:
             port=int(port)
         )
 
-    def execute_and_fetchall(self, query):
+    def query(self, query):
         cursor = self.connection.cursor()
         cursor.execute(query)
-        result = cursor.fetchall()
+        results = cursor.fetchall()
         cursor.close()
-        return result
+        return results
 
-    def execute_and_fetchone(self, query):
-        cursor = self.connection.cursor()
-        cursor.execute(query)
-        result = cursor.fetchone()
-        cursor.close()
-        return result
-
-    def execute_and_commit(self, query):
+    def transaction(self, query):
         try:
             cursor = self.connection.cursor()
             cursor.execute(query)

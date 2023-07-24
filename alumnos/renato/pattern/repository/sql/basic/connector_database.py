@@ -15,9 +15,9 @@ class ConnectorDatabase:
     def execute_and_fetchall(self, query):
         cursor = self.connection.cursor()
         cursor.execute(query)
-        result = cursor.fetchall()
+        results = cursor.fetchall()
         cursor.close()
-        return result
+        return results
 
     def execute_and_fetchone(self, query):
         cursor = self.connection.cursor()
@@ -27,14 +27,10 @@ class ConnectorDatabase:
         return result
 
     def execute_and_commit(self, query):
-        try:
-            cursor = self.connection.cursor()
-            cursor.execute(query)
-            self.connection.commit()
-            cursor.close()
-        except Exception as e:
-            print(e)
-            self.connection.rollback()
+        cursor = self.connection.cursor()
+        cursor.execute(query)
+        self.connection.commit()
+        cursor.close()
 
     def close_connection(self):
         self.connection.close()
