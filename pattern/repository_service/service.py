@@ -1,4 +1,6 @@
 import bcrypt
+
+
 class Service:
     def __init__(self, repository):
         self.repository = repository
@@ -10,6 +12,16 @@ class Service:
             return None
 
         student.password = generate_password_hash("123456")
+
+        return student
+
+    def get_random_sub_name(self, id):
+        student = self.repository.get_student_by_id(id)
+
+        if student is None:
+            return None
+
+        student.nombre = student.nombre[0:3]
 
         return student
 
