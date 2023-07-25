@@ -12,30 +12,29 @@ class ConnectorDatabase:
             port=int(port)
         )
 
-    def execute_query(self, query):
+    def execute_and_fetchall(self, query):
         cursor = self.connection.cursor()
         cursor.execute(query)
-        results = cursor.fetchall()
+        result = cursor.fetchall()
         cursor.close()
-        return results
+        return result
 
-    def execute_update(self, query, params):
+    def execute_and_fetchone(self, query):
         cursor = self.connection.cursor()
-        cursor.execute(query, params)
-        self.connection.commit()
+        cursor.execute(query)
+        result = cursor.fetchone()
         cursor.close()
+        return result
 
-    def execute_insert(self, query, params):
-        cursor = self.connection.cursor()
-        cursor.execute(query, params)
-        self.connection.commit()
-        cursor.close()
-
-    def execute_delete(self, query, params):
-        cursor = self.connection.cursor()
-        cursor.execute(query, params)
-        self.connection.commit()
-        cursor.close()
+    def execute_and_commit(self, query):
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(query)
+            self.connection.commit()
+            cursor.close()
+        except Exception as e:
+            print(e)
+            self.connection.rollback()
 
     def close_connection(self):
         self.connection.close()

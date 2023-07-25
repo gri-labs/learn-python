@@ -1,48 +1,24 @@
-import mysql.connector
-from connector_database import ConnectorDatabase
-
-
-class Student:
-    def __init__(self, id, name, email):
-        self.id = id
-        self.name = name
-        self.email = email
-
-class Repository:
-    def __init__(self, connection):
-        self.connection = connection
-
-    def get_users(self):
-        students = []
-        results = self.connection.execute_query("SELECT * FROM alumnos")
-        for result in results:
-            students.append(Student(result[0], result[1], result[2]))
-        return students
-
-    def get_user(self, id):
-        return self.connection.execute_query("SELECT * FROM alumnos WHERE id = %s" % id)
-
-    # TODO: Implement create user
-
-    # TODO: Implement update user
-
-    # TODO: Implement delete user
-
+from connector import ConnectorDatabase
+from repository import Repository
+from student import StudentEntity
 
 if __name__ == '__main__':
-    # TODO: Instance the repository with the connector
+    repository = Repository(ConnectorDatabase(
+        host='localhost',
+        password='root',
+        user='root',
+        database='gri',
+        port=int(3308)
+    ))
 
-    # TODO: Get all users
+    # Add student
+    repository.add_student(
+        StudentEntity(
+            nombre='Juan',
+        ))
 
-    # TODO: Implement a class to print data
-    # TODO: Print users
+    # Get student by id
+    student = repository.get_student_by_id(500)
+    print(student.nombre)
 
-    # TODO: Get user by id
-
-    # TODO: Create a new user
-
-    # TODO: Update user
-
-    # TODO: Delete user
-
-
+    # TODO: Usa los métodos del repositorio para crear, actualizar y borrar un estudiante

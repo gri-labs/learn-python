@@ -1,0 +1,6 @@
+name = input('Ingrese su nombre: ')
+age = input('Ingrese su edad: ')
+last_name = input('Ingrese su apellido: ')
+print(f'Nombre: {name}')
+print(f'Edad: {age}')
+print(f'Apellido: {last_name}')

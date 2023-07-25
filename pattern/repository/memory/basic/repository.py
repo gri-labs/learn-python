@@ -10,11 +10,11 @@ class InMemoryRepository:
         # data es una lista
         self.data = []
 
-    # Añade un item a la lista data
+    # Añade un elemento a la lista data en la última posición
     def add(self, item):
         self.data.append(item)
 
-    # Añade una lista de items a la lista data
+    # Añade todos los elementos de un array a la lista data
     def add_all(self, items):
         self.data.extend(items)
 
@@ -27,6 +27,10 @@ class InMemoryRepository:
 
     # Actualiza un item de la lista data
     def update(self, id, item):
+        self.data[id] = item
+
+    # try to update a tuple of array
+    def update_tuple(self, id, item):
         self.data[id] = item
 
     # Borra un item de la lista data
