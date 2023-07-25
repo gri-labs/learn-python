@@ -13,12 +13,12 @@ class StudentDTO(Base):
     nombre = Column(String(255))
 
 
-# Modelo de negocio
-# Entity
-# Clase que representa el modelo de negocio
+# Una entidad es?
+# Una entidad es una clase que representa un modelo de negocio
 # No tiene ninguna dependencia de la base de datos
 class StudentEntity():
     # Propiedades por defecto
+    # Las entidades siempre deben tener un id
     id = 0
     nombre = ""
 
