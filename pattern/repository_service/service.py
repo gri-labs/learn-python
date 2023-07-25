@@ -1,6 +1,17 @@
+import bcrypt
 class Service:
     def __init__(self, repository):
         self.repository = repository
+
+    def get_password_for_student(self, id):
+        student = self.repository.get_student_by_id(id)
+
+        if student is None:
+            return None
+
+        student.password = generate_password_hash("123456")
+
+        return student
 
     def get_student_by_id(self, id):
         return self.repository.get_student_by_id(id)
@@ -13,3 +24,7 @@ class Service:
 
     def update_student(self, student_entity):
         return self.repository.update_user(student_entity)
+
+
+def generate_password_hash(password):
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())

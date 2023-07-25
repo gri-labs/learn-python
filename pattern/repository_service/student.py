@@ -21,7 +21,9 @@ class StudentEntity():
     # Propiedades por defecto
     id = 0
     nombre = ""
+    password = bytes()
 
-    def __init__(self, id=0, nombre=""):
+    def __init__(self, id=0, nombre="", password=bytes()):
         self.id = id
         self.nombre = nombre
+        self.password = password
