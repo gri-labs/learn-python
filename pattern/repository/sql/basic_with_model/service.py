@@ -3,7 +3,7 @@ class Service:
         self.repository = repository
 
     def get_student_by_id(self, id):
-        return self.repository.get_user_by_id(id)
+        return self.repository.get_student_by_id(id)
 
     def add_student(self, student_entity):
         return self.repository.add_student(student_entity)

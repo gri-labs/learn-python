@@ -15,3 +15,5 @@ if __name__ == '__main__':
     service = Service(repository)
 
     service.add_student(StudentEntity(nombre='Pepe'))
+
+    print(service.get_student_by_id(10).nombre)
