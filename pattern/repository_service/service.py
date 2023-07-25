@@ -5,7 +5,7 @@ class Service:
     def __init__(self, repository):
         self.repository = repository
 
-    def get_password_for_student(self, id):
+    def get_temporally_password(self, id):
         student = self.repository.get_student_by_id(id)
 
         if student is None:
