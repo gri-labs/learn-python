@@ -6,10 +6,12 @@ class Repository:
         return self.connector.execute_and_fetchall("SELECT * FROM estudiantes")
 
     def get_student_by_id(self, id):
+        # .format(id) es para que el id se ponga en el lugar de las llaves
+        # y garantizar que la consulta se haga correctamente con el valor correcto.
         return self.connector.execute_and_fetchone("SELECT * FROM estudiantes WHERE id = {}".format(id))
 
     def get_students_by_name(self, name):
-        return self.connector.execute_and_fetchone("SELECT * FROM estudiantes WHERE nombre = '{}'".format(name))
+        return self.connector.execute_and_fetchall("SELECT * FROM estudiantes WHERE nombre = '{}'".format(name))
 
     def insert_student(self, name):
         return self.connector.execute_and_commit("INSERT INTO estudiantes (nombre) VALUES ('{}')".format(name))

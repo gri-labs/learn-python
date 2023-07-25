@@ -20,16 +20,17 @@ if __name__ == '__main__':
     # TODO: Inserta datos en la base de datos
     repository.insert_student('Paquito')
     # TODO: Obten el registro que has añadido y muestralo
-    datos = repository.get_students_by_name('Paquito')
+    datos = repository.get_student_by_id(2)
     for i in datos:
         print(i)
     # TODO: Obten todos los usuarios
     datos = repository.get_students()
     for i in datos:
-        print(i)
+        for j in i:
+            print(j)
     # TODO: Actualiza un usuario y muestra ese usuario
-    repository.update_student('Alex', 1)
-    datos = repository.get_student_by_id(1)
+    repository.update_student(1,'Alex')
+    datos = repository.get_student_by_id(3)
     for i in datos:
         print(i)
     # TODO: Borra un usuario
