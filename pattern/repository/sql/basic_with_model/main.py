@@ -1,5 +1,6 @@
 from connector import ConnectorDatabase
 from repository import Repository
+from service import Service
 from student import StudentEntity
 
 if __name__ == '__main__':
@@ -11,15 +12,6 @@ if __name__ == '__main__':
         port=int(3308)
     ))
 
-    # Add student
-    repository.add_student(
-        StudentEntity(
-            nombre='Juan',
-        ))
+    service = Service(repository)
 
-    # Get student by id
-    student = repository.get_student_by_id(500)
-    print(student.nombre)
-
-
-    # TODO: Usa los métodos del repositorio para crear, actualizar y borrar un estudiante
+    service.add_user(StudentEntity(id=1, nombre='Pepe'))
