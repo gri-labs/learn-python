@@ -21,5 +21,4 @@ if __name__ == '__main__':
     student = repository.get_student_by_id(500)
     print(student.nombre)
 
-
     # TODO: Usa los métodos del repositorio para crear, actualizar y borrar un estudiante
