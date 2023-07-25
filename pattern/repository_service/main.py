@@ -16,4 +16,4 @@ if __name__ == '__main__':
 
     service.add_student(StudentEntity(nombre='Pepe'))
 
-    print(service.get_student_by_id(10).password)
+    print(service.get_temporally_password(1, '123456'))

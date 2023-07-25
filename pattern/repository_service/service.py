@@ -5,13 +5,13 @@ class Service:
     def __init__(self, repository):
         self.repository = repository
 
-    def get_temporally_password(self, id):
+    def get_temporally_password(self, id, password):
         student = self.repository.get_student_by_id(id)
 
         if student is None:
             return None
 
-        student.password = generate_password_hash("123456")
+        student.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
         return student
 
@@ -36,7 +36,3 @@ class Service:
 
     def update_student(self, student_entity):
         return self.repository.update_user(student_entity)
-
-
-def generate_password_hash(password):
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
