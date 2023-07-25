@@ -14,4 +14,4 @@ if __name__ == '__main__':
 
     service = Service(repository)
 
-    service.add_user(StudentEntity(id=1, nombre='Pepe'))
+    service.add_student(StudentEntity(nombre='Pepe'))
