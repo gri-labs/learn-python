@@ -18,9 +18,8 @@ class ConnectorDatabase:
 
     def execute_and_filter(self, model_data, filter_by=None):
         # Abrimos una sesión.
-        # La sentencia with nos permite ejecutar una función al principio y al final de un bloque de código.
-        # En este caso, al principio de la sentencia with se ejecuta la función self.Session()
-        # y al final de la sentencia with se ejecuta la función close() de la sesión.
+        # La sentencia with nos permite ejecutar una función al principio y al final de un bloque de código
+        # de manera segura.
         with self.Session() as session:
             # Ejecutamos la consulta
             # La función filter_by nos permite filtrar los resultados de la consulta
@@ -33,6 +32,8 @@ class ConnectorDatabase:
             # Resultado:
             # {'name': 'Juan', 'age': 20}
             # query es una función que nos permite ejecutar una consulta
+            ####
+            # model_data.__class__ es una forma de obtener la clase de un objeto
             result = session.query(model_data.__class__).filter_by(**filter_by).first()
             # Cerramos la sesión
             session.close()

@@ -25,10 +25,21 @@ class Repository:
         return student_entity
 
     def add_student(self, student_entity):
-        return "TODO IMPLEMENTAR"
+        new_student = StudentDTO()
+        new_student.id = student_entity.id
+        new_student.nombre = student_entity.nombre
+
+        self.connector.execute_and_commit(new_student)
 
     def delete_student_by_id(self, id):
-        return "TODO IMPLEMENTAR"
+        new_student = StudentDTO()
+        new_student.id = id
+
+        self.connector.delete_and_commit(new_student)
 
     def update_student(self, student_entity):
-        return "TODO IMPLEMENTAR"
+        new_student = StudentDTO()
+        new_student.id = student_entity.id
+        new_student.nombre = student_entity.nombre
+
+        self.connector.execute_and_commit(new_student)
