@@ -3,7 +3,16 @@ class Service:
         self.repository = repository
 
     def get_student_by_id(self, id):
-        return self.repository.get_student_by_id(id)
+        # Validaciones
+        if id is None:
+            return None
+
+        student = self.repository.get_student_by_id(id)
+
+        if student is None:
+            return None
+
+        return student
 
     def add_student(self, student_entity):
         return self.repository.add_student(student_entity)

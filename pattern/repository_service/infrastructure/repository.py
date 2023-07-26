@@ -1,5 +1,5 @@
-from student import StudentDTO
-from student import StudentEntity
+from pattern.repository_service.infrastructure.storage import StudentDTO
+from pattern.repository_service.domain.model import StudentEntity
 
 
 class Repository:
