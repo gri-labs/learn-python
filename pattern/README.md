@@ -1,4 +1,4 @@
-# Arquitectura por capas, mezclado con Hexagonal y DD
+# Arquitectura por capas, mezclado con Hexagonal y DDD
 
 La arquitectura por capas es un patrón de diseño de software
 
@@ -59,3 +59,5 @@ Esta capa será la capa que acceda a servicios externos como base de datos
 # __init__.py
 
 Este archivo es necesario para que Python trate los directorios como paquetes.
+
+Es una carpeta que contiene archivos de Python y un archivo __init__.py.
