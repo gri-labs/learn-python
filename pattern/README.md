@@ -1,4 +1,43 @@
+# Arquitectura por capas, mezclado con Hexagonal y DD
+
+La arquitectura por capas es un patrón de diseño de software
+
+Hexagonal es un patrón de diseño de software.
+
+Domain Driven Design (DDD) es un enfoque para el desarrollo de software que prioriza el diseño de software 
+para satisfacer las necesidades de las empresas en lugar de enfocarse en la tecnología subyacente.
+
+Se pretende hacer código mantenible y escalable en el futuro.
+
+![image.png](..%2F..%2F..%2F..%2FDownloads%2Fimage.png)
+
+
+# UI
+
+La capa de cliente es la capa que contiene la interfaz de usuario de la aplicación.
+Puede ser una aplicación web, una aplicación móvil o una aplicación de escritorio etc..
+
+
+# Domain
+
+Este será el núcleo de la aplicación. Es la capa donde se incluyen todas las reglas de negocio relacionadas con el problema a resolver.
+
+Esta capa debe mantenerse alejada de las dependencias tanto como sea posible. 
+
+Las bibliotecas de terceros no deben agregarse tanto como sea posible, ya que no deben tomar otras capas como referencia
+
+
+# Application
+
+Esta es la capa que contiene la lógica de negocio de la aplicación.
+
+La capa de aplicación solo puede depender del dominio.
+
+
+# Infrastructure
 # Repository
+
+La capa de infrastructura solo puede depender de la capa de applicación y dominio.
 
  El patrón de diseño Repositorio separa la lógica de acceso a datos 
  de diferentes fuentes. La idea básica es crear una especie de capa 
@@ -18,7 +57,6 @@
 - Aumenta la escalabilidad
 - Aumenta la mantenibilidad
 
-# Service
+# __init__.py
 
-El patrón de diseño Service es un patrón de diseño de software 
-utilizado para implementar la lógica de negocio.
+Este archivo es necesario para que Python trate los directorios como paquetes.

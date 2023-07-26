@@ -1,7 +1,7 @@
-from connector import ConnectorDatabase
-from repository import Repository
-from service import Service
-from student import StudentEntity
+from pattern.repository_service.infrastructure.connector import ConnectorDatabase
+from pattern.repository_service.infrastructure.repository import Repository
+from pattern.repository_service.application.service import Service
+from pattern.repository_service.domain.model import StudentEntity
 
 if __name__ == '__main__':
     repository = Repository(ConnectorDatabase(
@@ -16,4 +16,8 @@ if __name__ == '__main__':
 
     service.add_student(StudentEntity(nombre='Pepe'))
 
-    print(service.get_temporally_password(1, '123456'))
+    student = service.get_student_by_id(5)
+
+    model_student = StudentEntity(id=student.id, nombre='Juan', apellido='Perez')
+
+    print(model_student.full_name())
