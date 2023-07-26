@@ -9,7 +9,7 @@ para satisfacer las necesidades de las empresas en lugar de enfocarse en la tecn
 
 Se pretende hacer código mantenible y escalable en el futuro.
 
-![image.png](..%2F..%2F..%2F..%2FDownloads%2Fimage.png)
+![image](image.png)
 
 
 # UI
