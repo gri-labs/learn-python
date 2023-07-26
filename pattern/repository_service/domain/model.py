@@ -18,3 +18,5 @@ class StudentEntity():
     def full_name(self):
         # TODO: implement this method
         return ""
+
+    # TODO: implement random method
