@@ -16,7 +16,4 @@ class StudentEntity():
         return password
 
     def full_name(self):
-        # TODO: implement this method
-        return ""
-
-    # TODO: implement random method
+        return self.nombre + " " + self.apellido
