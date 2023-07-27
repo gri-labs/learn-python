@@ -8,4 +8,4 @@ class Repository:
         return self.connector.execute_and_fetchone("SELECT * FROM estudiantes WHERE id = {}".format(id))
 
     def insert_student(self, name):
-        return self.connector.execute_and_commit("INSERT INTO estudiantes (nombre) VALUES ('{}')".format(name))
+        return self.connector.add("INSERT INTO estudiantes (nombre) VALUES ('{}')".format(name))

@@ -28,7 +28,15 @@ class Service:
         return self.repository.add_student(student_entity)
 
     def delete_student_by_id(self, id):
+        if id is None:
+            raise ValueError("id is required")
+
+        result = self.repository.delete_student_by_id(id)
+
+        if result is None:
+            raise ValueError("student not found")
+
         return self.repository.delete_student_by_id(id)
 
     def update_student(self, student_entity):
-        return self.repository.update_user(student_entity)
+        return self.repository.update_student(student_entity)

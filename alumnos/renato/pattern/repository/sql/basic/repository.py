@@ -13,12 +13,12 @@ class Repository:
 
     def insert_student(self, nombre, email, appellido, edad):
         sql = f"""INSERT INTO estudiantes (nombre, email, appellido, edad) VALUES ('{nombre}', '{appellido}','{email}', '{edad}')"""
-        self.connector.execute_and_commit(sql)
+        self.connector.add(sql)
 
     def update_student(self, id, nombre):
         sql = f"UPDATE estudiantes SET nombre = '{nombre}' WHERE id = '{id}'"
-        self.connector.execute_and_commit(sql)
+        self.connector.add(sql)
 
     def delete_student(self, id):
         sql = f"DELETE FROM estudiantes WHERE id = '{id}'"
-        self.connector.execute_and_commit(sql)
+        self.connector.add(sql)

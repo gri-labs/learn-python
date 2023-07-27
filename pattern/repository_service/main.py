@@ -14,10 +14,18 @@ if __name__ == '__main__':
 
     service = Service(repository)
 
-    service.add_student(StudentEntity(nombre='Pepe55555'))
+    student_entity = StudentEntity(nombre='PepeLast')
 
-    student_pepe_55555 = service.get_student_by_name('Pepe55555')
+    service.add_student(student_entity)
 
-    print(student_pepe_55555.nombre)
+    print(service.get_student_by_name('PepeLast').nombre)
 
-    print(StudentEntity(nombre=student_pepe_55555.nombre, apellido='Pez').full_name())
+    student_entity.nombre = 'PepeLast2'
+
+    service.update_student(student_entity)
+
+    print(service.get_student_by_name('PepeLast2').nombre)
+
+    service.delete_student_by_id(student_entity.id)
+
+    print(service.get_student_by_name('PepeLast2').nombre)
