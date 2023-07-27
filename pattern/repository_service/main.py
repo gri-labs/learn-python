@@ -18,14 +18,8 @@ if __name__ == '__main__':
 
     service.add_student(student_entity)
 
+    print("Student add with name: ")
     print(service.get_student_by_name('PepeLast').nombre)
+    print("Student add with id: ")
+    print(service.get_student_by_name('PepeLast').id)
 
-    student_entity.nombre = 'PepeLast2'
-
-    service.update_student(student_entity)
-
-    print(service.get_student_by_name('PepeLast2').nombre)
-
-    service.delete_student_by_id(student_entity.id)
-
-    print(service.get_student_by_name('PepeLast2').nombre)

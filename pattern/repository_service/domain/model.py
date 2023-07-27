@@ -3,9 +3,9 @@ class StudentEntity():
     # Propiedades por defecto
     id = 0
     nombre = ""
-    # TODO integra el apellido en la entidad y en la persistencia
-    # TODO integrate edad  en la entidad y en la persistencia
-    # TODO implementa el password en la entidad y en la persistencia
+    # TODO integrar el apellido en la entidad y en la persistencia
+    # TODO integrar edad  en la entidad y en la persistencia
+    # TODO integrar el password en la entidad y en la persistencia
 
     def __init__(self, id=0, nombre=""):
         self.id = id

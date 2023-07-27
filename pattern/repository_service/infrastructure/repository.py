@@ -44,7 +44,6 @@ class Repository:
 
     def add_student(self, student_entity):
         new_student = StudentDTO()
-        new_student.id = student_entity.id
         new_student.nombre = student_entity.nombre
 
         self.connector.add(new_student)
