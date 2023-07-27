@@ -11,7 +11,7 @@ class StudentEntity():
         self.id = id
         self.nombre = nombre
 
-    # TODO: Implemnta un cambio de password
+    # TODO: Implementar un cambio de password
 
     # TODO: Implementa el nombre completo de los usuarios
 
@@ -19,7 +19,7 @@ class StudentEntity():
 
     # TODO es menor de edad?
 
-    # TODO cuantas personas hay mayores de edad?
+    # TODO cuantas estudiantes hay mayores de edad?
 
-    # TODO cuantas personas hay menores de edad?
+    # TODO cuantos estudiantes hay menores de edad?
 
