@@ -14,10 +14,10 @@ class Repository:
         return self.connector.execute_and_fetchall("SELECT * FROM estudiantes WHERE nombre = '{}'".format(name))
 
     def insert_student(self, name):
-        return self.connector.execute_and_commit("INSERT INTO estudiantes (nombre) VALUES ('{}')".format(name))
+        return self.connector.add("INSERT INTO estudiantes (nombre) VALUES ('{}')".format(name))
 
     def update_student(self, id, nombre):
-        return self.connector.execute_and_commit("UPDATE estudiantes SET nombre = '{}' WHERE id = {}".format(nombre, id))
+        return self.connector.add("UPDATE estudiantes SET nombre = '{}' WHERE id = {}".format(nombre, id))
 
     def delete_student(self, id):
-        return self.connector.execute_and_commit("DELETE FROM estudiantes WHERE id = {}".format(id))
+        return self.connector.add("DELETE FROM estudiantes WHERE id = {}".format(id))

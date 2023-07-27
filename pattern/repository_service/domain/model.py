@@ -1,22 +1,25 @@
+import datetime
 class StudentEntity():
     # Propiedades por defecto
     id = 0
     nombre = ""
-    apellido = ""
-    password = ""
+    # TODO integrar el apellido en la entidad y en la persistencia
+    # TODO integrar edad  en la entidad y en la persistencia
+    # TODO integrar el password en la entidad y en la persistencia
 
-    def __init__(self, id=0, nombre="", apellido="", password=bytes()):
+    def __init__(self, id=0, nombre=""):
         self.id = id
         self.nombre = nombre
-        self.apellido = apellido
-        self.password = password
 
-    def generate_random_password(self, password):
-        # TODO implement this method
-        return password
+    # TODO: Implementar un cambio de password
 
-    def full_name(self):
-        # TODO: implement this method
-        return ""
+    # TODO: Implementa el nombre completo de los usuarios
 
-    # TODO: implement random method
+    # TODO es mayor de edad?
+
+    # TODO es menor de edad?
+
+    # TODO cuantas estudiantes hay mayores de edad?
+
+    # TODO cuantos estudiantes hay menores de edad?
+

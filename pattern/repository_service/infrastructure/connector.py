@@ -40,14 +40,18 @@ class ConnectorDatabase:
             # Retornamos el resultado
             return result
 
-    def execute_and_commit(self, model_data):
+    def add(self, model_data):
         with self.Session() as session:
             session.add(model_data)
             session.commit()
             session.close()
 
-    def delete_and_commit(self, model_data):
+    def update(self, model_data):
         with self.Session() as session:
-            session.delete(model_data)
+            session.merge(model_data)
             session.commit()
             session.close()
+
+    def delete_by_id(self, model_data):
+        # TODO implementar
+        pass

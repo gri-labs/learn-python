@@ -29,7 +29,7 @@ class Repository:
         new_student.id = student_entity.id
         new_student.nombre = student_entity.nombre
 
-        self.connector.execute_and_commit(new_student)
+        self.connector.add(new_student)
 
     def delete_student_by_id(self, id):
         new_student = StudentDTO()
@@ -42,4 +42,4 @@ class Repository:
         new_student.id = student_entity.id
         new_student.nombre = student_entity.nombre
 
-        self.connector.execute_and_commit(new_student)
+        self.connector.add(new_student)
