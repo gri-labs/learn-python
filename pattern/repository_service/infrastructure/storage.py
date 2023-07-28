@@ -6,7 +6,10 @@ Base = declarative_base()
 
 # Modelo de persistencia
 # DTO (Data Transfer Object)
-class StudentDTO(Base):
-    __tablename__ = 'estudiantes'
+class StudentDTORepositoryService(Base):
+    __tablename__ = 'students'
     id = Column(Integer, primary_key=True)
-    nombre = Column(String(255))
+    name = Column(String(255))
+    last_name = Column(String(255))
+    age = Column(Integer)
+    password = Column(String(255))

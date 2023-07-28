@@ -1,5 +1,5 @@
-from repository import Repository
-from connector_database import ConnectorDatabase
+from repository import RepositoryBasic
+from connector_database import ConnectorDatabaseBasic
 
 
 if __name__ == '__main__':
@@ -7,7 +7,7 @@ if __name__ == '__main__':
     # TODO: Crea o chequea que exista una base de datos para poder trabajar
     # TODO: Implementa correctamente el repositorio y el conector
     # TODO: Instancia el repositorio con el conector y tu classe para printar datos
-    connector = ConnectorDatabase(
+    connector = ConnectorDatabaseBasic(
         host='localhost',
         user='root',
         password='root',
@@ -15,7 +15,7 @@ if __name__ == '__main__':
         port=3308
     )
 
-    repository = Repository(connector)
+    repository = RepositoryBasic(connector)
 
     # TODO: Adapta el repositorio al nombre de la base de datos
     # TODO: Inserta datos en la base de datos
