@@ -64,8 +64,8 @@ class Repository:
         self.connector.delete_by_id(new_student)
 
     def update_student(self, student_entity, id):
-        result = self.get_student_by_id(id)
-        result.id = id
+        result = StudentDTO()
+        result.id = student_entity.id
         result.nombre = student_entity.nombre
         result.apellido = student_entity.apellido
         result.edad = student_entity.edad
