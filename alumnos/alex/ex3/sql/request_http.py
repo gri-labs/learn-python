@@ -3,9 +3,10 @@ import requests
 
 url_post = 'http://localhost:6000/student/1/Ricardo'
 url_get = 'http://localhost:6000/students'
-url_get_by_id = 'http://localhost:6000/student/1'
+url_get_by_id = 'http://localhost:5000/student/5'
 url_delete = 'http://localhost:6000/student/1'
 url_put = 'http://localhost:6000/student/1/Ricardo'
+url_insert = 'http://localhost:5000/create/student/Victor'
 
 
 type_request = input('Ingrese el tipo de request: ')
@@ -14,7 +15,7 @@ if type_request == 'GET':
     response = requests.get(url_get)
     print(response.json())
 elif type_request == 'POST':
-    response = requests.post(url_post)
+    response = requests.post(url_insert)
     print(response.json())
 elif type_request == 'GET_BY_ID':
     response = requests.get(url_get_by_id)

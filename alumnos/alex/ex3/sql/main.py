@@ -6,7 +6,7 @@ from connector_database import ConnectorDatabase
 app = Flask(__name__)
 connector = ConnectorDatabase('localhost', 'root', 'root', 'gri', 3307)
 repository = Repository(connector)
-print_data = PrintData
+print_data = PrintData()
 
 
 @app.route('/create/student/<string:name>', methods=['POST'], endpoint='insert_student')
@@ -18,8 +18,7 @@ def insert_student(name):
 @app.route('/student/<int:student_id>', methods=['GET'], endpoint='get_student')
 def get_student(student_id):
     datos = repository.get_student_by_id(student_id)
-    print_data.print_data(datos)
-    return jsonify(""), 200
+    return jsonify(datos), 200
 
 @app.route('/students', methods=['GET'], endpoint='get_students')
 def get_students():
@@ -28,4 +27,4 @@ def get_students():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=6000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
