@@ -1,7 +1,7 @@
-from pattern.repository_service.infrastructure.connector import ConnectorDatabase
-from pattern.repository_service.infrastructure.repository import Repository
-from pattern.repository_service.application.service import Service
-from pattern.repository_service.domain.model import StudentEntity
+from alumnos.alex.repository_service.infrastructure.connector import ConnectorDatabase
+from alumnos.alex.repository_service.infrastructure.repository import Repository
+from alumnos.alex.repository_service.application.service import Service
+from alumnos.alex.repository_service.domain.model import StudentEntity
 
 if __name__ == '__main__':
     repository = Repository(ConnectorDatabase(
@@ -14,18 +14,23 @@ if __name__ == '__main__':
 
     service = Service(repository)
 
-    student_entity = StudentEntity(nombre='PepeLast')
+    """52student_entity = StudentEntity(nombre='PepeLast')
 
     service.add_student(student_entity)
 
     print("Student add with name: ")
     print(service.get_student_by_name('PepeLast').nombre)
     print("Student add with id: ")
-    print(service.get_student_by_name('PepeLast').id)
+    print(service.get_student_by_name('PepeLast').id)"""
 
-    Alex = StudentEntity(nombre='Alex', apellido='Larrinaga', edad=33, password=1234)
+    Alex = StudentEntity(0, 'Alex', 'Larrinaga', 33, '1234')
     service.add_student(Alex)
-    print(service.get_student_by_name('Alex').password)
-    Alex.change_password(1111)
-    service.update_student(Alex)
+    print(service.get_student_by_id(52).apellido)
+    print(service.get_student_by_id(52).edad)
+    print(service.get_student_by_id(52).password)
+    Alex.change_password('1111')
+    Alex.change_edad(34)
+    service.update_student_by_id(Alex, 33)
+    print(service.get_student_by_id(52).edad)
+    print(service.get_student_by_id(52).password)
 

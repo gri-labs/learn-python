@@ -1,5 +1,5 @@
-from pattern.repository_service.infrastructure.storage import StudentDTO
-from pattern.repository_service.domain.model import StudentEntity
+from alumnos.alex.repository_service.infrastructure.storage import StudentDTO
+from alumnos.alex.repository_service.domain.model import StudentEntity
 
 
 class Repository:
@@ -21,6 +21,8 @@ class Repository:
         student_entity.id = result.id
         student_entity.nombre = result.nombre
         student_entity.apellido = result.apellido
+        student_entity.edad = result.edad
+        student_entity.password = result.password
 
         # Hemos devuelto la entidad
         return student_entity
@@ -40,6 +42,8 @@ class Repository:
         student_entity.id = result.id
         student_entity.nombre = result.nombre
         student_entity.apellido = result.apellido
+        student_entity.edad = result.edad
+        student_entity.password = result.password
 
         # Hemos devuelto la entidad
         return student_entity
@@ -48,6 +52,8 @@ class Repository:
         new_student = StudentDTO()
         new_student.nombre = student_entity.nombre
         new_student.apellido = student_entity.apellido
+        new_student.edad = student_entity.edad
+        new_student.password = student_entity.password
 
         self.connector.add(new_student)
 
@@ -57,12 +63,12 @@ class Repository:
 
         self.connector.delete_by_id(new_student)
 
-    def update_student(self, student_entity):
-        new_student = StudentDTO()
-        new_student.id = student_entity.id
-        new_student.nombre = student_entity.nombre
-        new_student.apellido = student_entity.apellido
-        new_student.edad = student_entity.edad
-        new_student.password = student_entity.password
+    def update_student(self, student_entity, id):
+        result = self.get_student_by_id(id)
+        result.id = id
+        result.nombre = student_entity.nombre
+        result.apellido = student_entity.apellido
+        result.edad = student_entity.edad
+        result.password = student_entity.password
 
-        self.connector.update(new_student)
+        self.connector.update(result)

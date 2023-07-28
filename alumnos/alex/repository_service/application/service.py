@@ -38,5 +38,5 @@ class Service:
 
         return self.repository.delete_student_by_id(id)
 
-    def update_student(self, student_entity):
-        return self.repository.update_student(student_entity)
+    def update_student_by_id(self, student_entity, id):
+        return self.repository.update_student(student_entity, id)

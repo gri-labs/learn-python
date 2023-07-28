@@ -20,6 +20,9 @@ class StudentEntity():
     def change_password(self, password):
         self.password = password
 
+    def change_edad(self, edad):
+        self.edad = edad
+
 
     # TODO: Implementa el nombre completo de los usuarios
 
