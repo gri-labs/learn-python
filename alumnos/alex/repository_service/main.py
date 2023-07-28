@@ -24,13 +24,18 @@ if __name__ == '__main__':
     print(service.get_student_by_name('PepeLast').id)"""
 
     Alex = StudentEntity(0, 'Alex', 'Larrinaga', 33, '1234')
-    service.add_student(Alex)
-    print(service.get_student_by_id(52).apellido)
-    print(service.get_student_by_id(52).edad)
-    print(service.get_student_by_id(52).password)
-    Alex.change_password('1111')
-    Alex.change_edad(34)
-    service.update_student_by_id(Alex, 33)
-    print(service.get_student_by_id(52).edad)
-    print(service.get_student_by_id(52).password)
+    #service.add_student(Alex)
+    student_alex = service.get_student_by_id(52)
+
+    print(student_alex.apellido)
+    print(student_alex.edad)
+    print(student_alex.password)
+    student_alex.change_password('1111')
+    student_alex.change_edad(34)
+
+    service.update_student_by_id(student_alex, 52)
+
+    student_alex_updated = service.get_student_by_id(52)
+
+    print("Student updated with name: ", student_alex_updated.nombre)
 
