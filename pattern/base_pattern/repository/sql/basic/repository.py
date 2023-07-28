@@ -1,4 +1,4 @@
-class Repository:
+class RepositoryBasic:
     def __init__(self, connector):
         self.connector = connector
 

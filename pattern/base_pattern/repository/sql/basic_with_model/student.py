@@ -7,7 +7,7 @@ Base = declarative_base()
 
 # Modelo de persistencia
 # DTO (Data Transfer Object)
-class StudentDTO(Base):
+class StudentDTOBasicModel(Base):
     __tablename__ = 'estudiantes'
     id = Column(Integer, primary_key=True)
     nombre = Column(String(255))
@@ -16,7 +16,7 @@ class StudentDTO(Base):
 # Una entidad es?
 # Una entidad es una clase que representa un modelo de negocio
 # No tiene ninguna dependencia de la base de datos
-class StudentEntity():
+class StudentEntityBasicModel():
     # Propiedades por defecto
     # Las entidades siempre deben tener un id
     id = 0

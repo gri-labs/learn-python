@@ -1,9 +1,9 @@
-from connector import ConnectorDatabase
-from repository import Repository
-from student import StudentEntity
+from connector import ConnectorDatabaseBasicModel
+from repository import RepositoryBasicModel
+from student import StudentEntityBasicModel
 
 if __name__ == '__main__':
-    repository = Repository(ConnectorDatabase(
+    repository = RepositoryBasicModel(ConnectorDatabaseBasicModel(
         host='localhost',
         password='root',
         user='root',
@@ -13,12 +13,12 @@ if __name__ == '__main__':
 
     # Add student
     repository.add_student(
-        StudentEntity(
+        StudentEntityBasicModel(
             nombre='Juan',
         ))
 
     # Get student by id
     student = repository.get_student_by_id(500)
-    print(student.nombre)
+    print(student.name)
 
     # TODO: Usa los métodos del repositorio para crear, actualizar y borrar un estudiante

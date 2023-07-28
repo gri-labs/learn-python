@@ -9,7 +9,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
-class ConnectorDatabase:
+class ConnectorDatabaseBasicModel:
     def __init__(self, host, user, password, database, port):
         # Creamos una conexión a la base de datos
         self.engine = create_engine(f'mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}')
