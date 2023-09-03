@@ -1,6 +1,6 @@
 lista = [1, 2, 3, 4]
 
-# Agrega el elemento 5 al final de la lista
+# Agrega el elemento 5 al final de la lista.
 lista.append(5)
 
 # Imprime la lista.
