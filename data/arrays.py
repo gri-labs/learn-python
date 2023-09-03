@@ -2,7 +2,7 @@
 # Un array es una lista de elementos
 
 # Ejemplo de array simple
-array_one = [1, 2, 3, 4, 5]
+array_one = [1, 2, 3, 4, 5, 6]
 
 # Iterar en array simple
 for i in array_one:
