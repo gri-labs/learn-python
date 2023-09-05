@@ -1,38 +1,10 @@
-from pattern.repository_service.infrastructure.storage import StudentDTORepositoryService
-from pattern.repository_service.domain.model import StudentEntityRepositoryService
+from pattern.student.infrastructure.storage import StudentDTORepositoryService
+from pattern.student.domain.model import StudentEntityRepositoryService
+
 
 class Repository:
     def __init__(self, connector_database):
         self.connector = connector_database
-
-    def get_all_students(self):
-        # Hemos creado una instancia del modelo StudentDTO para la persistencia
-        new_student = StudentDTORepositoryService()
-
-        # Hemos asignado el id que nos llega por parámetro
-
-        result = self.connector.get_all(new_student)
-
-        # Create array of student entity
-        students_entity = []
-
-        for student in result:
-            # Create new student entity
-            student_entity = StudentEntityRepositoryService()
-
-            # Hemos asignado los valores del resultado a la entidad
-            student_entity.id = student.id
-            student_entity.name = student.name
-            student_entity.last_name = student.last_name
-            student_entity.age = student.age
-            student_entity.password = student.password
-
-            # Hemos añadido la entidad al array
-            students_entity.append(student_entity)
-
-        # Hemos devuelto la entidad
-        return students_entity
-
 
     def get_student_by_filter(self, filter_by):
         # Hemos creado una instancia del modelo StudentDTO para la persistencia
@@ -61,7 +33,7 @@ class Repository:
 
         # Hemos asignado el id que nos llega por parámetro
 
-        result = self.connector.get_by_filter(new_student, filter_by={'id': id})
+        result = self.connector.get_by_filter(new_student, id=id)
 
         student_entity = StudentEntityRepositoryService()
 
@@ -99,5 +71,4 @@ class Repository:
         new_student = StudentDTORepositoryService()
         new_student.id = id
 
-        self.connector.delete(new_student)
-
+        return self.connector.delete(new_student)

@@ -16,11 +16,6 @@ class ConnectorDatabase:
         # Creamos una sesión
         self.Session = sessionmaker(bind=self.engine)
 
-    def get_all(self, model_data):
-        with self.Session() as session:
-            result = session.query(model_data.__class__).all()
-            return result
-
     def get_by_filter(self, model_data, filter_by=None):
         # Abrimos una sesión.
         # La sentencia with nos permite ejecutar una función al principio y al final de un bloque de código
@@ -72,14 +67,3 @@ class ConnectorDatabase:
 
             # Closing the session
             session.close()
-
-    def delete(self, model_data):
-        with self.Session() as session:
-            # Finding the object to be deleted based on its primary key
-            result = session.query(model_data.__class__).get(model_data.id)
-
-            # Deleting the object from the session
-            session.delete(result)
-
-            # Committing the changes to the database
-            session.commit()

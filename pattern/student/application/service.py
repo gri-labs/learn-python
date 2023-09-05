@@ -2,9 +2,6 @@ class Service:
     def __init__(self, repository):
         self.repository = repository
 
-    def get_all_students(self):
-        return self.repository.get_all_students()
-
     def get_student_by_id(self, id):
         if id is None:
             raise ValueError("id is required")
