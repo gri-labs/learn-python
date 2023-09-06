@@ -7,7 +7,6 @@ url_get_by_id = 'http://localhost:6000/student/1'
 url_delete = 'http://localhost:6000/student/1'
 url_put = 'http://localhost:6000/student/1/Ricardo'
 
-
 type_request = input('Ingrese el tipo de request: ')
 
 if type_request == 'GET':
