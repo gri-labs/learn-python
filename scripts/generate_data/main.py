@@ -56,5 +56,5 @@ if __name__ == '__main__':
     for student in generate():
         connect.execute_and_commit(
             # f-strings es una forma de formatear strings
-            f"INSERT INTO students_date (name, age, last_name, dni) VALUES ('{student.name}', {student.age}, '{student.last_name}', {student.dni})"
+            f"INSERT INTO students (name, age, last_name, dni) VALUES ('{student.name}', {student.age}, '{student.last_name}', {student.dni})"
         )
