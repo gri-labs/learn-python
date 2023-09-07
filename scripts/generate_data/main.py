@@ -35,23 +35,11 @@ class Generator:
             # permitiendo que el valor generado sea utilizado por el código
             # que llama a este método antes de continuar con la siguiente iteración del bucle.
             yield self.student(
-                self.generate_name(),
-                self.generate_age(),
-                self.generate_last_name(),
-                self.generate_dni()
+                fake.name(),
+                fake.last_name(),
+                fake.random_int(min=18, max=80),
+                fake.random_int(min=10000000, max=99999999)
             )
-
-    def generate_name(self):
-        return fake.name()
-
-    def generate_last_name(self):
-        return fake.last_name()
-
-    def generate_age(self):
-        return fake.random_int(min=18, max=80)
-
-    def generate_dni(self):
-        return fake.random_int(min=10000000, max=99999999)
 
 
 if __name__ == '__main__':
