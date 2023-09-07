@@ -11,10 +11,6 @@ class Student:
         self.last_name = last_name
         self.dni = dni
 
-    # Este método se utiliza para representar el objeto como un string
-    def __str__(self):
-        return f'{self.name} {self.last_name} {self.age} {self.dni}'
-
 
 class Generator:
     def __init__(self, quantity, student):
@@ -59,5 +55,6 @@ if __name__ == '__main__':
     # generate() es el método de la clase Generator que devuelve un generador.
     for student in generate():
         connect.execute_and_commit(
+            # f-strings es una forma de formatear strings
             f"INSERT INTO students_date (name, age, last_name, dni) VALUES ('{student.name}', {student.age}, '{student.last_name}', {student.dni})"
         )
