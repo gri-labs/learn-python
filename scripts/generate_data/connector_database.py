@@ -1,11 +1,15 @@
-import mysql.
+import mysql.connector
 
 
 class ConnectorDatabase:
 
-    def __init__(self, ):
+    def __init__(self, host, user, password, database, port):
         self.connection = mysql.connector.connect(
-
+            host=host,
+            user=user,
+            password=password,
+            database=database,
+            port=int(port)
         )
 
     def execute_and_commit(self, query):
