@@ -56,6 +56,7 @@ if __name__ == '__main__':
     )
 
     # Se itera el generador y se insertan los objetos "Student" en la base de datos.
+    # generate() es el método de la clase Generator que devuelve un generador.
     for student in generate():
         connect.execute_and_commit(
             f"INSERT INTO students_date (name, age, last_name, dni) VALUES ('{student.name}', {student.age}, '{student.last_name}', {student.dni})"
