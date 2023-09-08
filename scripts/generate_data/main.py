@@ -7,8 +7,8 @@ fake = Faker()
 class Student:
     def __init__(self, name, age, last_name, dni):
         self.name = name
-        self.age = age
         self.last_name = last_name
+        self.age = age
         self.dni = dni
 
 
@@ -18,8 +18,8 @@ def generate_students(quantity, student_class):
     for _ in range(quantity):
         yield student_class(
             name=fake.first_name(),
-            age=fake.random_int(min=18, max=99),
             last_name=fake.last_name(),
+            age=fake.random_int(min=18, max=99),
             dni=fake.random_int(min=10000000, max=99999999)
         )
 
