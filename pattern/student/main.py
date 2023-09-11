@@ -1,10 +1,13 @@
 from pattern.student.infrastructure.connector import ConnectorDatabase
-from pattern.student.infrastructure.repository import Repository
-from pattern.student.application.service import Service
-from pattern.student.app.routes import RoutesStudent
+from pattern.student.domain.repository import StudentRepository
+from pattern.student.domain.service import StudentService
+from pattern.student.application.controllers import RoutesStudent
+from flask import Flask
 
 if __name__ == '__main__':
-    repository = Repository(ConnectorDatabase(
+    app = Flask(__name__)
+
+    repository = StudentRepository(ConnectorDatabase(
         host='localhost',
         password='root',
         user='root',
@@ -12,12 +15,7 @@ if __name__ == '__main__':
         port=int(3308)
     ))
 
-    service = Service(repository)
+    service = StudentService(repository)
 
-    routes = RoutesStudent(service)
-    routes.app.run(host='0.0.0.0', port=6000, debug=True)
-
-
-
-
-
+    routes = RoutesStudent(service, app)
+    app.run(host='0.0.0.0', port=6000, debug=True)
