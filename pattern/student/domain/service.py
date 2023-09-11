@@ -19,3 +19,16 @@ class StudentService:
             raise ValueError("User not found")
 
         return result
+
+    def add_student(self, student):
+        if student is None:
+            raise ValueError("student is required")
+
+        student_model = StudentDTORepositoryService()
+
+        student_model.name = student.name
+        student_model.last_name = student.last_name
+        student_model.age = student.age
+        student_model.dni = student.dni
+
+        return self.repository.add_student(student)
