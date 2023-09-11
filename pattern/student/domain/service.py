@@ -1,9 +1,11 @@
 from pattern.student.domain.model import StudentDTORepositoryService
+
+
 class StudentService:
     def __init__(self, repository):
         self.repository = repository
 
-    def get_student_by_id(self, id):
+    def get_student_by_id(self, student_id):
         if id is None:
             raise ValueError("id is required")
 
@@ -11,10 +13,9 @@ class StudentService:
 
         student_model.id = id
 
-        student = self.repository.get_student_by_id(student_model, id)
+        result = self.repository.get_student_by_id(student_model, student_id)
 
-        if student is None:
-            print("student not found")
-            raise ValueError("student not found")
+        if result is None:
+            raise ValueError("User not found")
 
-        return student
+        return result

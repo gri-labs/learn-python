@@ -7,6 +7,7 @@
 # Una sesión es un objeto que nos permite interactuar con la base de datos.
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import SQLAlchemyError
 
 
 class ConnectorDatabase:
@@ -20,11 +21,10 @@ class ConnectorDatabase:
     def get_by_id(self, model_data, id):
         try:
             # Ejecutamos la consulta
-            result = self.session.query(model_data.__class__).get(id)
-            return result
-        except Exception as e:
-            # Manejar errores adecuadamente, por ejemplo, logear el error o lanzar una excepción personalizada.
-            raise e
+            return self.session.query(model_data.__class__).get(id)
+        except SQLAlchemyError as e:
+            print(e)
+            return None
 
     def add(self, model_data):
         with self.Session() as session:
