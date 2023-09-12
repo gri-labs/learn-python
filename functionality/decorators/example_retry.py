@@ -8,8 +8,6 @@ def retry_decorator(func):
                 func()
             except Exception as e:
                 print(f"Error: {e}")
-            else:
-                break
 
     return wrapper
 
