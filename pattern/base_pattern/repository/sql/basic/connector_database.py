@@ -25,16 +25,3 @@ class ConnectorDatabaseBasic:
         result = cursor.fetchone()
         cursor.close()
         return result
-
-    def execute_and_commit(self, query):
-        try:
-            cursor = self.connection.cursor()
-            cursor.execute(query)
-            self.connection.commit()
-            cursor.close()
-        except Exception as e:
-            print(e)
-            self.connection.rollback()
-
-    def close_connection(self):
-        self.connection.close()
