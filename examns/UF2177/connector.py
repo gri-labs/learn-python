@@ -3,19 +3,19 @@ import mysql.connector
 
 class ConnectorDatabase:
 
-    def __init__(, ):
-        .connection = .connect(
-            host=,
-            user=,
-            password=,
-            database=,
-            port=int()
+    def __init__(self, host, user, password, database, port):
+        self.connection = mysql.connector.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=database,
+            port=int(port)
         )
 
     def execute_and_fetchone(self, query):
         cursor = self.connection.cursor()
         cursor.execute(query)
-        result = cursor.
+        result = cursor.fetchone()
         cursor.close()
         return result
 
