@@ -14,20 +14,20 @@ class GenerateGuessNumber:
 class PlayGuessNumber:
 
     def __init__(self, generate_guess_number):
-        self.generated_guess_number = generate_guess_number
+        self.generate_guess_number = generate_guess_number
         self.guess_number = 0
 
     def play(self):
         self.guess_number = int(input('Guess a number between 1 and 10: '))
 
     def is_correct(self):
-        return self.guess_number == self.generated_guess_number.guess_numer
+        return self.guess_number == self.generate_guess_number.guess_numer
 
     def is_greater(self):
-        return self.guess_number > self.generated_guess_number.guess_numer
+        return self.guess_number > self.generate_guess_number.guess_numer
 
     def is_lower(self):
-        return self.guess_number < self.generated_guess_number.guess_numer
+        return self.guess_number < self.generate_guess_number.guess_numer
 
 
 if __name__ == '__main__':
