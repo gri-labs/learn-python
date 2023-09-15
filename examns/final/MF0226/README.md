@@ -1,4 +1,4 @@
-Juego de ahorcado: 
+# Juego de ahorcado: 
 
 Crea el juego del ahorcado en el que la computadora elige una palabra al azar y el jugador debe adivinar la letra por letra antes de quedarse sin intentos. 
 
