@@ -1,11 +1,14 @@
 random
 
-class :
+class GenerateWord:
+    def __init__(self):
+        self.words = ["pepe", "casa", "padre", "marido", "mujer", "hombre"]
 
+    def get_word(self):
 
 class Hangman:
-    def (, word):
-        self.word =
+    def __init__(self, word):
+        self.word = word
         self.guessed = []
 
     def guess(, letter):
@@ -17,7 +20,7 @@ class Hangman:
 
     def get_status(self):
         print("Guess the word:")
-        for  in self.word:
+        for letter in self.word:
             if
                 print(, end="")
             else:
@@ -27,12 +30,12 @@ class Hangman:
     def check_if_player_won(self):
 
 
-class :
-    def (self):
-        self.word =
-        self.hanged =
+class PlayGame:
+    def __init__(self):
+        self.word = GenerateWord().get_word()
+        self.hanged = Hangman(self.word)
 
-    def (self):
+    def play(self):
         while :
             self.hanged.
             letter = input
