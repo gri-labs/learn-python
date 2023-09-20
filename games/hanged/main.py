@@ -1,7 +1,7 @@
 import random
 
 
-class GenerateWord:
+class ChoiceWord:
     def __init__(self):
         self.words = ["pepe", "casa", "padre", "marido", "mujer", "hombre"]
 
@@ -40,7 +40,7 @@ class Hangman:
 
 class PlayGame:
     def __init__(self):
-        self.word = GenerateWord().get_word()
+        self.word = ChoiceWord().get_word()
         self.hanged = Hangman(self.word)
 
     def play(self):

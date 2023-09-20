@@ -9,6 +9,9 @@ class Computer:
     def add_score(self):
         self.score = self.score + 1
 
+    def get_option(self):
+        return random.choice(['rock', 'paper', 'scissors'])
+
 
 class Player:
     def __init__(self):
@@ -24,10 +27,8 @@ class Game:
     def __init__(self, player, computer):
         self.player = player
         self.computer = computer
-        self.options = ['rock', 'paper', 'scissors']
 
-    def compare(self, player_option):
-        computer_option = random.choice(self.options)
+    def compare(self, player_option, computer_option):
 
         if player_option == computer_option:
             print('Draw')
@@ -53,7 +54,8 @@ class Play:
         while True:
             self.show_options()
             player_option = input("Enter your choice:")
-            self.game.compare(player_option)
+            computer_option = self.game.computer.get_option()
+            self.game.compare(player_option, computer_option)
             self.check_win()
 
     def check_win(self):
@@ -66,8 +68,9 @@ class Play:
 
     def show_options(self):
         print("Available options:")
-        for option in self.game.options:
-            print(option)
+        print("1. Rock")
+        print("2. Paper")
+        print("3. Scissors")
 
 
 if __name__ == '__main__':
