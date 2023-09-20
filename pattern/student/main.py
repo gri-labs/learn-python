@@ -1,7 +1,7 @@
 from pattern.student.infrastructure.connector import ConnectorDatabase
 from pattern.student.infrastructure.repository import Repository
 from pattern.student.application.service import Service
-from pattern.student.app.routes import RoutesStudent
+from pattern.student.controllers.routes import RoutesStudent
 
 if __name__ == '__main__':
     repository = Repository(ConnectorDatabase(
