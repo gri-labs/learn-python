@@ -14,7 +14,7 @@ class Repository:
 
         result = self.connector.get_by_filter(new_student, filter_by=filter_by)
 
-        # Create new student entity
+        # Create new employ entity
         student_entity = StudentEntityRepositoryService()
 
         # Hemos asignado los valores del resultado a la entidad

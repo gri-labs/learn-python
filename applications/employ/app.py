@@ -16,7 +16,7 @@ class Employs(db.Model):
 
 
 @app.route('/employ/<id>', methods=['GET'])
-def get_student(id):
+def get_employ(id):
     employ = Employs.query.filter_by(id=id).first()
     if employ is None:
         return jsonify('Employ not found'), 404

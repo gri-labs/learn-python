@@ -1,4 +1,4 @@
-# Create model for student
+# Create model for employ
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 

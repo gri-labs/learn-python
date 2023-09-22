@@ -11,13 +11,13 @@ if __name__ == '__main__':
         port=int(3308)
     ))
 
-    # Add student
+    # Add employ
     repository.add_student(
         StudentEntityBasicModel(
             nombre='Juan',
         ))
 
-    # Get student by id
+    # Get employ by id
     student = repository.get_student_by_id(500)
     print(student.name)
 

@@ -9,7 +9,7 @@ class Service:
         student_entity = self.repository.get_student_by_id(id)
 
         if student_entity is None:
-            raise ValueError("student not found")
+            raise ValueError("employ not found")
 
         return student_entity
 
@@ -20,7 +20,7 @@ class Service:
         student_entity = self.repository.get_student_by_filter(filter_by={'name': name})
 
         if student_entity is None:
-            raise ValueError("student not found")
+            raise ValueError("employ not found")
 
         return student_entity
 

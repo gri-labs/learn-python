@@ -14,7 +14,7 @@ class RepositoryBasicModel:
 
         result = self.connector.execute_and_filter(new_student, filter_by={'id': id})
 
-        # Create new student entity
+        # Create new employ entity
         student_entity = StudentDTOBasicModel()
 
         # Hemos asignado los valores del resultado a la entidad
