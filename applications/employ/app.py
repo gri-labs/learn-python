@@ -1,23 +1,15 @@
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Numeric
+from model import db, Employs
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3308/import_sql'
-db = SQLAlchemy(app)
-
-
-class Employs(db.Model):
-    __tablename__ = "employs"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True)
-    department = Column(String, index=True)
-    salary = Column(Numeric(precision=10, scale=2))
+db.init_app(app)
 
 
 @app.route('/employ/<id>', methods=['GET'])
 def get_employ(id):
     employ = Employs.query.filter_by(id=id).first()
+
     if employ is None:
         return jsonify('Employ not found'), 404
 
