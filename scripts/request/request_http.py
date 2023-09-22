@@ -2,7 +2,7 @@
 import requests
 
 url_post = 'http://localhost:6000/student/1/Ricardo'
-url_get = 'http://localhost:6000/user/1'
+url_get = 'http://localhost:6000/employ/1'
 url_get_by_id = 'http://localhost:6000/student/1'
 url_delete = 'http://localhost:6000/student/1'
 url_put = 'http://localhost:6000/student/1/Ricardo'
