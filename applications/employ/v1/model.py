@@ -4,6 +4,9 @@ from sqlalchemy import Column, Integer, String, Numeric
 db = SQLAlchemy()
 
 
+# Modelo de persistencia
+# db.Model es el encargado de la comunicacion con la base de datos
+# contiene los metodos necesarios para realizar las operaciones CRUD
 class Employs(db.Model):
     __tablename__ = "employs"
     id = Column(Integer, primary_key=True, index=True)
