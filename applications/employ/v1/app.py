@@ -50,35 +50,12 @@ def delete_employ(id):
 
 @app.route('/employ', methods=['POST'])
 def add_employ():
-    requests = request.get_json()
-
-    try:
-        db.session.add(Employs(
-            name=requests['name'],
-            department=requests['department'],
-            salary=requests['salary']
-        ))
-        db.session.commit()
-        return jsonify('Employ created successfully'), 201
-    except Exception as e:
-        return jsonify('Error...')
+    )
 
 
 @app.route('/employ/<int:id>', methods=['PUT'])
 def update_employ(id):
-    requests = request.get_json()
 
-    try:
-        db.session.query(Employs).filter_by(id=id).update({
-            'name': requests['name'],
-            'department': requests['department'],
-            'salary': requests['salary']
-        })
-        db.session.commit()
-
-        return jsonify('Employ updated successfully'), 200
-    except Exception as e:
-        return jsonify('Error...')
 
 
 if __name__ == '__main__':
