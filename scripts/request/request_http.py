@@ -1,11 +1,11 @@
 # Create script to request http
 import requests
 
-port = '81'
+port = '6000'
 base_url = 'http://localhost:'+port
 
-url_post = base_url+'/login'
-url_get = base_url+'/info'
+url_post = base_url+'/employ'
+url_get = base_url+'/employ/4'
 url_get_by_id = base_url+'/student/1'
 url_delete = base_url+'/employ/1'
 url_put = base_url+'/employ/2'
@@ -14,9 +14,9 @@ type_request = input('Ingrese el tipo de request: ')
 
 if type_request == 'GET':
     response = requests.get(url_get)
-    print(response)
+    print(response.content.decode('utf-8'))
 elif type_request == 'POST':
-    response = requests.post(url_post, json={'username': 'admin', 'password': 'admin'})
+    response = requests.post(url_post, json={'name': 'admin', 'department': 'admin'})
     print(response)
 elif type_request == 'GET_BY_ID':
     response = requests.get(url_get_by_id)
