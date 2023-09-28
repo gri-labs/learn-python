@@ -4,7 +4,6 @@
 # Diccionarios ordenados: estos diccionarios mantienen el orden en el que se agregan las claves.
 # Ejemplo:
 
-# Explica este diccionario
 # clave uno, valor 1
 # clave dos, valor 2
 # clave tres, valor 3
