@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import requests
 from model import Employs
 from model import db
 
@@ -50,12 +51,35 @@ def delete_employ(id):
 
 @app.route('/employ', methods=['POST'])
 def add_employ():
-    )
+    data_params = request.get_json()
+
+    try:
+        db.session.add(Employs(
+            name=data_params['name'],
+            department=data_params['department'],
+            salary=data_params['salary']
+        ))
+        db.session.commit()
+        return jsonify('Employ created successfully'), 201
+    except Exception as e:
+        return jsonify('Error...')
 
 
 @app.route('/employ/<int:id>', methods=['PUT'])
 def update_employ(id):
+    requests = request.get_json()
 
+    try:
+        db.session.query(Employs).filter_by(id=id).update({
+            'name': requests['name'],
+            'department': requests['department'],
+            'salary': requests['salary']
+        })
+        db.session.commit()
+
+        return jsonify('Employ updated successfully'), 200
+    except Exception as e:
+        return jsonify('Error...')
 
 
 if __name__ == '__main__':

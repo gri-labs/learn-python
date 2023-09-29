@@ -10,6 +10,6 @@ db = SQLAlchemy()
 class Employs(db.Model):
     __tablename__ = "employs"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True)
-    department = Column(String, index=True)
+    name = Column(String)
+    department = Column(String)
     salary = Column(Numeric(precision=10, scale=2))

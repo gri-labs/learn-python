@@ -7,7 +7,7 @@ base_url = 'http://localhost:'+port
 url_post = base_url+'/employ'
 url_get = base_url+'/employ/4'
 url_get_by_id = base_url+'/student/1'
-url_delete = base_url+'/employ/1'
+url_delete = base_url+'/employ/4'
 url_put = base_url+'/employ/2'
 
 type_request = input('Ingrese el tipo de request: ')
@@ -16,7 +16,9 @@ if type_request == 'GET':
     response = requests.get(url_get)
     print(response.content.decode('utf-8'))
 elif type_request == 'POST':
-    response = requests.post(url_post, json={'name': 'admin', 'department': 'admin'})
+    data = {'name': 'admin', 'department': 'admin'}
+
+    response = requests.post(url_post, params=data)
     print(response)
 elif type_request == 'GET_BY_ID':
     response = requests.get(url_get_by_id)

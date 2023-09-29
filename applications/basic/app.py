@@ -29,7 +29,7 @@ def acercade():
 
 
 # Método post
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
         return 'Hemos accedido por POST'
@@ -38,7 +38,7 @@ def login():
 
 
 @app.route('/info', methods=["GET", "POST"])
-def inicio():
+def info():
     cad = ""
     cad += "URL:" + request.url + "\n"
     cad += "Método:" + request.method + "\n"
@@ -59,6 +59,8 @@ def inicio():
     for item, value in request.files.items():
         cad += "{}:{}\n".format(item, value)
 
+    print(cad)
+
     return cad
 
 
@@ -66,4 +68,4 @@ if __name__ == '__main__':
     # Ejecutamos la aplicación
     # Por defecto, la aplicación se ejecuta en el puerto 5000
     # Podemos cambiar la dirección IP y el puerto que nuestro servidor responderá
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=81, debug=True)
